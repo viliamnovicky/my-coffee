@@ -4,7 +4,7 @@ import Searchbar from "./Searchbar";
 
 function Header({ children }) {
   return (
-    <header className="h-[6rem] w-full bg-primary-900 flex px-4 py-0 justify-between items-center">
+    <header className="w-full bg-primary-900 flex flex-col md:flex-row gap-2 md:gap-0 px-4 py-4 justify-between items-center">
       <Logo />
       <Navbar/>
       {children}

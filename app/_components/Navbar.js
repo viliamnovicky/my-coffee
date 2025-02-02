@@ -9,15 +9,15 @@ function Navbar() {
       <ul className="flex uppercase gap-[1px]">
         <li
           className={`${
-            pathname === "/" ? "bg-primary-500 font-medium" : "font-light"
-          } bg-primary-900 hover:bg-primary-400 px-2 text-xl transition-colors`}
+            pathname === "/" ? "bg-primary-500 " : "bg-primary-900"
+          }  hover:bg-primary-400 px-2 text-xl transition-colors`}
         >
           <Link href="/">Home</Link>
         </li>
         <li
           className={`${
-            pathname === "/coffees" ? "bg-primary-500 font-medium" : "font-light"
-          } bg-primary-900 hover:bg-primary-400 px-2 text-xl transition-colors`}
+            pathname === "/coffees" ? "bg-primary-500 " : "bg-primary-900"
+          }  hover:bg-primary-400 px-2 text-xl transition-colors`}
         >
           <Link href="coffees ">All coffee</Link>
         </li>
