@@ -6,11 +6,12 @@ import { GiManualMeatGrinder } from "react-icons/gi";
 import { AiFillFilter } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
 import { FaWeight } from "react-icons/fa";
+import Link from "next/link";
 
 
 async function CoffeesList() {
   const coffees = await getCoffees();
-  console.log(coffees);
+  console.log(coffees[0]);
   return (
     <div>
       <ul>
@@ -59,9 +60,9 @@ async function CoffeesList() {
               <p>{coffee.rating === 0 ? "?" : coffee.rating}/10</p>
             </div>
             <div className="flex justify-center md:justify-end">
-              <button className="bg-primary-700 px-4 py-2 rounded-lg text-primary-50 uppercase hover:bg-primary-800">
+              <Link href={`/coffees/${coffee.slug}`} className="bg-primary-700 px-4 py-2 rounded-lg text-primary-50 uppercase hover:bg-primary-800">
                 details
-              </button>
+              </Link>
             </div>
           </li>
         ))}

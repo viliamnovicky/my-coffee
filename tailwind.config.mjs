@@ -22,6 +22,12 @@ module.exports = {
           950: "#1A1414",
         },
       },
+      backgroundImage: {
+        "gradient-1": "linear-gradient(to right, #f6f3f3, #E3DEDE)", // 50 → 100
+        "gradient-2": "linear-gradient(to right, #E3DEDE, #C7BDBD)", // 100 → 200
+        "gradient-3": "linear-gradient(to right, #C7BDBD, #AB9B9B)", // 200 → 300
+        "gradient-4": "linear-gradient(to right, #AB9B9B, #8F7A7A)", // 300 → 400
+      },
     },
   },
   plugins: [],

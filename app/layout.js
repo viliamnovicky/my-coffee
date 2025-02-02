@@ -1,11 +1,12 @@
-import { Quicksand } from "next/font/google";
-import "./_styles/globals.css"
+import { Roboto } from "next/font/google";
+import "./_styles/globals.css";
 import Header from "./_components/Header";
 
-const QuickaSand = Quicksand({
-  variable: "--font-quicksand",
+const RobotoFont = Roboto({
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
   subsets: ["latin"],
-  display: "swap"
+  display: "swap",
 });
 
 export const metadata = {
@@ -13,17 +14,16 @@ export const metadata = {
     template: "%s | My Coffee",
     default: "Welcome | My Coffee",
   },
-  description:
-    "My personal coffee database. ",
+  description: "My personal coffee database. ",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${QuickaSand.className} antialiased min-h-full bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
+        className={`${RobotoFont.className} antialiased min-h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
-        <Header/>
+        <Header />
         {children}
       </body>
     </html>
