@@ -1,8 +1,11 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
 import Image from "next/image";
-import InfoParagraph from "./InfoParagraph";
+import { InfoParagraph, RatingParagraph, StatParagraph } from "./Paragraphs";
 import { PiCoffeeBeanFill, PiCoffeeBeanLight, PiHeartFill, PiHeartLight } from "react-icons/pi";
+import ManualCoffeeGrinder from "../../public/icons/manual-grinder.svg";
+import MachineCoffeeGrinder from "../../public/icons/coffee-machine.svg";
+import Drop from "../../public/icons/drop.svg";
 
 function CoffeeDetails({ coffee }) {
   return (
@@ -28,19 +31,12 @@ function CoffeeDetails({ coffee }) {
           />
         </div>
         <div className=" px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
-          <InfoParagraph color={"light"}>
-            rating:
-            <PiHeartLight />
-            <PiHeartLight />
-            <PiHeartLight />
-            <PiHeartFill />
-            <PiHeartFill />
-            <PiHeartFill />
-            <PiHeartFill />
-            <PiHeartFill />
-            <PiHeartFill />
-            <PiHeartFill />
-          </InfoParagraph>
+          <StatParagraph
+            name="rating"
+            value={[coffee.rating, 10]}
+            IconFill={PiHeartFill}
+            IconLight={PiHeartLight}
+          />
           <InfoParagraph color="dark">
             origin:
             <span>
@@ -57,7 +53,13 @@ function CoffeeDetails({ coffee }) {
             beans:<span>{coffee.beanType}</span>
           </InfoParagraph>
           <InfoParagraph>
-            taste: <span> {coffee.taste[0]}{coffee.taste[1] ? `, ${coffee.taste[1]}` : ""}{coffee.taste[2] ?`, ${coffee.taste[2]}` : ""}</span>
+            taste:{" "}
+            <span>
+              {" "}
+              {coffee.taste[0]}
+              {coffee.taste[1] ? `, ${coffee.taste[1]}` : ""}
+              {coffee.taste[2] ? `, ${coffee.taste[2]}` : ""}
+            </span>
           </InfoParagraph>
 
           <InfoParagraph color="dark">
@@ -70,45 +72,57 @@ function CoffeeDetails({ coffee }) {
           </InfoParagraph>
         </div>
         <div className="bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start">
-          <InfoParagraph color={"light"}>
-            Roast:
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanFill />
-            <PiCoffeeBeanFill />
-            <PiCoffeeBeanFill />
+        <StatParagraph
+            name="roast"
+            value={[coffee.roast, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
+          <StatParagraph
+            name="intensity"
+            color="dark"
+            value={[coffee.intensity, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
+          <StatParagraph
+            name="acidity"
+            value={[coffee.acidity, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
+
+          <InfoParagraph color="dark">
+            Machine dose level:
+            <span>{coffee.machineDoseLevel ? coffee.machineDoseLevel : "?"} / 40</span>
           </InfoParagraph>
-          <InfoParagraph color={"dark"}>
-            intensity:
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanFill />
-            <PiCoffeeBeanFill />
-            <PiCoffeeBeanFill />
-          </InfoParagraph>
-          <InfoParagraph color={"light"}>
-            acidity:
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanLight />
-            <PiCoffeeBeanFill />
-            <PiCoffeeBeanFill />
+          <InfoParagraph color="light">
+            weight:
+            <span className="flex gap-2">
+              <span className="flex">
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                {coffee.weightSingle}g
+              </span>
+              <span className="flex">
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                {coffee.weightDouble}g
+              </span>
+            </span>
           </InfoParagraph>
 
           <InfoParagraph color="dark">
-            Machine dose level:<span>{coffee.machineDoseLevel} / 40</span>
-          </InfoParagraph>
-          <InfoParagraph color="light">
-            weight single shot:<span>{coffee.weightSingle}g</span>
-          </InfoParagraph>
-          <InfoParagraph color="dark">
-            weight double shot:<span>{coffee.weightDouble}g</span>
-          </InfoParagraph>
-          <InfoParagraph color="light">
-            machine Grinding size:<span>{coffee.grindMachine} / 7</span>
-          </InfoParagraph>
-          <InfoParagraph color="dark">
-            grinder Grinding size:<span>{coffee.grindGrinder} / 32</span>
+            Grinding size:
+            <span className="flex gap-2">
+              <span className="flex">
+                <Image src={MachineCoffeeGrinder} width={20} height={20} alt="grinder" className="pr-1" />
+                {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
+              </span>
+              <span className="flex">
+                <Image src={ManualCoffeeGrinder} width={25} height={25} alt="grinder" className="pr-1" />
+                {coffee.grindGrinder ? coffee.grindGrinder : "?"} / 32
+              </span>
+            </span>
           </InfoParagraph>
         </div>
         <div className="relative h-[400px] md:h-auto w-[100%] p-10 bg-gradient-4 rounded-b-full md:rounded-bl-none md:rounded-r-full overflow-hidden">
