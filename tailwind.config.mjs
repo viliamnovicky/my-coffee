@@ -21,6 +21,12 @@ module.exports = {
           900: "#332929",
           950: "#1A1414",
         },
+        tag: {
+          decaf: "#166534",
+          mild: "#1e40af",
+          medium: "#713f12",
+          strong: "#7f1d1d",
+        }
       },
       backgroundImage: {
         "gradient-1": "linear-gradient(to right, #f6f3f3, #E3DEDE)", // 50 → 100

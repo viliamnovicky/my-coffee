@@ -5,23 +5,26 @@ import { InfoParagraph, RatingParagraph, StatParagraph } from "./Paragraphs";
 import { PiCoffeeBeanFill, PiCoffeeBeanLight, PiHeartFill, PiHeartLight } from "react-icons/pi";
 import ManualCoffeeGrinder from "../../public/icons/manual-grinder.svg";
 import MachineCoffeeGrinder from "../../public/icons/coffee-machine.svg";
+import FilterCoffee from "../../public/icons/coffee-filter.png";
 import Drop from "../../public/icons/drop.svg";
+import Tag from "./Tag";
 
 function CoffeeDetails({ coffee }) {
   return (
-    <div className="relative">
+    <div className="relative w-[100vw] flex flex-col">
       <Link
         href="/coffees"
         className=" bg-primary-100 hover:bg-primary-200 w-[2.5rem] h-[2.5rem] flex rounded-full absolute left-2 top-2 items-center justify-center"
       >
         <IoMdArrowRoundBack className="text-[2rem]" />
       </Link>
-      <h1 className="w-full text-center text-primary-950 uppercase md:text-[4rem] text-[2.5rem] font-thin ">
+      <h1 className="text-center text-primary-950 uppercase md:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <h2 className="w-full text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin ">{`„${coffee.description[0]}”`}</h2>
       <div className=" w-[100vw] h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto p-4">
         <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 rounded-t-full rounded-lt-none md:rounded-l-full md:rounded-r-none relative p-10 overflow-hidden flex flex-col justify-center items-center">
+          {coffee.caffeine && <Tag color={coffee.caffeine} text={coffee.caffeine}/>}
           <Image
             src={coffee.image}
             alt={coffee.coffeeName}
@@ -101,25 +104,29 @@ function CoffeeDetails({ coffee }) {
             <span className="flex gap-2">
               <span className="flex">
                 <Image src={Drop} width={20} height={20} alt="grinder" />
-                {coffee.weightSingle}g
+                {coffee.weightSingle !== 0 ? coffee.weightSingle : "?"}g
               </span>
               <span className="flex">
                 <Image src={Drop} width={20} height={20} alt="grinder" />
                 <Image src={Drop} width={20} height={20} alt="grinder" />
-                {coffee.weightDouble}g
+                {coffee.weightDouble !== 0 ? coffee.weightDouble : "?"}g
               </span>
             </span>
           </InfoParagraph>
 
           <InfoParagraph color="dark">
             Grinding size:
-            <span className="flex gap-2">
+            <span className="flex gap-3">
               <span className="flex">
-                <Image src={MachineCoffeeGrinder} width={20} height={20} alt="grinder" className="pr-1" />
+                <Image src={FilterCoffee} width={20} height={20} alt="filter-coffee-icon" className="pr-1 py-[3px]" />
+                {coffee.grindFilter ? coffee.grindFilter : "?"} / 7{" "}
+              </span>
+              <span className="flex">
+                <Image src={MachineCoffeeGrinder} width={20} height={20} alt="grinder-icon" className="pr-1" />
                 {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
               </span>
               <span className="flex">
-                <Image src={ManualCoffeeGrinder} width={25} height={25} alt="grinder" className="pr-1" />
+                <Image src={ManualCoffeeGrinder} width={25} height={25} alt="manual-grinder-icon" className="pr-1" />
                 {coffee.grindGrinder ? coffee.grindGrinder : "?"} / 32
               </span>
             </span>
