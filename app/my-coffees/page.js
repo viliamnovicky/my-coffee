@@ -1,6 +1,6 @@
-import CoffeesList from "../_components/CoffeesList";
+import { Suspense } from "react";
+import MyCoffeesList from "../_components/MyCoffeesList";
 import Searchbar from "../_components/Searchbar";
-;
 
 function Page() {
   return (
@@ -9,7 +9,7 @@ function Page() {
         <Searchbar />
       </div>
 
-      <CoffeesList />
+      <MyCoffeesList />
     </div>
   );
 }

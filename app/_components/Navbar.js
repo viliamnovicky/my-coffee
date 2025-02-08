@@ -21,6 +21,13 @@ function Navbar() {
         >
           <Link href="/coffees ">All coffee</Link>
         </li>
+        <li
+          className={`${
+            pathname === "/my-coffees" ? "bg-primary-500 " : "bg-primary-900"
+          }  hover:bg-primary-400 px-2 text-md md:text-xl transition-colors`}
+        >
+          <Link href="/my-coffees ">My coffee</Link>
+        </li>
         {/* <li
           className={`${
             pathname === "/profile" ? "bg-primary-500 font-medium" : "font-light"

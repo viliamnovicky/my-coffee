@@ -22,9 +22,25 @@ function CoffeeDetails({ coffee }) {
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <h2 className="w-full text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin ">{`„${coffee.description[0]}”`}</h2>
+      <p className="text-primary-950">
+        {coffee.origin.length === 1 ? (
+          <Tag text="Single origin" color="blend" />
+        ) : (
+          <Tag text="blend" color="blend" />
+        )}{" "}
+        {coffee.origin.map((origin) => (
+          <span key={origin}>{`${origin}`}</span>
+        ))}
+      </p>
       <div className=" w-[100vw] h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto p-4">
         <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 rounded-t-full rounded-lt-none md:rounded-l-full md:rounded-r-none relative p-10 overflow-hidden flex flex-col justify-center items-center">
-          {coffee.caffeine && <Tag color={coffee.caffeine} text={coffee.caffeine}/>}
+          {coffee.caffeine && (
+            <Tag
+              color={coffee.caffeine}
+              text={coffee.caffeine}
+              addClass="absolute md:right-[75px] md:bottom-[65px] right-[55px] bottom-[120px]"
+            />
+          )}
           <Image
             src={coffee.image}
             alt={coffee.coffeeName}
@@ -74,8 +90,12 @@ function CoffeeDetails({ coffee }) {
             </span>
           </InfoParagraph>
         </div>
-        <div className="bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start">
-        <StatParagraph
+        <div
+          className={`${
+            coffee?.origin[1] && "pb-[65px]"
+          } relative bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start`}
+        >
+          <StatParagraph
             name="roast"
             value={[coffee.roast, 5]}
             IconFill={PiCoffeeBeanFill}
@@ -118,19 +138,50 @@ function CoffeeDetails({ coffee }) {
             Grinding size:
             <span className="flex gap-3">
               <span className="flex">
-                <Image src={FilterCoffee} width={20} height={20} alt="filter-coffee-icon" className="pr-1 py-[3px]" />
+                <Image
+                  src={FilterCoffee}
+                  width={20}
+                  height={20}
+                  alt="filter-coffee-icon"
+                  className="pr-1 py-[3px]"
+                />
                 {coffee.grindFilter ? coffee.grindFilter : "?"} / 7{" "}
               </span>
               <span className="flex">
-                <Image src={MachineCoffeeGrinder} width={20} height={20} alt="grinder-icon" className="pr-1" />
+                <Image
+                  src={MachineCoffeeGrinder}
+                  width={20}
+                  height={20}
+                  alt="grinder-icon"
+                  className="pr-1"
+                />
                 {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
               </span>
               <span className="flex">
-                <Image src={ManualCoffeeGrinder} width={25} height={25} alt="manual-grinder-icon" className="pr-1" />
+                <Image
+                  src={ManualCoffeeGrinder}
+                  width={25}
+                  height={25}
+                  alt="manual-grinder-icon"
+                  className="pr-1"
+                />
                 {coffee.grindGrinder ? coffee.grindGrinder : "?"} / 32
               </span>
             </span>
           </InfoParagraph>
+          {coffee?.origin[1] && (
+            <>
+              <Image
+                src={`/maps/${coffee.origin[1]}.svg`}
+                fill
+                className="object-cover opacity-20"
+                alt="coffe-rigin-country"
+              />
+              {/* <p className="capitalize absolute bottom:[0px] left-[50%] md:left-0 opacity-30 md:bottom-[40px] bottom-0 p-2  translate-x-[-50%] md:translate-x-0 italic text-[4rem]/[3rem] md:text-[6rem]/[4.5rem] w-[100%] text-center md:text-left">
+                {coffee.origin[1]}
+              </p> */}
+            </>
+          )}
         </div>
         <div className="relative h-[400px] md:h-auto w-[100%] p-10 bg-gradient-4 rounded-b-full md:rounded-bl-none md:rounded-r-full overflow-hidden">
           <Image
@@ -139,9 +190,9 @@ function CoffeeDetails({ coffee }) {
             className="object-cover opacity-30"
             alt="coffe-rigin-country"
           />
-          <p className="capitalize absolute md:top-[50%] top:[20%] left-[10%] md:left-0 opacity-50 italic text-[7rem] md:text-[9rem]">
+          {/* <p className="capitalize absolute md:bottom-[40px] bottom-[100px] left-[50%] translate-x-[-50%] md:translate-x-0 md:left-0 opacity-50 italic text-[4rem]/[3rem] md:text-[6rem]/[4.5rem] text-center md:text-left">
             {coffee.origin[0]}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
