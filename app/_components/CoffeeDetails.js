@@ -22,16 +22,16 @@ function CoffeeDetails({ coffee }) {
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <h2 className="w-full text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin ">{`„${coffee.description[0]}”`}</h2>
-      <p className="text-primary-950">
+      <div className="text-primary-950 flex pl-0 md:pl-[12.5vw] pt-2 m-auto md:m-0">
         {coffee.origin.length === 1 ? (
           <Tag text="Single origin" color="blend" />
         ) : (
           <Tag text="blend" color="blend" />
         )}{" "}
         {coffee.origin.map((origin) => (
-          <span key={origin}>{`${origin}`}</span>
+          <Tag key={origin} text={origin} addClass={"ml-2"}/>
         ))}
-      </p>
+      </div>
       <div className=" w-[100vw] h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto p-4">
         <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 rounded-t-full rounded-lt-none md:rounded-l-full md:rounded-r-none relative p-10 overflow-hidden flex flex-col justify-center items-center">
           {coffee.caffeine && (

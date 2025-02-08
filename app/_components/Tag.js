@@ -7,7 +7,7 @@ function Tag({color, text, addClass}) {
         blend: "bg-primary-400"
       };
     return (
-        <p className={` ${addClass} px-2 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 w-[120px] h-[30px] uppercase text-center items-center justify-center text-[14px] rounded-full`}>
+        <p className={` ${addClass} px-2 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 w-[90px] h-[25px] md:w-[120px] md:h-[30px] uppercase text-center items-center justify-center text-[12px] md:text-[14px] rounded-full`}>
             {text}
         </p>
     )

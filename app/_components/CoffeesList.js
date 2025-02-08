@@ -24,7 +24,7 @@ async function MyCoffeesList() {
               key={coffee.coffeeName}
               className={`${
                 i % 2 === 0 ? "bg-primary-50" : "bg-primary-100"
-              } text-primary-950 flex gap-4 items-center p-2 justify-between m-auto max-w-[1360px] flex-col md:flex-row`}
+              } text-primary-950 grid gap-4 items-center p-2 justify-between m-auto max-w-[1360px] grid-cols-1 md:grid-cols-[1fr_1fr_0.75fr]`}
             >
               <div className="flex items-center gap-2 flex-col md:flex-row">
                 <div className="w-[70px] h-[70px] relative rounded-full overflow-hidden md:m-0 m-auto">
@@ -40,12 +40,12 @@ async function MyCoffeesList() {
                   {coffee.roasteryName} {coffee.coffeeName}
                 </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 justify-center">
                 {coffee.origin.map((origin) => (
                   <Tag key={origin + "-tag"} text={origin} />
                 ))}
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center md:justify-end gap-2">
                 <div className="flex justify-center md:justify-end">
                   <Link
                     href={`/coffees/${coffee.slug}`}
