@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
         className={`${RobotoFont.className} antialiased min-h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
         <Header />
-
         {children}
       </body>
     </html>

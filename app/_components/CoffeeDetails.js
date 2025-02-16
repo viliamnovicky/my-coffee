@@ -8,15 +8,17 @@ import MachineCoffeeGrinder from "../../public/icons/coffee-machine.svg";
 import FilterCoffee from "../../public/icons/coffee-filter.png";
 import Drop from "../../public/icons/drop.svg";
 import Tag from "./Tag";
+import { AddCoffeeButton } from "./Buttons";
 
 function CoffeeDetails({ coffee }) {
   return (
     <div className="relative w-[100vw] flex flex-col">
+      <AddCoffeeButton/>
       <Link
         href="/coffees"
-        className=" bg-primary-100 hover:bg-primary-200 w-[2.5rem] h-[2.5rem] flex rounded-full absolute left-2 top-2 items-center justify-center"
+        className=" bg-primary-200 hover:bg-primary-300 w-[50px] h-[50px] flex rounded-full absolute left-3 top-3 items-center justify-center"
       >
-        <IoMdArrowRoundBack className="text-[2rem]" />
+        <IoMdArrowRoundBack className="text-[1.6rem]" />
       </Link>
       <h1 className="text-center text-primary-950 uppercase md:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
@@ -145,7 +147,7 @@ function CoffeeDetails({ coffee }) {
                   alt="filter-coffee-icon"
                   className="pr-1 py-[3px]"
                 />
-                {coffee.grindFilter ? coffee.grindFilter : "?"} / 7{" "}
+                {coffee.grindFilter ? coffee.grindFilter : "?"} / 36{" "}
               </span>
               <span className="flex">
                 <Image
@@ -155,7 +157,7 @@ function CoffeeDetails({ coffee }) {
                   alt="grinder-icon"
                   className="pr-1"
                 />
-                {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
+                {coffee.grind ? coffee.grind : "?"} / 7{" "}
               </span>
               <span className="flex">
                 <Image
@@ -165,7 +167,7 @@ function CoffeeDetails({ coffee }) {
                   alt="manual-grinder-icon"
                   className="pr-1"
                 />
-                {coffee.grindGrinder ? coffee.grindGrinder : "?"} / 32
+                {coffee.grindManual ? coffee.grindManual : "?"} / 32
               </span>
             </span>
           </InfoParagraph>
