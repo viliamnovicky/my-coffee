@@ -7,11 +7,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useNewCoffee } from "../_context/NewCoffeeContext";
-import { Input, Select } from "../_components/Inputs";
+import { ImageInput, Input, Select } from "../_components/Inputs";
 
 function NewCoffeeForm() {
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
-  console.log(coffee);
+  
+  function handleImageChange(file) {
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      updateCoffeeData("image", imageUrl);
+    }
+    console.log(coffee.image)
+  };
+
   return (
     <div className="relative w-[100vw] flex flex-col">
       <AddCoffeeButton />
@@ -57,8 +65,9 @@ function NewCoffeeForm() {
             alt={coffee.coffeeName}
             width="400"
             height="400"
-            className="object-cover rounded-full p-2"
+            className="object-cover rounded-full p-2 bg-primary-50"
           />
+          <ImageInput onImageSelect={handleImageChange} addClass="m-[-20px]"/>
         </div>
         <div className=" px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
           <InfoParagraph>
