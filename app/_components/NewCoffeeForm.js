@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useNewCoffee } from "../_context/NewCoffeeContext";
-import { ImageInput, Input, Select } from "../_components/Inputs";
+import { ImageInput, Input, Select, TagCheckbox } from "../_components/Inputs";
 
 function NewCoffeeForm() {
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
@@ -98,11 +98,14 @@ function NewCoffeeForm() {
           </InfoParagraph>
           <InfoParagraph color="dark">
             type:
-            <span className="flex gap-2 flex-col">
-              <Input type="checkbox" value="filter" label="filter" addClass=""/>
-              <Input type="checkbox" value="espresso" label="espresso" addClass=""/>
-              <Input type="checkbox" value="frenchpress" label="frenchpress" addClass=""/>
-            </span>
+            <span className="flex gap-2 flex-wrap w-[70%] justify-end">
+              <TagCheckbox label="filter"/>
+              <TagCheckbox label="espresso"/>
+              <TagCheckbox label="frenchpress"/>
+              <TagCheckbox label="stovetop"/>
+              <TagCheckbox label="automat"/>
+              <TagCheckbox label="turkish"/>
+              </span>
           </InfoParagraph>
         </div>
         <div

@@ -61,12 +61,33 @@ export function ImageInput({onImageSelect, addClass }) {
     }
   };
 
-
   return (
     <label className={`flex uppercase items-center gap-2 cursor-pointer px-4 py-2 bg-primary-300 text-primary-50 rounded-md hover:bg-primary-400 ${addClass}`}>
       {fileName ? "change image" : "choose Image"}
       <input onChange={handleFileChange} type="file" accept="image/*" className="hidden" />
       
+    </label>
+  );
+}
+
+export function TagCheckbox({ label }) {
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  function toggleCheckbox(e) {
+    e.preventDefault();
+    setIsChecked(!isChecked);
+  };
+
+  return (
+    <label
+      className={`hover:bg-primary-400 hover:text-primary-50 cursor-pointer px-2 py-1 rounded-full text-sm text-center ${
+        isChecked ? "bg-primary-500 text-primary-50" : "bg-primary-100 text-primary-500"
+      }`}
+      onClick={toggleCheckbox}
+    >
+      {label}
+      <input type="checkbox" checked={isChecked} className="hidden" />
     </label>
   );
 }
