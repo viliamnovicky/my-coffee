@@ -29,16 +29,16 @@ function NewCoffeeForm() {
       >
         <IoMdArrowRoundBack className="text-[1.6rem]" />
       </Link>
-      <form className="flex w-full flex-col m-auto max-w-[1366px] p-2">
-        <div className="text-center text-primary-950 uppercase md:text-[3rem] text-[2rem] font-thin relative m-auto flex gap-2 justify-center w-[100%]">
+      <form className="mt-[70px] md:mt-0 flex w-full flex-col m-auto max-w-[1366px] p-2">
+        <div className="text-center text-primary-950 uppercase md:text-[3rem] md:flex-row flex-col text-[2rem] font-thin relative m-auto flex gap-2 justify-center w-[100%]">
           <input
-            className="rounded-full px-4 py-0 uppercase text-right w-[100%]"
+            className="rounded-full px-4 py-0 uppercase text-center md:text-right w-[100%]"
             placeholder="roastery name"
             value={coffee.roasteryName}
             onChange={(e) => updateCoffeeData("roasteryName", e.target.value)}
           ></input>
           <input
-            className=" rounded-full px-4 py-0 uppercase font-medium w-[100%]"
+            className=" rounded-full px-4 py-0 text-center md:text-left uppercase font-medium w-[100%]"
             placeholder="coffee name"
             value={coffee.coffeeName}
             onChange={(e) => updateCoffeeData("coffeeName", e.target.value)}
