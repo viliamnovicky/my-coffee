@@ -1,4 +1,4 @@
-import { collection, getDocs, query, where } from "firebase/firestore/lite";
+import { collection, getDocs, query, where, addDoc } from "firebase/firestore/lite";
 import { database } from "./firebase"; 
 
 export async function getCoffees() {
@@ -25,5 +25,15 @@ export async function getCoffees() {
       return querySnapshot.docs[0].data(); // Return first matching document
     } catch (error) {
       throw new Error("Something went wrong while retrieving the coffee: " + error.message);
+    }
+  }
+
+  export async function addCoffee(coffeeData) {
+    try {
+      const coffeesCollection = collection(database, "coffees");
+      const docRef = await addDoc(coffeesCollection, coffeeData);
+      return { id: docRef.id, ...coffeeData };
+    } catch (error) {
+      throw new Error("Something went wrong while adding the coffee: " + error.message);
     }
   }

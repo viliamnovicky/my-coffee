@@ -10,6 +10,7 @@ import Image from "next/image";
 
 import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { ImageInput, Input, Select, TagCheckbox } from "../_components/Inputs";
+import { addCoffee } from "../_lib/data-service";
 
 function NewCoffeeForm() {
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
@@ -54,7 +55,7 @@ function NewCoffeeForm() {
         ></textarea>
       </form>
       <div className=" w-[100vw] h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto p-4">
-        <button className="bg-primary-400 hover:bg-primary-500 z-10 px-4 py-2 uppercase rounded-md absolute md:bottom-0 bottom-[50px] left-[50%] translate-x-[-50%] md:border-none border border-primary-50">
+        <button onClick={() => addCoffee(coffee)} className="bg-primary-400 hover:bg-primary-500 z-10 px-4 py-2 uppercase rounded-md absolute md:bottom-0 bottom-[50px] left-[50%] translate-x-[-50%] md:border-none border border-primary-50">
           <GiCoffeeBeans className="z-0 text-[80px] text-primary-600 absolute left-[50%] bottom-0  translate-x-[-50%]" />
           <span className="z-1 relative">save coffee</span>
         </button>
