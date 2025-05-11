@@ -26,12 +26,15 @@ export function AutoWidthInput() {
   );
 }
 
-export function Input({ value, addClass, placeholder, type, forId, id, label }) {
+export function Input({ value, addClass, placeholder, type, forId, id, label, onChange, ...rest }) {
   return (
     <>
       <input
         placeholder={placeholder}
+        value={value}
+      onChange={onChange}
         type={type}
+        {...rest}
         className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch] ${addClass}`}
       />
       {label && <label>{label}</label>}
@@ -70,24 +73,16 @@ export function ImageInput({onImageSelect, addClass }) {
   );
 }
 
-export function TagCheckbox({ label }) {
-
-  const [isChecked, setIsChecked] = useState(false);
-
-  function toggleCheckbox(e) {
-    e.preventDefault();
-    setIsChecked(!isChecked);
-  };
+export function TagCheckbox({ label, onChange, value, checked }) {
 
   return (
     <label
       className={`hover:bg-primary-400 hover:text-primary-50 cursor-pointer px-2 py-1 rounded-full text-sm text-center ${
-        isChecked ? "bg-primary-500 text-primary-50" : "bg-primary-100 text-primary-500"
+        checked ? "bg-primary-500 text-primary-50" : "bg-primary-100 text-primary-500"
       }`}
-      onClick={toggleCheckbox}
     >
       {label}
-      <input type="checkbox" checked={isChecked} className="hidden" />
+      <input value={value} type="checkbox" onChange={onChange} checked={checked} className="hidden" />
     </label>
   );
 }

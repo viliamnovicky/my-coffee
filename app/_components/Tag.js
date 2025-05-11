@@ -1,13 +1,14 @@
-function Tag({color, text, addClass}) {
+function Tag({color, text, addClass, onClick}) {
     const tagColors = {
         decaf: "bg-primary-300",
         mild: "bg-primary-500",
         medium: "bg-primary-700",
         strong: "bg-primary-900",
-        blend: "bg-primary-400"
+        blend: "bg-primary-400",
+        country: "bg-primary-700"
       };
     return (
-        <p className={` ${addClass} px-2 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 w-[90px] h-[25px] md:w-[120px] md:h-[30px] uppercase text-center items-center justify-center text-[12px] md:text-[14px] rounded-full`}>
+        <p onClick={onClick} className={` ${addClass} px-2 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 w-[90px] h-[25px] md:w-[120px] md:h-[30px] uppercase text-center items-center justify-center text-[12px] md:text-[14px] rounded-full`}>
             {text}
         </p>
     )
