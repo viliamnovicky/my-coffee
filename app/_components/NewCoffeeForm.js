@@ -77,6 +77,9 @@ function NewCoffeeForm() {
             <InfoParagraph>
               rating (1 - 10):{" "}
               <Input
+                type="number"
+                min="0"
+                max="10"
                 placeholder="higher is better"
                 value={coffee.rating}
                 onChange={(e) => updateCoffeeData("rating", e.target.value)}
@@ -111,12 +114,16 @@ function NewCoffeeForm() {
                 <Input
                   placeholder="elevation top"
                   type="number"
+                  min="0"
+                  max="9000"
                   value={coffee.elevation.top}
                   onChange={(e) => updateCoffeeData("elevation.top", e.target.value)}
                 />
                 <Input
                   placeholder="elevation bottom"
                   type="number"
+                  min="0"
+                  max="9000"
                   value={coffee.elevation.bottom}
                   onChange={(e) => updateCoffeeData("elevation.bottom", e.target.value)}
                 />
@@ -206,6 +213,9 @@ function NewCoffeeForm() {
             <InfoParagraph>
               roast (1 - 5):
               <Input
+                type="number"
+                min="0"
+                max="5"
                 placeholder="higher is darker"
                 value={coffee.roast}
                 onChange={(e) => updateCoffeeData("roast", e.target.value)}
@@ -214,6 +224,9 @@ function NewCoffeeForm() {
             <InfoParagraph color="dark">
               intensity (1 - 5):
               <Input
+                type="number"
+                min="0"
+                max="5"
                 placeholder="higher more intensive"
                 value={coffee.intensity}
                 onChange={(e) => updateCoffeeData("intensity", e.target.value)}
@@ -222,6 +235,9 @@ function NewCoffeeForm() {
             <InfoParagraph>
               acidity (1 - 5):
               <Input
+                type="number"
+                min="0"
+                max="5"
                 placeholder="higher more acidic"
                 value={coffee.acidity}
                 onChange={(e) => updateCoffeeData("acidity", e.target.value)}
@@ -230,6 +246,9 @@ function NewCoffeeForm() {
             <InfoParagraph color="dark">
               Machine dose level:
               <Input
+                type="number"
+                min="0"
+                max="40"
                 placeholder="1 - 40"
                 value={coffee.doseLevel}
                 onChange={(e) => updateCoffeeData("doseLevel", e.target.value)}
@@ -240,12 +259,18 @@ function NewCoffeeForm() {
               <span className="flex flex-col gap-2 w-[20ch]">
                 <Input
                   placeholder="single"
+                  type="number"
+                  min="0"
+                  max="50"
                   value={coffee.weightSingle}
                   onChange={(e) => updateCoffeeData("weightSingle", e.target.value)}
                   className="w-[50%]"
                 />
                 <Input
                   placeholder="double"
+                  type="number"
+                  min="0"
+                  max="50"
                   value={coffee.weightDouble}
                   onChange={(e) => updateCoffeeData("weightDouble", e.target.value)}
                   className="w-[50%]"
@@ -256,12 +281,18 @@ function NewCoffeeForm() {
               grind size - grinder:
               <span className="flex gap-2 flex-col w-[20ch]">
                 <Input
+                  type="number"
+                  min="0"
+                  max="50"
                   placeholder="espresso"
-                  value={coffee.grindMachine}
-                  onChange={(e) => updateCoffeeData("grindMachine", e.target.value)}
+                  value={coffee.grindManual}
+                  onChange={(e) => updateCoffeeData("grindManual", e.target.value)}
                   className="w-[50%]"
                 />
                 <Input
+                  type="number"
+                  min="0"
+                  max="50"
                   placeholder="filter"
                   value={coffee.grindFilter}
                   onChange={(e) => updateCoffeeData("grindFilter", e.target.value)}
@@ -272,9 +303,12 @@ function NewCoffeeForm() {
             <InfoParagraph color="light">
               grind size - machine:
               <Input
+                type="number"
+                min="0"
+                max="7"
                 placeholder="1 - 7"
-                value={coffee.grindManual}
-                onChange={(e) => updateCoffeeData("grindManual", e.target.value)}
+                value={coffee.grindMachine}
+                onChange={(e) => updateCoffeeData("grindMachine", e.target.value)}
               />
             </InfoParagraph>
           </div>
