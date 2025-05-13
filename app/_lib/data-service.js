@@ -1,5 +1,16 @@
-import { collection, getDocs, query, where, addDoc } from "firebase/firestore/lite";
-import { database } from "./firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  addDoc,
+  getDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore/lite";
+import { database, storage } from "./firebase";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import { resizeImage } from "../_helpers/resizeImage";
 
 export async function getCoffees() {
   try {
@@ -28,12 +39,64 @@ export async function getCoffee(slug) {
   }
 }
 
+// Generate slug from roasteryName and coffeeName
+function generateSlug(roasteryName, coffeeName) {
+  return `${roasteryName}-${coffeeName}`
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
 export async function addCoffee(coffeeData) {
+  const slug = generateSlug(coffeeData.roasteryName, coffeeData.coffeeName);
+  console.log("[addCoffee] Generated slug:", slug);
+  const coffeesCollection = collection(database, "coffees");
+  const coffeeDocRef = doc(coffeesCollection, slug);
+
+  let imageUrl = null;
+  let imageRef = null;
+
   try {
-    const coffeesCollection = collection(database, "coffees");
-    const docRef = await addDoc(coffeesCollection, coffeeData);
-    return { id: docRef.roasteryName, ...coffeeData };
+    const existingDoc = await getDoc(coffeeDocRef);
+    console.log("[addCoffee] Checked existing doc");
+
+    if (existingDoc.exists()) {
+      throw new Error("A coffee with this slug already exists.");
+    }
+
+    if (coffeeData.image instanceof Blob) {
+      imageRef = ref(storage, `coffee/${slug}.jpg`);
+      const metadata = { contentType: "image/jpeg" };
+
+      await uploadBytes(imageRef, coffeeData.image, metadata);
+      imageUrl = await getDownloadURL(imageRef);
+    }
+
+    const coffeeWithSlug = {
+      ...coffeeData,
+      slug,
+      image: imageUrl || coffeeData.image || null,
+    };
+
+    await setDoc(coffeeDocRef, coffeeWithSlug);
+    console.log("[addCoffee] Coffee saved to Firestore");
+
+    return {
+      id: slug,
+      ...coffeeWithSlug,
+    };
   } catch (error) {
+    console.error("[addCoffee] Error:", error);
+
+    if (imageRef) {
+      try {
+        await deleteObject(imageRef);
+        console.log("[addCoffee] Uploaded image deleted due to error.");
+      } catch (deleteError) {
+        console.error("[addCoffee] Error deleting image:", deleteError);
+      }
+    }
+
     throw new Error("Something went wrong while adding the coffee: " + error.message);
   }
 }

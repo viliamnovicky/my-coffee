@@ -12,17 +12,39 @@ import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { ImageInput, Input, Select, TagCheckbox } from "../_components/Inputs";
 import { addCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
+import { useState } from "react";
+import { resizeImage } from "../_helpers/resizeImage";
 
 function NewCoffeeForm() {
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
+  const [imagePreview, setImagePreview] = useState("https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd")
+  
+  const handleImageChange = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-  function handleImageChange(file) {
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      updateCoffeeData("image", imageUrl);
-    }
-    console.log(coffee.image);
+  try {
+    const resizedBlob = await resizeImage(file, 800, 1, 0.9); // square ratio
+    updateCoffeeData("image", resizedBlob);
+
+    const previewUrl = URL.createObjectURL(resizedBlob);
+    setImagePreview(previewUrl);
+  } catch (error) {
+    console.error("Image resizing failed:", error);
   }
+};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    console.log("click")
+  try {
+    console.log("[handleSubmit] Submitting coffee:", coffee);
+    await addCoffee(coffee); // make sure coffee.image is the File object
+    console.log("Coffee added successfully");
+  } catch (error) {
+    console.error("Failed to add coffee:", error);
+  }
+};
 
   return (
     <form className="mt-[70px] md:mt-0 flex w-full flex-col m-auto p-2">
@@ -65,13 +87,13 @@ function NewCoffeeForm() {
               />
             )}
             <Image
-              src={coffee.image}
+              src={imagePreview}
               alt={coffee.coffeeName ? coffee.coffeeName : "name"}
               width="400"
               height="400"
               className="object-cover rounded-full p-2 bg-primary-50"
             />
-            <ImageInput onImageSelect={handleImageChange} addClass="m-[-20px]" />
+            <ImageInput onChange={(e) => handleImageChange(e)} addClass="m-[-20px]" />
           </div>
           <div className="px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
             <InfoParagraph>
@@ -325,7 +347,7 @@ function NewCoffeeForm() {
           </div>
         </div>
         <button
-          onClick={() => addCoffee(coffee)}
+          onClick={handleSubmit}
           className="bg-primary-400 hover:bg-primary-500 z-10 px-4 py-2 uppercase rounded-md absolute md:bottom-0 bottom-[50px] left-[50%] translate-x-[-50%] md:border-none border border-primary-50"
         >
           <GiCoffeeBeans className="z-0 text-[80px] text-primary-600 absolute left-[50%] bottom-0  translate-x-[-50%]" />

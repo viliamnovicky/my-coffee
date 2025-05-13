@@ -20,13 +20,11 @@ const initialState = {
   grindFilter: 0,
   grindMachine: 0,
   grindManual: 0,
-  image:
-    "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd",
+  image: "",
   intensity: 0,
   origin: [],
   rating: 0,
   roast: 0,
-  slug: "",
   taste: [],
   weightSingle: 0,
   weightDouble: 0,
@@ -52,7 +50,6 @@ function NewCoffeeProvider({ children }) {
         };
       }
     });
-    console.log(key, value);
   };
 
   const resetCoffeeData = () => setNewCoffeeData(initialState);

@@ -52,22 +52,12 @@ export function Select({ value, addClass, children }) {
   );
 }
 
-export function ImageInput({onImageSelect, addClass }) {
-
-  const [fileName, setFileName] = useState("");
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      onImageSelect(file); // Pass the file to the parent component
-    }
-  };
+export function ImageInput({onChange, addClass, fileName }) {
 
   return (
     <label className={`flex uppercase items-center gap-2 cursor-pointer px-4 py-2 bg-primary-300 text-primary-50 rounded-md hover:bg-primary-400 ${addClass}`}>
       {fileName ? "change image" : "choose Image"}
-      <input onChange={handleFileChange} type="file" accept="image/*" className="hidden" />
+      <input onChange={onChange} type="file" accept="image/*" className="hidden" />
       
     </label>
   );
