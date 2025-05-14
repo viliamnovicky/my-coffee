@@ -14,6 +14,7 @@ import { addCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
 import { useState } from "react";
 import { resizeImage } from "../_helpers/resizeImage";
+import TasteInput from "./TasteInput";
 
 function NewCoffeeForm() {
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
@@ -112,11 +113,7 @@ function NewCoffeeForm() {
             </InfoParagraph>
             <InfoParagraph>
               taste:
-              <Input
-                placeholder='separate by ","'
-                value={coffee.taste}
-                onChange={(e) => updateCoffeeData("taste", e.target.value)}
-              />
+              <TasteInput/>
             </InfoParagraph>
             <InfoParagraph color="dark">
               beans:
@@ -280,21 +277,30 @@ function NewCoffeeForm() {
               weight:
               <span className="flex flex-col gap-2 w-[20ch]">
                 <Input
-                  placeholder="single"
+                  placeholder="8g"
                   type="number"
                   min="0"
                   max="50"
-                  value={coffee.weightSingle}
-                  onChange={(e) => updateCoffeeData("weightSingle", e.target.value)}
+                  value={coffee.weightSmall}
+                  onChange={(e) => updateCoffeeData("weightSmall", e.target.value)}
                   className="w-[50%]"
                 />
                 <Input
-                  placeholder="double"
+                  placeholder="13g"
                   type="number"
                   min="0"
                   max="50"
-                  value={coffee.weightDouble}
-                  onChange={(e) => updateCoffeeData("weightDouble", e.target.value)}
+                  value={coffee.weightMedium}
+                  onChange={(e) => updateCoffeeData("weightMedium", e.target.value)}
+                  className="w-[50%]"
+                />
+                <Input
+                  placeholder="18g"
+                  type="number"
+                  min="0"
+                  max="50"
+                  value={coffee.weightLarge}
+                  onChange={(e) => updateCoffeeData("weightLarge", e.target.value)}
                   className="w-[50%]"
                 />
               </span>

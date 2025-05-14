@@ -13,7 +13,7 @@ import { AddCoffeeButton } from "./Buttons";
 function CoffeeDetails({ coffee }) {
   return (
     <div className="relative w-[100vw] flex flex-col">
-      <AddCoffeeButton/>
+      <AddCoffeeButton />
       <Link
         href="/coffees"
         className=" bg-primary-200 hover:bg-primary-300 w-[50px] h-[50px] flex rounded-full absolute left-3 top-3 items-center justify-center"
@@ -31,7 +31,7 @@ function CoffeeDetails({ coffee }) {
           <Tag text="blend" color="blend" />
         )}{" "}
         {coffee.origin.map((origin) => (
-          <Tag key={origin} text={origin} addClass={"ml-2"}/>
+          <Tag key={origin} text={origin} addClass={"ml-2"} />
         ))}
       </div>
       <div className=" w-[100vw] h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto p-4">
@@ -68,19 +68,13 @@ function CoffeeDetails({ coffee }) {
           </InfoParagraph>
 
           <InfoParagraph>
-            type: <span>{coffee.coffeeType}</span>
+            best for: <span>{coffee.coffeeType.join(", ")}</span>
           </InfoParagraph>
           <InfoParagraph color="dark">
             beans:<span>{coffee.beanType}</span>
           </InfoParagraph>
           <InfoParagraph>
-            taste:{" "}
-            <span>
-              {" "}
-              {coffee.taste[0]}
-              {coffee.taste[1] ? `, ${coffee.taste[1]}` : ""}
-              {coffee.taste[2] ? `, ${coffee.taste[2]}` : ""}
-            </span>
+            taste: <span>{coffee.taste.join(", ")}</span>
           </InfoParagraph>
 
           <InfoParagraph color="dark">
@@ -97,48 +91,9 @@ function CoffeeDetails({ coffee }) {
             coffee?.origin[1] && "pb-[65px]"
           } relative bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start`}
         >
-          <StatParagraph
-            name="roast"
-            value={[coffee.roast, 5]}
-            IconFill={PiCoffeeBeanFill}
-            IconLight={PiCoffeeBeanLight}
-          />
-          <StatParagraph
-            name="intensity"
-            color="dark"
-            value={[coffee.intensity, 5]}
-            IconFill={PiCoffeeBeanFill}
-            IconLight={PiCoffeeBeanLight}
-          />
-          <StatParagraph
-            name="acidity"
-            value={[coffee.acidity, 5]}
-            IconFill={PiCoffeeBeanFill}
-            IconLight={PiCoffeeBeanLight}
-          />
-
-          <InfoParagraph color="dark">
-            Machine dose level:
-            <span>{coffee.machineDoseLevel ? coffee.machineDoseLevel : "?"} / 40</span>
-          </InfoParagraph>
-          <InfoParagraph color="light">
-            weight:
-            <span className="flex gap-2">
-              <span className="flex">
-                <Image src={Drop} width={20} height={20} alt="grinder" />
-                {coffee.weightSingle !== 0 ? coffee.weightSingle : "?"}g
-              </span>
-              <span className="flex">
-                <Image src={Drop} width={20} height={20} alt="grinder" />
-                <Image src={Drop} width={20} height={20} alt="grinder" />
-                {coffee.weightDouble !== 0 ? coffee.weightDouble : "?"}g
-              </span>
-            </span>
-          </InfoParagraph>
-
-          <InfoParagraph color="dark">
+          <InfoParagraph color="dark" className="flex flex-col">
             Grinding size:
-            <span className="flex gap-3">
+            <span className="flex gap-5">
               <span className="flex">
                 <Image
                   src={FilterCoffee}
@@ -171,6 +126,32 @@ function CoffeeDetails({ coffee }) {
               </span>
             </span>
           </InfoParagraph>
+          <InfoParagraph color="light" className="flex flex-col">
+            weight:
+            <span className="flex gap-2">
+              <span className="flex">
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                {coffee.weightSmall !== 0 ? coffee.weightSmall : "?"}g
+              </span>
+              <span className="flex">
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                {coffee.weightMedium !== 0 ? coffee.weightMedium : "?"}g
+              </span>
+              <span className="flex">
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                <Image src={Drop} width={20} height={20} alt="grinder" />
+                {coffee.weightLarge !== 0 ? coffee.weightLarge : "?"}g
+              </span>
+            </span>
+          </InfoParagraph>
+          <InfoParagraph color="dark" className="flex flex-col">
+            Machine dose level:
+            <span className="flex gap-6">
+              <span>{coffee.doseLevelSmall ? coffee.doseLevelSmall : "?"} / 40</span>
+              <span>{coffee.doseLevelMedium ? coffee.doseLevelMedium : "?"} / 40</span>
+              <span>{coffee.doseLevelLarge ? coffee.doseLevelLarge : "?"} / 40</span>
+            </span>
+          </InfoParagraph>
           {coffee?.origin[1] && (
             <>
               <Image
@@ -185,7 +166,26 @@ function CoffeeDetails({ coffee }) {
             </>
           )}
         </div>
-        <div className="relative h-[400px] md:h-auto w-[100%] p-10 bg-gradient-4 rounded-b-full md:rounded-bl-none md:rounded-r-full overflow-hidden">
+        <div className="relative h-[400px] md:h-auto w-[100%] p-2 pr-2 px-1 bg-gradient-4 rounded-b-2 md:rounded-bl-none md:rounded-r-[1rem] overflow-hidden">
+          <StatParagraph
+            name="roast"
+            value={[coffee.roast, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
+          <StatParagraph
+            name="intensity"
+            color="dark"
+            value={[coffee.intensity, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
+          <StatParagraph
+            name="acidity"
+            value={[coffee.acidity, 5]}
+            IconFill={PiCoffeeBeanFill}
+            IconLight={PiCoffeeBeanLight}
+          />
           <Image
             src={`/maps/${coffee.origin[0]}.svg`}
             fill

@@ -1,11 +1,11 @@
 import { PiHeartFill, PiHeartLight } from "react-icons/pi";
 
-export function InfoParagraph({ children, color }) {
+export function InfoParagraph({ children, color, className }) {
   return (
     <div
       className={`text-primary-950 p-2 uppercase flex items-center gap-2 justify-between ${
         color === "dark" ? "bg-primary-100/50" : "bg-primary-50/50"
-      }`}
+      } ${className}`}
     >
       {children}
     </div>
