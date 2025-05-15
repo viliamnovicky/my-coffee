@@ -11,6 +11,7 @@ import {
 import { database, storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { resizeImage } from "../_helpers/resizeImage";
+import toast from "react-hot-toast";
 
 export async function getCoffees() {
   try {
@@ -47,7 +48,7 @@ function generateSlug(roasteryName, coffeeName) {
     .replace(/[^a-z0-9-]/g, "");
 }
 
-export async function addCoffee(coffeeData) {
+export async function addCoffee(coffeeData, router) {
   const slug = generateSlug(coffeeData.roasteryName, coffeeData.coffeeName);
   console.log("[addCoffee] Generated slug:", slug);
   const coffeesCollection = collection(database, "coffees");
@@ -79,7 +80,11 @@ export async function addCoffee(coffeeData) {
     };
 
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    console.log("[addCoffee] Coffee saved to Firestore");
+    toast.success("Coffee added successfully!");
+
+    // ✅ Redirect to the coffee detail page
+    router.push(`/coffees/${slug}`);
+
 
     return {
       id: slug,
@@ -87,6 +92,7 @@ export async function addCoffee(coffeeData) {
     };
   } catch (error) {
     console.error("[addCoffee] Error:", error);
+    toast.error("Something went wrong while adding the coffee.");
 
     if (imageRef) {
       try {

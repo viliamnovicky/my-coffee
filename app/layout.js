@@ -1,6 +1,7 @@
 import { Roboto } from "next/font/google";
 import "./_styles/globals.css";
 import Header from "./_components/Header";
+import { Toaster } from "react-hot-toast";
 
 const RobotoFont = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${RobotoFont.className} antialiased min-h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
+        <Toaster/>
         <Header />
         {children}
       </body>

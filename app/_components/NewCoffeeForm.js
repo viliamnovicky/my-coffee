@@ -15,8 +15,10 @@ import CountrySelector from "./CountrySelector";
 import { useState } from "react";
 import { resizeImage } from "../_helpers/resizeImage";
 import TasteInput from "./TasteInput";
+import { useRouter } from "next/navigation";
 
 function NewCoffeeForm() {
+  const router = useRouter();
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
   const [imagePreview, setImagePreview] = useState("https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd")
   
@@ -40,7 +42,7 @@ function NewCoffeeForm() {
     console.log("click")
   try {
     console.log("[handleSubmit] Submitting coffee:", coffee);
-    await addCoffee(coffee); // make sure coffee.image is the File object
+    await addCoffee(coffee, router); // make sure coffee.image is the File object
     console.log("Coffee added successfully");
   } catch (error) {
     console.error("Failed to add coffee:", error);
