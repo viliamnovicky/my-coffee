@@ -3,7 +3,7 @@ import Image from "next/image";
 
 function CoffeeImage({coffee}) {
   return (
-    <div className="h-[400px] md:w-[900px] w-[100%] relative overflow-hidden flex flex-col justify-center md:items-start items-center">
+    <div className="md:h-[400px] h-[100%] md:w-[900px] w-[100%] relative overflow-hidden flex flex-col justify-center md:items-start items-center">
       {coffee.caffeine && (
         <Tag
           color={coffee.caffeine}

@@ -58,7 +58,7 @@ function CoffeeDetails({ coffee }) {
         </DetailsSecondary>
       </Section>
       <H2>Origin</H2>
-      <Section className="mt-[-5rem]">
+      <Section className="md:mt-[-5rem]">
         <DetailsSecondary className="self-start flex-col gap-5">
           <H2 className="p-[1rem]">My Findings</H2>
           <P className="p-[1rem]">{coffee.description}</P>
