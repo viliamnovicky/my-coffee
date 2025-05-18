@@ -19,11 +19,11 @@ function CoffeeDetails({ coffee }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee.origin[0].toLowerCase());
   const description = match ? match.description : "No description available.";
   return (
-    <div className="relative w-screen flex flex-col mt-[80px]">
+    <div className="relative w-screen flex flex-col md:mt-[80px] mt-[120px]">
       <AddCoffeeButton />
       <Link
         href="/coffees"
-        className="z-10 bg-primary-200 hover:bg-primary-300 w-[50px] h-[50px] flex rounded-full fixed left-3 top-[90px] items-center justify-center"
+        className="z-10 bg-primary-200 hover:bg-primary-300 md:w-[50px] md:h-[50px] w-[35px] h-[35px] flex rounded-full fixed left-3 md:top-[90px] top-[95px] items-center justify-center"
       >
         <IoMdArrowRoundBack className="text-[1.6rem]" />
       </Link>
