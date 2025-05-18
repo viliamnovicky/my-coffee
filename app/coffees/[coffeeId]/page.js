@@ -1,4 +1,4 @@
-import CoffeeDetails from "@/app/_components/CoffeeDetails";
+import CoffeeDetails from "@/app/_components/coffee-details/CoffeeDetails";
 import { getCoffee } from "@/app/_lib/data-service";
 
 export const revalidate = 60;

@@ -24,7 +24,22 @@ export default function RootLayout({ children }) {
       <body
         className={`${RobotoFont.className} antialiased min-h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
-        <Toaster/>
+        <Toaster
+          toastOptions={{
+            success: {
+              style: {
+                background: "#a6d96a",
+                color: "#fff",
+              },
+            },
+            error: {
+              style: {
+                background: "#d7191c",
+                color: "#fff",
+              },
+            },
+          }}
+        />
         <Header />
         {children}
       </body>

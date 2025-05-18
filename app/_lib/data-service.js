@@ -80,7 +80,9 @@ export async function addCoffee(coffeeData, router) {
     };
 
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    toast.success("Coffee added successfully!");
+    toast.success("Coffee added successfully!", {
+      icon: "☕"
+    });
 
     // ✅ Redirect to the coffee detail page
     router.push(`/coffees/${slug}`);

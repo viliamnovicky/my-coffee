@@ -13,7 +13,7 @@ export default function CountrySelector() {
     setInputValue(val);
     setFiltered(
       countries.filter(
-        (c) => c.toLowerCase().startsWith(val.toLowerCase()) && !coffee.origin.includes(c)
+        (c) => c.name.toLowerCase().startsWith(val.toLowerCase()) && !coffee.origin.includes(c.name)
       )
     );
   };
@@ -33,27 +33,28 @@ export default function CountrySelector() {
 
   return (
     <div className="flex flex-col justify-center items-end">
-      <input
-        className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch]`}
-        placeholder="Add origin country..."
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      {filtered.length > 0 && (
-        <div>
-          <ul className="bg-white border rounded max-h-40 overflow-auto z-10 absolute mt-1">
+      <div className="relative flex flex-col jusify-center w-full items-end">
+        <input
+          className="rounded-md text-center border-none outline-none focus:border-none w-[20ch]"
+          placeholder="Add origin country..."
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+
+        {filtered.length > 0 && (
+          <ul className="bg-white border rounded max-h-40 overflow-auto z-10 absolute mt-7 right-0 w-[20ch]">
             {filtered.map((country) => (
               <li
-                key={country}
-                className="p-2 hover:bg-primary-100 cursor-pointer"
-                onClick={() => addOrigin(country)}
+                key={country.name}
+                className="p-2 hover:bg-primary-100 cursor-pointer text-center"
+                onClick={() => addOrigin(country.name)}
               >
-                {country}
+                <div className="font-semibold">{country.name}</div>
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="flex flex-wrap gap-2 mt-2">
         {coffee.origin.map((country) => (

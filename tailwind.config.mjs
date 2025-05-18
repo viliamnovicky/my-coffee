@@ -33,6 +33,7 @@ module.exports = {
         "gradient-2": "linear-gradient(to right, #E3DEDE, #C7BDBD)", // 100 → 200
         "gradient-3": "linear-gradient(to right, #C7BDBD, #AB9B9B)", // 200 → 300
         "gradient-4": "linear-gradient(to right, #AB9B9B, #8F7A7A)", // 300 → 400
+        "gradient-5": "linear-gradient(to right, #E3DEDE, #f6f3f3)", // 300 → 400
       },
     },
   },
