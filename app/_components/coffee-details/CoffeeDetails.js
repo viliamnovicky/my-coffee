@@ -14,6 +14,7 @@ import DetailsSecondary from "./DetailsSecondary";
 import OriginMap from "./OriginMap";
 import { H2, P } from "../Headings";
 import countries from "@/public/data/countries";
+import Tag from "../Tag";
 
 function CoffeeDetails({ coffee }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee.origin[0].toLowerCase());
@@ -30,7 +31,7 @@ function CoffeeDetails({ coffee }) {
       <h1 className="text-center text-primary-950 uppercase md:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
-      <H2>{`„${coffee.description[0]}”`}</H2>
+      <H2>{`„${coffee.description}”`}</H2>
       {/* <div className="flex justify-between md:pl-[12.5rem] pl-1 md:pr-[2rem] pr-1">
         <div className="text-primary-950 flex pt-2 m-auto md:m-0">
           {coffee.origin.length === 1 ? (
@@ -62,6 +63,12 @@ function CoffeeDetails({ coffee }) {
         <DetailsSecondary className="self-start flex-col gap-5">
           <H2 className="p-[1rem]">My Findings</H2>
           <P className="p-[1rem]">{coffee.description}</P>
+          <H2>Flavours</H2>
+          <div className="flex gap-2">
+            {coffee.taste.map((t) => (
+              <Tag key={t.name + "tag"} color={t.category} text={t.name}/>
+            ))}
+          </div>
         </DetailsSecondary>
         <DetailsPrimary className="self-end md:rounded-full md:rounded-tl-[1rem] md:rounded-bl-[1rem] bg-gradient-1 relative overflow-visible">
           <OriginMap coffee={coffee} />

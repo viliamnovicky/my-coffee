@@ -28,7 +28,8 @@ export function AutoWidthInput() {
 
 export function Input({ value, addClass, placeholder, type, forId, id, label, onChange, ...rest }) {
   return (
-    <>
+    <div className="flex gap-2 justify-between items-center w-[50%]">
+      {label && <label>{label}</label>}
       <input
         placeholder={placeholder}
         value={value}
@@ -37,8 +38,7 @@ export function Input({ value, addClass, placeholder, type, forId, id, label, on
         {...rest}
         className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch] ${addClass}`}
       />
-      {label && <label>{label}</label>}
-    </>
+    </div>
   );
 }
 

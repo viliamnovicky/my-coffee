@@ -3,6 +3,7 @@ import Image from "next/image";
 import ManualCoffeeGrinder from "../../../public/icons/manual-grinder.svg";
 import MachineCoffeeGrinder from "../../../public/icons/coffee-machine.svg";
 import FilterCoffee from "../../../public/icons/coffee-filter.png";
+import Moka from "../../../public/icons/moka.svg";
 import Drop from "../../../public/icons/drop.svg";
 
 
@@ -22,6 +23,16 @@ function CoffeeSettings({coffee}) {
               <span className="flex gap-5">
                 <span className="flex">
                   <Image
+                    src={MachineCoffeeGrinder}
+                    width={20}
+                    height={20}
+                    alt="grinder-icon"
+                    className="pr-1"
+                  />
+                  {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
+                </span>
+                <span className="flex">
+                  <Image
                     src={FilterCoffee}
                     width={20}
                     height={20}
@@ -32,23 +43,23 @@ function CoffeeSettings({coffee}) {
                 </span>
                 <span className="flex">
                   <Image
-                    src={MachineCoffeeGrinder}
-                    width={20}
-                    height={20}
-                    alt="grinder-icon"
-                    className="pr-1"
-                  />
-                  {coffee.grind ? coffee.grind : "?"} / 7{" "}
-                </span>
-                <span className="flex">
-                  <Image
                     src={ManualCoffeeGrinder}
                     width={25}
                     height={25}
                     alt="manual-grinder-icon"
                     className="pr-1"
                   />
-                  {coffee.grindManual ? coffee.grindManual : "?"} / 32
+                  {coffee.grindEspresso ? coffee.grindEspresso : "?"} / 36
+                </span>
+                <span className="flex">
+                  <Image
+                    src={Moka}
+                    width={25}
+                    height={25}
+                    alt="manual-grinder-icon"
+                    className="pr-1"
+                  />
+                  {coffee.grindMokka ? coffee.grindMokka : "?"} / 36
                 </span>
               </span>
             </InfoParagraph>

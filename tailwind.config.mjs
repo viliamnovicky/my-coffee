@@ -26,6 +26,17 @@ module.exports = {
           mild: "#1e40af",
           medium: "#713f12",
           strong: "#7f1d1d",
+        },
+        flavor: {
+          fruit: "#ffb9b9",
+          floral: "#d8b8fc",
+          sweet: "#fde069",
+          nutty: "#c8a17b",
+          spicy: "#f4a851",
+          herbal: "#76fabe",
+          earthy: "#7cf8a8",
+          roasted: "#a9a7a7",
+          cereal: "#fcc48e",
         }
       },
       backgroundImage: {

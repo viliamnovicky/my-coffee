@@ -20,68 +20,70 @@ import { useRouter } from "next/navigation";
 function NewCoffeeForm() {
   const router = useRouter();
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
-  const [imagePreview, setImagePreview] = useState("https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd")
-  
+  const [imagePreview, setImagePreview] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
+  );
+
   const handleImageChange = async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
+    const file = e.target.files[0];
+    if (!file) return;
 
-  try {
-    const resizedBlob = await resizeImage(file, 800, 1, 0.9); // square ratio
-    updateCoffeeData("image", resizedBlob);
+    try {
+      const resizedBlob = await resizeImage(file, 800, 1, 0.9); // square ratio
+      updateCoffeeData("image", resizedBlob);
 
-    const previewUrl = URL.createObjectURL(resizedBlob);
-    setImagePreview(previewUrl);
-  } catch (error) {
-    console.error("Image resizing failed:", error);
-  }
-};
+      const previewUrl = URL.createObjectURL(resizedBlob);
+      setImagePreview(previewUrl);
+    } catch (error) {
+      console.error("Image resizing failed:", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    console.log("click")
-  try {
-    console.log("[handleSubmit] Submitting coffee:", coffee);
-    await addCoffee(coffee, router); // make sure coffee.image is the File object
-    console.log("Coffee added successfully");
-  } catch (error) {
-    console.error("Failed to add coffee:", error);
-  }
-};
+    e.preventDefault();
+    console.log("click");
+    try {
+      console.log("[handleSubmit] Submitting coffee:", coffee);
+      await addCoffee(coffee, router); // make sure coffee.image is the File object
+      console.log("Coffee added successfully");
+    } catch (error) {
+      console.error("Failed to add coffee:", error);
+    }
+  };
 
   return (
-    <form className="mt-[70px] md:mt-0 flex w-full flex-col m-auto p-2">
+    <form className="mt-[110px] md:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px]">
       <div className="relative w-full flex flex-col m-auto">
         {/* <AddCoffeeButton /> */}
         <Link
           href="/coffees"
-          className=" bg-primary-200 hover:bg-primary-300 w-[50px] h-[50px] flex rounded-full absolute left-3 top-3 items-center justify-center "
+          className="z-10 bg-primary-200 hover:bg-primary-300 md:w-[50px] md:h-[50px] w-[35px] h-[35px] flex rounded-full fixed left-3 md:top-[90px] top-[95px] items-center justify-center"
         >
           <IoMdArrowRoundBack className="text-[1.6rem]" />
         </Link>
-        <div className="text-center text-primary-950 uppercase md:text-[3rem] md:flex-row flex-col text-[2rem] font-thin relative m-auto flex gap-2 justify-center w-[full] md:w-[1340px]">
+        <div className="max-w-[1000px] text-center text-primary-950 uppercase md:text-[3rem] md:flex-row flex-col text-[2rem] font-thin relative m-auto flex gap-2 justify-center">
           <input
-            className="rounded-full px-4 py-0 uppercase text-center md:text-right w-[100%]"
+            className="rounded-[1rem] px-4 py-0 uppercase text-center md:text-right w-[100%]"
             placeholder="roastery name"
             value={coffee.roasteryName}
             onChange={(e) => updateCoffeeData("roasteryName", e.target.value)}
           ></input>
           <input
-            className=" rounded-full px-4 py-0 text-center md:text-left uppercase font-medium w-[100%]"
+            className=" rounded-[1rem] px-4 py-0 text-center md:text-left uppercase font-medium w-[100%]"
             placeholder="coffee name"
             value={coffee.coffeeName}
             onChange={(e) => updateCoffeeData("coffeeName", e.target.value)}
           ></input>
         </div>
         <textarea
-          className="w-full md:w-[1340px] h-[150px] mt-2 m-auto rounded-[25px] p-2 text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin "
+          className="w-full h-[150px] mt-2 m-auto rounded-[1rem] p-2 text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin "
           placeholder="„Add short description”"
           value={coffee.description}
           onChange={(e) => updateCoffeeData("description", e.target.value)}
         ></textarea>
 
-        <div className=" w-full px-4 h-auto grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr] m-auto mt-2">
-          <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 rounded-t-full rounded-lt-none md:rounded-l-full md:rounded-r-none relative p-10 overflow-hidden flex flex-col justify-center items-center">
+        <div className=" w-full h-auto grid grid-cols-1 m-auto mt-2 rounded-[1rem] overflow-hidden">
+          <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 relative p-10 overflow-hidden flex flex-col justify-center items-center">
             {coffee.caffeine && (
               <Tag
                 color={coffee.caffeine}
@@ -105,7 +107,7 @@ function NewCoffeeForm() {
                 type="number"
                 min="0"
                 max="10"
-                placeholder="higher is better"
+                label="higher is better"
                 value={coffee.rating}
                 onChange={(e) => updateCoffeeData("rating", e.target.value)}
               />
@@ -115,7 +117,7 @@ function NewCoffeeForm() {
             </InfoParagraph>
             <InfoParagraph>
               taste:
-              <TasteInput/>
+              <TasteInput />
             </InfoParagraph>
             <InfoParagraph color="dark">
               beans:
@@ -131,24 +133,25 @@ function NewCoffeeForm() {
             </InfoParagraph>
             <InfoParagraph color="light">
               elevation:
-              <span className="flex flex-col gap-2 w-[20ch]">
-                <Input
-                  placeholder="elevation top"
-                  type="number"
-                  min="0"
-                  max="9000"
-                  value={coffee.elevation.top}
-                  onChange={(e) => updateCoffeeData("elevation.top", e.target.value)}
-                />
-                <Input
-                  placeholder="elevation bottom"
-                  type="number"
-                  min="0"
-                  max="9000"
-                  value={coffee.elevation.bottom}
-                  onChange={(e) => updateCoffeeData("elevation.bottom", e.target.value)}
-                />
-              </span>
+              <Input
+                label="elevation top"
+                type="number"
+                min="0"
+                max="9000"
+                value={coffee.elevation.top}
+                onChange={(e) => updateCoffeeData("elevation.top", e.target.value)}
+              />
+            </InfoParagraph>
+            <InfoParagraph>
+              <span></span>
+              <Input
+                label="elevation bottom"
+                type="number"
+                min="0"
+                max="9000"
+                value={coffee.elevation.bottom}
+                onChange={(e) => updateCoffeeData("elevation.bottom", e.target.value)}
+              />
             </InfoParagraph>
             <InfoParagraph color="dark">
               type:
@@ -191,11 +194,11 @@ function NewCoffeeForm() {
                   }}
                 />
                 <TagCheckbox
-                  label="mokka"
-                  checked={coffee.coffeeType?.includes("mokka")}
+                  label="moka"
+                  checked={coffee.coffeeType?.includes("moka")}
                   onChange={(e) => {
                     const selected = coffee.coffeeType || [];
-                    const value = "mokka";
+                    const value = "moka";
                     const updated = e.target.checked
                       ? [...selected, value]
                       : selected.filter((v) => v !== value);
@@ -237,7 +240,7 @@ function NewCoffeeForm() {
                 type="number"
                 min="0"
                 max="5"
-                placeholder="higher is darker"
+                label="higher is darker"
                 value={coffee.roast}
                 onChange={(e) => updateCoffeeData("roast", e.target.value)}
               />
@@ -248,7 +251,7 @@ function NewCoffeeForm() {
                 type="number"
                 min="0"
                 max="5"
-                placeholder="higher more intensive"
+                label="higher more intensive"
                 value={coffee.intensity}
                 onChange={(e) => updateCoffeeData("intensity", e.target.value)}
               />
@@ -259,7 +262,7 @@ function NewCoffeeForm() {
                 type="number"
                 min="0"
                 max="5"
-                placeholder="higher more acidic"
+                label="higher more acidic"
                 value={coffee.acidity}
                 onChange={(e) => updateCoffeeData("acidity", e.target.value)}
               />
@@ -270,80 +273,102 @@ function NewCoffeeForm() {
                 type="number"
                 min="0"
                 max="40"
-                placeholder="1 - 40"
+                label="1 - 40"
                 value={coffee.doseLevel}
                 onChange={(e) => updateCoffeeData("doseLevel", e.target.value)}
               />
             </InfoParagraph>
             <InfoParagraph color="light">
               weight:
-              <span className="flex flex-col gap-2 w-[20ch]">
-                <Input
-                  placeholder="8g"
-                  type="number"
-                  min="0"
-                  max="50"
-                  value={coffee.weightSmall}
-                  onChange={(e) => updateCoffeeData("weightSmall", e.target.value)}
-                  className="w-[50%]"
-                />
-                <Input
-                  placeholder="13g"
-                  type="number"
-                  min="0"
-                  max="50"
-                  value={coffee.weightMedium}
-                  onChange={(e) => updateCoffeeData("weightMedium", e.target.value)}
-                  className="w-[50%]"
-                />
-                <Input
-                  placeholder="18g"
-                  type="number"
-                  min="0"
-                  max="50"
-                  value={coffee.weightLarge}
-                  onChange={(e) => updateCoffeeData("weightLarge", e.target.value)}
-                  className="w-[50%]"
-                />
-              </span>
+              <Input
+                label="8g"
+                type="number"
+                min="0"
+                max="50"
+                value={coffee.weightSmall}
+                onChange={(e) => updateCoffeeData("weightSmall", e.target.value)}
+                className="w-[50%]"
+              />
             </InfoParagraph>
+            <InfoParagraph>
+              <span/>
+              <Input
+                label="13g"
+                type="number"
+                min="0"
+                max="50"
+                value={coffee.weightMedium}
+                onChange={(e) => updateCoffeeData("weightMedium", e.target.value)}
+                className="w-[50%]"
+              />
+            </InfoParagraph>
+            <InfoParagraph>
+              <span/>
+              <Input
+                label="18g"
+                type="number"
+                min="0"
+                max="50"
+                value={coffee.weightLarge}
+                onChange={(e) => updateCoffeeData("weightLarge", e.target.value)}
+                className="w-[50%]"
+              />
+            </InfoParagraph>
+
             <InfoParagraph color="dark">
               grind size - grinder:
-              <span className="flex gap-2 flex-col w-[20ch]">
+              
                 <Input
                   type="number"
                   min="0"
                   max="50"
-                  placeholder="espresso"
-                  value={coffee.grindManual}
-                  onChange={(e) => updateCoffeeData("grindManual", e.target.value)}
+                  label="espresso"
+                  value={coffee.grindEspresso}
+                  onChange={(e) => updateCoffeeData("grindEspresso", e.target.value)}
                   className="w-[50%]"
                 />
+                  </InfoParagraph>
+                  <InfoParagraph color="dark">
+                    <span/>
                 <Input
                   type="number"
                   min="0"
                   max="50"
-                  placeholder="filter"
+                  label="filter"
                   value={coffee.grindFilter}
                   onChange={(e) => updateCoffeeData("grindFilter", e.target.value)}
                   className="w-[50%]"
-                />
-              </span>
-            </InfoParagraph>
+                  
+                  />
+                  </InfoParagraph>
+                  <InfoParagraph color="dark">
+                    <span/>
+                <Input
+                  type="number"
+                  min="0"
+                  max="50"
+                  label="mokka"
+                  value={coffee.grindMoka}
+                  onChange={(e) => updateCoffeeData("grindMoka", e.target.value)}
+                  className="w-[50%]"
+                  
+                  />
+                  </InfoParagraph>
+              
             <InfoParagraph color="light">
               grind size - machine:
               <Input
                 type="number"
                 min="0"
                 max="7"
-                placeholder="1 - 7"
+                label="1 - 7"
                 value={coffee.grindMachine}
                 onChange={(e) => updateCoffeeData("grindMachine", e.target.value)}
               />
             </InfoParagraph>
           </div>
 
-          <div className="relative h-[400px] md:h-auto w-[100%] p-10 bg-gradient-4 rounded-b-full md:rounded-bl-none md:rounded-r-full overflow-hidden">
+          <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">
             {coffee.origin && (
               <Image
                 src={`/maps/${coffee.origin}.svg`}
