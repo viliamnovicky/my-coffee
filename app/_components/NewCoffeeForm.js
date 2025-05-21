@@ -125,13 +125,25 @@ function NewCoffeeForm() {
                 value={coffee.beanType}
                 onChange={(e) => updateCoffeeData("beanType", e.target.value)}
               >
-                <option value="">select</option>
+                
                 <option value="arabica">arabica</option>
                 <option value="robusta">robusta</option>
                 <option value="blend">blend</option>
               </Select>
             </InfoParagraph>
-            <InfoParagraph color="light">
+            <InfoParagraph>
+              caffeine:
+              <Select
+                value={coffee.caffeine}
+                onChange={(e) => updateCoffeeData("caffeine", e.target.value)}
+              >
+                <option value="decaf">decaf</option>
+                <option value="mild">mild</option>
+                <option value="medium">medium</option>
+                <option value="strong">strong</option>
+              </Select>
+            </InfoParagraph>
+            <InfoParagraph color="dark">
               elevation:
               <Input
                 label="elevation top"
@@ -142,7 +154,7 @@ function NewCoffeeForm() {
                 onChange={(e) => updateCoffeeData("elevation.top", e.target.value)}
               />
             </InfoParagraph>
-            <InfoParagraph>
+            <InfoParagraph color="dark">
               <span></span>
               <Input
                 label="elevation bottom"
@@ -153,7 +165,7 @@ function NewCoffeeForm() {
                 onChange={(e) => updateCoffeeData("elevation.bottom", e.target.value)}
               />
             </InfoParagraph>
-            <InfoParagraph color="dark">
+            <InfoParagraph color="light">
               type:
               <span className="flex gap-2 flex-wrap w-[70%] justify-end">
                 <TagCheckbox
@@ -369,9 +381,9 @@ function NewCoffeeForm() {
           </div>
 
           <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">
-            {coffee.origin && (
+            {coffee.origin[0] && (
               <Image
-                src={`/maps/${coffee.origin}.svg`}
+                src={`/maps/${coffee.origin[0]}.svg`}
                 fill
                 className="object-cover opacity-30"
                 alt="coffe-rigin-country"

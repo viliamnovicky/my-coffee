@@ -20,6 +20,7 @@ export async function getCoffees() {
     const coffeesList = coffeesData.docs.map((doc) => doc.data());
     return coffeesList;
   } catch (error) {
+    toast.error("Something went wrong while receiving the coffees data.");
     throw new Error("Something went wrong while receiving the coffees data: " + error.message);
   }
 }
@@ -31,6 +32,7 @@ export async function getCoffee(slug) {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
+      toast.error("No coffee found")
       throw new Error(`No coffee found with slug: ${slug}`);
     }
 
@@ -80,14 +82,10 @@ export async function addCoffee(coffeeData, router) {
     };
 
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    toast.success("Coffee added successfully!", {
-      icon: "☕"
-    });
+    toast.success("Coffee added successfully!");
 
     // ✅ Redirect to the coffee detail page
     router.push(`/coffees/${slug}`);
-
-
     return {
       id: slug,
       ...coffeeWithSlug,

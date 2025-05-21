@@ -1,16 +1,15 @@
 import Tag from "../Tag";
 import Image from "next/image";
 
-function CoffeeImage({coffee}) {
+function CoffeeImage({ coffee }) {
   return (
     <div className="md:h-[400px] h-[100%] md:w-[900px] w-[100%] relative overflow-hidden flex flex-col justify-center md:items-start items-center">
-      {coffee.caffeine && (
-        <Tag
-          color={coffee.caffeine}
-          text={coffee.caffeine}
-          addClass="absolute md:left-[18.3rem] md:bottom-[65px] right-[55px] bottom-[120px]"
-        />
-      )}
+      <Tag
+        color={coffee.caffeine === 0 ? "gray" : coffee.caffeine}
+        text={coffee.caffeine === 0 ? "no info" : coffee.caffeine}
+        addClass="absolute md:left-[18.3rem] md:bottom-[65px] right-[55px] bottom-[120px]"
+      />
+
       <Image
         src={coffee.image}
         alt={coffee.coffeeName}

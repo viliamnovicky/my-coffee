@@ -68,7 +68,7 @@ export function TagCheckbox({ label, onChange, value, checked }) {
   return (
     <label
       className={`hover:bg-primary-400 hover:text-primary-50 cursor-pointer px-2 py-1 rounded-full text-sm text-center ${
-        checked ? "bg-primary-500 text-primary-50" : "bg-primary-100 text-primary-500"
+        checked ? "bg-primary-500 text-primary-50" : "bg-primary-100 text-primary-900"
       }`}
     >
       {label}

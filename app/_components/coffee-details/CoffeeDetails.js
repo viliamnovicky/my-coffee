@@ -67,6 +67,7 @@ function CoffeeDetails({ coffee }) {
           <div className="flex gap-2">
             {coffee.taste.map((t) => (
               <Tag key={t.name + "tag"} color={t.category} text={t.name}/>
+              //<Image></Image>
             ))}
           </div>
         </DetailsSecondary>
