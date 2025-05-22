@@ -1,10 +1,12 @@
 import { PiCoffeeBeanFill, PiCoffeeBeanLight, PiHeartFill, PiHeartLight } from "react-icons/pi";
 import { InfoParagraph, StatParagraph } from "../Paragraphs";
 import {H2} from "../Headings";
+import Image from "next/image";
+import Tag from "../Tag";
 
 function CoffeeStats({ coffee }) {
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] ">
       <H2 className="p-[1rem]">
         Stats
       </H2>
@@ -34,6 +36,22 @@ function CoffeeStats({ coffee }) {
         IconFill={PiCoffeeBeanFill}
         IconLight={PiCoffeeBeanLight}
       />
+      <H2>Flavours</H2>
+          <div className="flex gap-2 w-full justify-center h-auto flex-wrap ">
+            {coffee.taste.map((t) => (
+              <div key={t.name + "container"} className="relative w-[140px]">
+                <Tag key={t.name + "tag"} color={t.category} text={t.name} addClass="absolute bottom-0 left-[50%] bottom-[10px] translate-x-[-50%] min-w-[140px]"/>
+                <Image
+                  alt={t.name + "image"}
+                  src={`/icons/${t.category}.png`}
+                  className="object-cover m-auto"
+                  width={100}
+                  height={100}
+                  key={t.name + "image"}
+                />
+              </div>
+            ))}
+          </div>
     </div>
   );
 }

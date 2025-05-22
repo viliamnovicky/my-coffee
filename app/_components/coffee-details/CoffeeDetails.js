@@ -1,8 +1,5 @@
 import { IoMdArrowRoundBack } from "react-icons/io";
 import Link from "next/link";
-import Image from "next/image";
-import { InfoParagraph, StatParagraph } from "../Paragraphs";
-import { PiHeartFill, PiHeartLight } from "react-icons/pi";
 
 import { AddCoffeeButton } from "../Buttons";
 import CoffeeStats from "./CoffeeStats";
@@ -14,7 +11,7 @@ import DetailsSecondary from "./DetailsSecondary";
 import OriginMap from "./OriginMap";
 import { H2, P } from "../Headings";
 import countries from "@/public/data/countries";
-import Tag from "../Tag";
+
 
 function CoffeeDetails({ coffee }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee.origin[0].toLowerCase());
@@ -54,7 +51,7 @@ function CoffeeDetails({ coffee }) {
           <CoffeeImage coffee={coffee} />
           <CoffeeSettings coffee={coffee} />
         </DetailsPrimary>
-        <DetailsSecondary className="self-end">
+        <DetailsSecondary className="self-end md:h-auto">
           <CoffeeStats coffee={coffee} />
         </DetailsSecondary>
       </Section>
@@ -63,13 +60,7 @@ function CoffeeDetails({ coffee }) {
         <DetailsSecondary className="self-start flex-col gap-5">
           <H2 className="p-[1rem]">My Findings</H2>
           <P className="p-[1rem]">{coffee.description}</P>
-          <H2>Flavours</H2>
-          <div className="flex gap-2">
-            {coffee.taste.map((t) => (
-              <Tag key={t.name + "tag"} color={t.category} text={t.name}/>
-              //<Image></Image>
-            ))}
-          </div>
+          
         </DetailsSecondary>
         <DetailsPrimary className="self-end md:rounded-full md:rounded-tl-[1rem] md:rounded-bl-[1rem] bg-gradient-1 relative overflow-visible">
           <OriginMap coffee={coffee} />
