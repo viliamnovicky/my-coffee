@@ -1,3 +1,7 @@
+export const metadata = {
+  title: "Coffee | My Coffee",
+};
+
 import { AddCoffeeButton } from "../_components/Buttons";
 import CoffeesList from "../_components/CoffeesList";
 import Searchbar from "../_components/Searchbar";

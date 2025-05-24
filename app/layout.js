@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import "./_styles/globals.css";
 import Header from "./_components/Header";
 import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./_context/AuthContext";
 
 const RobotoFont = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -21,27 +22,33 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/icons/favicon.svg" />
+        {/* other head tags */}
+      </head>
       <body
         className={`${RobotoFont.className} antialiased min-h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
-        <Toaster
-          toastOptions={{
-            success: {
-              style: {
-                background: "#a6d96a",
-                color: "#fff",
+        <AuthProvider>
+          <Toaster
+            toastOptions={{
+              success: {
+                style: {
+                  background: "#a6d96a",
+                  color: "#fff",
+                },
               },
-            },
-            error: {
-              style: {
-                background: "#d7191c",
-                color: "#fff",
+              error: {
+                style: {
+                  background: "#d7191c",
+                  color: "#fff",
+                },
               },
-            },
-          }}
-        />
-        <Header />
-        {children}
+            }}
+          />
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
