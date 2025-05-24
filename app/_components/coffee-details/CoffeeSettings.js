@@ -14,14 +14,14 @@ function CoffeeSettings({coffee}) {
               coffee?.origin[1] && "pb-[65px]"
             } relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden`}
           >
-            <h2 className="w-full text-center text-primary-950 text-[1.5rem] md:text-[2rem] p-[1rem] italic font-thin ">
+            <h2 className="w-full text-center text-primary-950 text-[1.5rem] xl:text-[2rem] p-[1rem] italic font-thin ">
               Settings
             </h2>
 
             <InfoParagraph color="dark" className="flex flex-col">
               Grinding size:
-              <span className="flex gap-5">
-                <span className="flex">
+              <span className="grid gap-5 grid-cols-2 xl:flex w-full justify-center m-auto">
+                <span className="flex justify-center">
                   <Image
                     src={MachineCoffeeGrinder}
                     width={20}
@@ -31,7 +31,7 @@ function CoffeeSettings({coffee}) {
                   />
                   {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
                 </span>
-                <span className="flex">
+                <span className="flex justify-center">
                   <Image
                     src={FilterCoffee}
                     width={20}
@@ -41,7 +41,7 @@ function CoffeeSettings({coffee}) {
                   />
                   {coffee.grindFilter ? coffee.grindFilter : "?"} / 36{" "}
                 </span>
-                <span className="flex">
+                <span className="flex justify-center">
                   <Image
                     src={ManualCoffeeGrinder}
                     width={25}
@@ -51,7 +51,7 @@ function CoffeeSettings({coffee}) {
                   />
                   {coffee.grindEspresso ? coffee.grindEspresso : "?"} / 36
                 </span>
-                <span className="flex">
+                <span className="flex justify-center">
                   <Image
                     src={Moka}
                     width={25}

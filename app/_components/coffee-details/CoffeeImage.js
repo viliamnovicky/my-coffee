@@ -3,11 +3,11 @@ import Image from "next/image";
 
 function CoffeeImage({ coffee }) {
   return (
-    <div className="md:h-[400px] h-[100%] md:w-[900px] w-[100%] relative overflow-hidden flex flex-col justify-center md:items-start items-center">
+    <div className="xl:h-[400px] h-[100%] xl:w-[900px] w-[100%] relative overflow-hidden flex flex-col justify-center xl:items-start items-center">
       <Tag
         color={coffee.caffeine === 0 ? "gray" : coffee.caffeine}
         text={coffee.caffeine === 0 ? "no info" : coffee.caffeine}
-        addClass="absolute md:left-[18.3rem] md:bottom-[65px] right-[55px] bottom-[120px]"
+        addClass="absolute xl:left-[18.3rem] xl:bottom-[65px] right-[55px] bottom-[120px]"
       />
 
       <Image

@@ -52,43 +52,43 @@ function NewCoffeeForm() {
   };
 
   return (
-    <form className="mt-[110px] md:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px]">
+    <form className="mt-[110px] xl:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px]">
       <div className="relative w-full flex flex-col m-auto">
         {/* <AddCoffeeButton /> */}
         <Link
           href="/coffees"
-          className="z-10 bg-primary-200 hover:bg-primary-300 md:w-[50px] md:h-[50px] w-[35px] h-[35px] flex rounded-full fixed left-3 md:top-[90px] top-[95px] items-center justify-center"
+          className="z-10 bg-primary-200 hover:bg-primary-300 xl:w-[50px] xl:h-[50px] w-[35px] h-[35px] flex rounded-full fixed left-3 xl:top-[90px] top-[95px] items-center justify-center"
         >
           <IoMdArrowRoundBack className="text-[1.6rem]" />
         </Link>
-        <div className="max-w-[1000px] text-center text-primary-950 uppercase md:text-[3rem] md:flex-row flex-col text-[2rem] font-thin relative m-auto flex gap-2 justify-center">
+        <div className="max-w-[1000px] text-center text-primary-950 uppercase xl:text-[3rem] xl:flex-row flex-col text-[2rem] font-thin relative m-auto flex gap-2 justify-center">
           <input
-            className="rounded-[1rem] px-4 py-0 uppercase text-center md:text-right w-[100%]"
+            className="rounded-[1rem] px-4 py-0 uppercase text-center xl:text-right w-[100%]"
             placeholder="roastery name"
             value={coffee.roasteryName}
             onChange={(e) => updateCoffeeData("roasteryName", e.target.value)}
           ></input>
           <input
-            className=" rounded-[1rem] px-4 py-0 text-center md:text-left uppercase font-medium w-[100%]"
+            className=" rounded-[1rem] px-4 py-0 text-center xl:text-left uppercase font-medium w-[100%]"
             placeholder="coffee name"
             value={coffee.coffeeName}
             onChange={(e) => updateCoffeeData("coffeeName", e.target.value)}
           ></input>
         </div>
         <textarea
-          className="w-full h-[150px] mt-2 m-auto rounded-[1rem] p-2 text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin "
+          className="w-full h-[150px] mt-2 m-auto rounded-[1rem] p-2 text-center text-primary-950 text-[1.5rem] xl:text-[2rem] italic font-thin "
           placeholder="„Add short description”"
           value={coffee.description}
           onChange={(e) => updateCoffeeData("description", e.target.value)}
         ></textarea>
 
         <div className=" w-full h-auto grid grid-cols-1 m-auto mt-2 rounded-[1rem] overflow-hidden">
-          <div className="h-[550px] md:h-auto w-[100%] bg-gradient-1 relative p-10 overflow-hidden flex flex-col justify-center items-center">
+          <div className="h-[550px] xl:h-auto w-[100%] bg-gradient-1 relative p-10 overflow-hidden flex flex-col justify-center items-center">
             {coffee.caffeine && (
               <Tag
                 color={coffee.caffeine}
                 text={coffee.caffeine}
-                addClass="absolute md:right-[75px] md:bottom-[65px] right-[55px] bottom-[120px]"
+                addClass="absolute xl:right-[75px] xl:bottom-[65px] right-[55px] bottom-[120px]"
               />
             )}
             <Image
@@ -393,7 +393,7 @@ function NewCoffeeForm() {
         </div>
         <button
           onClick={handleSubmit}
-          className="bg-primary-400 hover:bg-primary-500 z-10 px-4 py-2 uppercase rounded-md absolute md:bottom-0 bottom-[50px] left-[50%] translate-x-[-50%] md:border-none border border-primary-50"
+          className="bg-primary-400 hover:bg-primary-500 z-10 px-4 py-2 uppercase rounded-md absolute xl:bottom-0 bottom-[50px] left-[50%] translate-x-[-50%] xl:border-none border border-primary-50"
         >
           <GiCoffeeBeans className="z-0 text-[80px] text-primary-600 absolute left-[50%] bottom-0  translate-x-[-50%]" />
           <span className="z-1 relative">save coffee</span>

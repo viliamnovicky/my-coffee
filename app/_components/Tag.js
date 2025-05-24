@@ -7,6 +7,8 @@ function Tag({color, text, addClass, onClick}) {
         blend: "bg-primary-400",
         country: "bg-primary-700",
         Fruity: "bg-flavor-fruit",
+        Citrus: "bg-flavor-citrus",
+        Berries: "bg-flavor-berries",
         Floral: "bg-flavor-floral",
         Sweet: "bg-flavor-sweet",
         Nutty: "bg-flavor-nutty",
@@ -15,9 +17,11 @@ function Tag({color, text, addClass, onClick}) {
         Earthy: "bg-flavor-earthy",
         Roasted: "bg-flavor-roasted",
         Cereal: "bg-flavor-cereal",
+        Fermented: "bg-flavor-fermented",
+        Cocoa: "bg-flavor-cocoa",
       };
     return (
-        <p onClick={onClick} className={` ${addClass} px-4 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 h-auto w-auto uppercase text-center items-center justify-center text-[12px] md:text-[14px] rounded-full`}>
+        <p onClick={onClick} className={` ${addClass} px-4 py-1 ${tagColors[color] || "bg-gray-300"} text-primary-50 h-auto w-auto uppercase text-center items-center justify-center text-[12px] xl:text-[14px] rounded-full`}>
             {text}
         </p>
     )

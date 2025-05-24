@@ -24,10 +24,10 @@ async function MyCoffeesList() {
               key={coffee.coffeeName}
               className={`${
                 i % 2 === 0 ? "bg-primary-50" : "bg-primary-100"
-              } text-primary-950 grid gap-4 items-center p-2 justify-between m-auto max-w-[1360px] grid-cols-1 md:grid-cols-[1fr_1fr_0.75fr]`}
+              } text-primary-950 grid gap-4 items-center p-2 justify-between m-auto max-w-[1360px] grid-cols-1 xl:grid-cols-[1fr_1fr_0.75fr]`}
             >
-              <div className="flex items-center gap-2 flex-col md:flex-row">
-                <div className="w-[70px] h-[70px] relative rounded-full overflow-hidden md:m-0 m-auto">
+              <div className="flex items-center gap-2 flex-col xl:flex-row">
+                <div className="w-[70px] h-[70px] relative rounded-full overflow-hidden xl:m-0 m-auto">
                   <Image
                     src={coffee.image}
                     key={coffee.id + "image"}
@@ -36,7 +36,7 @@ async function MyCoffeesList() {
                     className="object-cover"
                   />
                 </div>
-                <p className="uppercase p-4 md:m-0 m-auto">
+                <p className="uppercase p-4 xl:m-0 m-auto">
                   {coffee.roasteryName} {coffee.coffeeName}
                 </p>
               </div>
@@ -45,8 +45,8 @@ async function MyCoffeesList() {
                   <Tag key={origin + "-tag"} text={origin} />
                 ))}
               </div>
-              <div className="flex items-center justify-center md:justify-end gap-2">
-                <div className="flex justify-center md:justify-end">
+              <div className="flex items-center justify-center xl:justify-end gap-2">
+                <div className="flex justify-center xl:justify-end">
                   <Link
                     href={`/coffees/${coffee.slug}`}
                     className="bg-primary-700 px-4 py-2 rounded-lg text-primary-50 uppercase hover:bg-primary-800"
@@ -54,7 +54,7 @@ async function MyCoffeesList() {
                     +
                   </Link>
                 </div>
-                <div className="flex justify-center md:justify-end">
+                <div className="flex justify-center xl:justify-end">
                   <Link
                     href={`/coffees/${coffee.slug}`}
                     className="bg-primary-700 px-4 py-2 rounded-lg text-primary-50 uppercase hover:bg-primary-800"

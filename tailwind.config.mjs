@@ -33,10 +33,14 @@ module.exports = {
           sweet: "#fde069",
           nutty: "#c8a17b",
           spicy: "#f4a851",
-          herbal: "#76fabe",
-          earthy: "#7cf8a8",
+          herbal: "#86b339",
+          earthy: "#db8b41",
           roasted: "#a9a7a7",
           cereal: "#fcc48e",
+          citrus: "#fbd382",
+          berries: "#f77878",
+          fermented: "#b78c51",
+          cocoa: "#918067",
         }
       },
       backgroundImage: {
