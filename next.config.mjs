@@ -8,6 +8,12 @@ const nextConfig = {
             port: "",
             pathname: "/v0/b/my-home-d1851.appspot.com/**",
           },
+          {
+            protocol: "https",
+            hostname: "lh3.googleusercontent.com",
+            port: "",
+            pathname: "/**",
+          },
         ],
       },
 };
