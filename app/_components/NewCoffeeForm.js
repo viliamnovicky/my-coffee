@@ -17,7 +17,8 @@ import { resizeImage } from "../_helpers/resizeImage";
 import TasteInput from "./TasteInput";
 import { useRouter } from "next/navigation";
 
-function NewCoffeeForm() {
+
+function NewCoffeeForm({user}) {
   const router = useRouter();
   const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
   const [imagePreview, setImagePreview] = useState(
@@ -44,7 +45,7 @@ function NewCoffeeForm() {
     console.log("click");
     try {
       console.log("[handleSubmit] Submitting coffee:", coffee);
-      await addCoffee(coffee, router); // make sure coffee.image is the File object
+      await addCoffee(coffee, user, router); // make sure coffee.image is the File object
       console.log("Coffee added successfully");
     } catch (error) {
       console.error("Failed to add coffee:", error);

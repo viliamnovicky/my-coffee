@@ -7,8 +7,9 @@ import { AiFillFilter } from "react-icons/ai";
 import { FaHeart, FaWeight } from "react-icons/fa";
 import Link from "next/link";
 
-export default async function MyCoffeesList() {
-  const coffees = await getCoffees();
+export default async function MyCoffeesList({user}) {
+  const coffees = await getCoffees({user});
+  console.log(coffees)
 
   return (
     <div>

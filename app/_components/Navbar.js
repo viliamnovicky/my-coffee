@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
 import Image from "next/image";
+import { signInAction, signOutAction } from "../_lib/actions";
 
 //import { usePathname } from "next/navigation";
 
@@ -47,9 +48,9 @@ export default async function Navbar() {
           }  hover:bg-primary-400 border-l px-2 text-md md:text-xl transition-colors`}
         >
           {session ? (
-            <Link href="/api/auth/signout">Log Out</Link>
+            <form action={signOutAction}><button className="uppercase">Log Out</button></form>
           ) : (
-            <Link href="/api/auth/signin">Log In</Link>
+            <form action={signInAction}><button className="uppercase">Log In</button></form>
           )}
         </li>
         {session?.user?.image && (

@@ -1,7 +1,10 @@
 
 import AccountSidebar from "../_components/account/AccountSidebar";
+import { auth } from "../_lib/auth";
 
-function page() {
+export default async function page() {
+ const session = await auth()
+  console.log(session.user)
   return (
     <div className="w-screen h-screen xl:pt-[80px] pt-[120px] grid grid-cols-[300px_1fr]">
       <AccountSidebar/>
@@ -9,5 +12,3 @@ function page() {
     </div>
   );
 }
-
-export default page;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { P } from "../Headings";
 import DetailsSecondary from "../coffee-details/DetailsSecondary";
+import { signInAction } from "@/app/_lib/actions";
 
 function HomeLogedOut() {
   return (
@@ -12,13 +13,14 @@ function HomeLogedOut() {
           tasting notes, and dial in the ideal cup every single time. Because life&apos;s too short
           for bad coffee.
         </P>{" "}
-        <Link
-          href="/api/auth/signin"
-          className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-[100px] m-auto flex justify-center items-center"
-        >
-          Login
-        </Link>
-      </DetailsSecondary >
+        <form action={signInAction}>
+          <button
+            className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-[100px] m-auto flex justify-center items-center"
+          >
+            Login
+          </button>
+        </form>
+      </DetailsSecondary>
     </div>
   );
 }

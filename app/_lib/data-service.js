@@ -13,11 +13,12 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage
 import { resizeImage } from "../_helpers/resizeImage";
 import toast from "react-hot-toast";
 
-export async function getCoffees() {
+export async function getCoffees({user}) {
   try {
-    const coffeesCollection = collection(database, "coffees"); // Corrected usage
+    const coffeesCollection = collection(database, `users/${user}/coffees`); // Corrected usage
     const coffeesData = await getDocs(coffeesCollection);
     const coffeesList = coffeesData.docs.map((doc) => doc.data());
+    console.log("User ID passed to getCoffees:", user);
     return coffeesList;
   } catch (error) {
     //toast.error("Something went wrong while receiving the coffees data.");
@@ -25,9 +26,9 @@ export async function getCoffees() {
   }
 }
 
-export async function getCoffee(slug) {
+export async function getCoffee(slug, user) {
   try {
-    const coffeesCollection = collection(database, "coffees");
+    const coffeesCollection = collection(database, `users/${user}/coffees`);
     const q = query(coffeesCollection, where("slug", "==", slug)); // Filter by slug
     const querySnapshot = await getDocs(q);
 
@@ -50,10 +51,10 @@ function generateSlug(roasteryName, coffeeName) {
     .replace(/[^a-z0-9-]/g, "");
 }
 
-export async function addCoffee(coffeeData, router) {
+export async function addCoffee(coffeeData, user, router) {
   const slug = generateSlug(coffeeData.roasteryName, coffeeData.coffeeName);
   console.log("[addCoffee] Generated slug:", slug);
-  const coffeesCollection = collection(database, "coffees");
+  const coffeesCollection = collection(database, `users/${user}/coffees`);
   const coffeeDocRef = doc(coffeesCollection, slug);
 
   let imageUrl = null;
@@ -104,5 +105,32 @@ export async function addCoffee(coffeeData, router) {
     }
 
     throw new Error("Something went wrong while adding the coffee: " + error.message);
+  }
+}
+
+export async function getUser(email) {
+  const usersCollection = collection(database, "users");
+  const q = query(usersCollection, where("email", "==", email));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    return null; // No user found
+  }
+
+  return querySnapshot.docs[0].data(); // Return first matching user
+}
+
+export async function addUser(data) {
+  try {
+    if (!data.email) {
+      throw new Error("Email is required to create a user");
+    }
+
+    const userRef = doc(database, "users", data.email);
+    await setDoc(userRef, data);
+
+    return data.email; // Return the document ID (which is the email)
+  } catch (error) {
+    throw new Error("Error adding user: " + error.message);
   }
 }
