@@ -17,7 +17,7 @@ function HomeLogedOut() {
           <button
             className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-[100px] m-auto flex justify-center items-center"
           >
-            Login
+            Sign In
           </button>
         </form>
       </DetailsSecondary>

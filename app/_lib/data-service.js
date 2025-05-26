@@ -21,7 +21,7 @@ export async function getCoffees({user}) {
     console.log("User ID passed to getCoffees:", user);
     return coffeesList;
   } catch (error) {
-    //toast.error("Something went wrong while receiving the coffees data.");
+    toast.error("Something went wrong while receiving the coffees data.");
     throw new Error("Something went wrong while receiving the coffees data: " + error.message);
   }
 }
@@ -33,7 +33,7 @@ export async function getCoffee(slug, user) {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      //toast.error("No coffee found")
+      toast.error("No coffee found")
       throw new Error(`No coffee found with slug: ${slug}`);
     }
 
@@ -83,7 +83,7 @@ export async function addCoffee(coffeeData, user, router) {
     };
 
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    //toast.success("Coffee added successfully!");
+    toast.success("Coffee added successfully!");
 
     // ✅ Redirect to the coffee detail page
     router.push(`/coffees/${slug}`);
@@ -93,7 +93,7 @@ export async function addCoffee(coffeeData, user, router) {
     };
   } catch (error) {
     console.error("[addCoffee] Error:", error);
-    //toast.error("Something went wrong while adding the coffee.");
+    toast.error("Something went wrong while adding the coffee.");
 
     if (imageRef) {
       try {

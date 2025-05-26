@@ -1,6 +1,7 @@
 import Avatar from "../Avatar";
 import avatar from "../../../public/icons/avatar.svg";
 import AccountLink from "./AccountLink";
+import LogOutButton from "./LogOutButton";
 
 function AccountSidebar() {
   return (
@@ -12,7 +13,7 @@ function AccountSidebar() {
         <AccountLink href="/account">Profile</AccountLink>
         <AccountLink href="">My gear</AccountLink>
         <AccountLink href="">Password</AccountLink>
-        <AccountLink href="">Log out</AccountLink>
+        <LogOutButton/>
       </div>
     </div>
   );

@@ -10,13 +10,13 @@ function HomeLogedIn({ user }) {
         <div className="flex gap-2">
           <Link
             href="/api/auth/signout"
-            className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-[100px] m-auto flex justify-center items-center"
+            className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-auto m-auto flex justify-center items-center"
           >
-            Log Out
+            Sign Out
           </Link>
           <Link
             href="/account"
-            className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-[100px] m-auto flex justify-center items-center"
+            className="bg-primary-400 hover:bg-primary-600 text-primary-50 p-2 px-4 rounded-[1rem] uppercase w-auto m-auto flex justify-center items-center"
           >
             Profile
           </Link>

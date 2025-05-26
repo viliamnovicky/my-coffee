@@ -1,6 +1,5 @@
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import Searchbar from "./Searchbar";
 
 function Header({ children }) {
   return (

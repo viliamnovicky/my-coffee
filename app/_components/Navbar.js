@@ -1,58 +1,37 @@
-import Link from "next/link";
 import { auth } from "../_lib/auth";
 import Image from "next/image";
 import { signInAction, signOutAction } from "../_lib/actions";
-
-//import { usePathname } from "next/navigation";
+import NavbarLink from "./NavbarLink";
 
 export default async function Navbar() {
-  const pathname = "";
   const session = await auth();
   console.log(session);
   return (
     <nav className="bg-primary-50">
       <ul className="flex uppercase gap-[1px] justify-center items-center bg-primary-900">
-        <li
-          className={`${
-            pathname === "/" ? "bg-primary-500 " : "bg-primary-900"
-          }  hover:bg-primary-400 px-2 text-md md:text-xl transition-colors `}
-        >
-          <Link href="/">Home</Link>
-        </li>
-        {/* <li
-          className={`${
-            pathname === "/coffees" ? "bg-primary-500 " : "bg-primary-900"
-          }  hover:bg-primary-400 px-2 text-md md:text-xl transition-colors`}
-        >
-          <Link href="/coffees ">All coffee</Link>
-        </li> */}
-        <li
-          className={`${
-            pathname === "/my-coffees" ? "bg-primary-500 " : "bg-primary-900"
-          }  hover:bg-primary-400 border-l px-2 text-md md:text-xl transition-colors`}
-        >
-          <Link href="/my-coffees ">My coffee</Link>
-        </li>
+        <NavbarLink path="/">Home</NavbarLink>
+
         {session && (
-          <li
-            className={`${
-              pathname === "/my-coffees" ? "bg-primary-500 " : "bg-primary-900"
-            }  hover:bg-primary-400 border-l px-2 text-md md:text-xl transition-colors`}
-          >
-            <Link href="/account ">Account</Link>
-          </li>
+          <NavbarLink path="/my-coffees" className="border-l">
+            My coffee
+          </NavbarLink>
         )}
-        <li
-          className={`${
-            pathname === "/account" ? "bg-primary-500 " : "bg-primary-900"
-          }  hover:bg-primary-400 border-l px-2 text-md md:text-xl transition-colors`}
-        >
-          {session ? (
-            <form action={signOutAction}><button className="uppercase">Log Out</button></form>
+        {session && (
+          <NavbarLink path="/account" className="border-l">
+            Account
+          </NavbarLink>
+        )}
+        {/* <li className="bg-primary-900 hover:bg-primary-400 px-2 text-md md:text-xl transition-colors border-l">
+          {session ? ( 
+            <form action={signOutAction}>
+              <button className="uppercase">Log Out</button>
+            </form>
           ) : (
-            <form action={signInAction}><button className="uppercase">Log In</button></form>
+            <form action={signInAction}>
+              <button className="uppercase">Log In</button>
+            </form>
           )}
-        </li>
+        </li> */}
         {session?.user?.image && (
           <li className="bg-primary-900">
             <Image
