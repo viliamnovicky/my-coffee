@@ -7,11 +7,13 @@ import {
   getDoc,
   doc,
   setDoc,
+  updateDoc 
 } from "firebase/firestore/lite";
 import { database, storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import { resizeImage } from "../_helpers/resizeImage";
-import toast from "react-hot-toast";
+import { revalidatePath } from "next/cache";
+//import toast from "react-hot-toast";
 
 export async function getCoffees({user}) {
   try {
@@ -21,7 +23,7 @@ export async function getCoffees({user}) {
     console.log("User ID passed to getCoffees:", user);
     return coffeesList;
   } catch (error) {
-    toast.error("Something went wrong while receiving the coffees data.");
+    //toast.error("Something went wrong while receiving the coffees data.");
     throw new Error("Something went wrong while receiving the coffees data: " + error.message);
   }
 }
@@ -33,7 +35,7 @@ export async function getCoffee(slug, user) {
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-      toast.error("No coffee found")
+      //toast.error("No coffee found")
       throw new Error(`No coffee found with slug: ${slug}`);
     }
 
@@ -83,7 +85,7 @@ export async function addCoffee(coffeeData, user, router) {
     };
 
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    toast.success("Coffee added successfully!");
+    //toast.success("Coffee added successfully!");
 
     // ✅ Redirect to the coffee detail page
     router.push(`/coffees/${slug}`);
@@ -93,7 +95,7 @@ export async function addCoffee(coffeeData, user, router) {
     };
   } catch (error) {
     console.error("[addCoffee] Error:", error);
-    toast.error("Something went wrong while adding the coffee.");
+    //toast.error("Something went wrong while adding the coffee.");
 
     if (imageRef) {
       try {
@@ -129,8 +131,21 @@ export async function addUser(data) {
     const userRef = doc(database, "users", data.email);
     await setDoc(userRef, data);
 
-    return data.email; // Return the document ID (which is the email)
+    return data.email; 
   } catch (error) {
     throw new Error("Error adding user: " + error.message);
+  }
+}
+
+export async function updateUser(data, email) {
+  try {
+    
+    const userRef = doc(database, "users", email);
+    await updateDoc(userRef, data);
+    revalidatePath("/account")
+    return data.email;
+
+  } catch (error) {
+    throw new Error("Error updating user: " + error.message);
   }
 }

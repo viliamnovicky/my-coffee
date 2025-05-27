@@ -11,7 +11,7 @@ function AccountSidebar() {
       </div>
       <div className="flex gap-[5px] flex-col">
         <AccountLink href="/account">Profile</AccountLink>
-        <AccountLink href="">My gear</AccountLink>
+        <AccountLink href="/account/gear">My gear</AccountLink>
         <AccountLink href="">Password</AccountLink>
         <LogOutButton/>
       </div>
