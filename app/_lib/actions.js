@@ -3,8 +3,6 @@
 import { signIn, signOut } from "./auth";
 import { auth } from "../_lib/auth";
 import { updateUser } from "./data-service";
-import { revalidate } from "../coffees/[coffeeId]/page";
-import { revalidatePath } from "next/cache";
 
 export async function updateProfile(formData) {
   const session = await auth();
