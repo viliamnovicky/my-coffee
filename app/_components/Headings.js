@@ -1,7 +1,7 @@
 export function H2({ children, className }) {
   return (
     <h2
-      className={`rounded-[1rem] text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin ${className}`}
+      className={`${className} rounded-[1rem] text-center text-primary-950 text-[1.5rem] md:text-[2rem] italic font-thin`}
     >
       {children}
     </h2>

@@ -5,7 +5,7 @@ import avatar from "../../public/icons/avatar.svg";
 export default async function Avatar({ className }) {
   const session = await auth();
   return (
-    <div className={`${className} bg-primary-50 rounded-full w-[200px] h-[200px] p-[1rem] flex flex-col justify-end items-center`}>
+    <div className={`${className} bg-white rounded-full w-[200px] h-[200px] p-[1rem] flex flex-col justify-end items-center m-auto`}>
       <Image
       src={session?.user?.image || avatar}
         alt="coffee-origin-country"
