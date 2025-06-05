@@ -36,6 +36,8 @@ const flavours = [
   { name: "Pomegranate", category: "Fruity" },
   { name: "Pineapple", category: "Fruity" },
   { name: "Dates", category: "Fruity" },
+  { name: "Tropical", category: "Fruity" },
+  { name: "Plums", category: "Fruity" },
 
   { name: "Nutty", category: "Nutty" },
   { name: "Almond", category: "Nutty" },
@@ -44,6 +46,7 @@ const flavours = [
   { name: "Walnut", category: "Nutty" },
   { name: "Pecan", category: "Nutty" },
   { name: "Para", category: "Nutty" },
+  { name: "Pistachio", category: "Nutty" },
   
   { name: "Cocoa", category: "Cocoa" },
   { name: "Chocolate", category: "Cocoa" },
@@ -68,6 +71,7 @@ const flavours = [
   { name: "Pepper", category: "Spicy" },
   { name: "Anise", category: "Spicy" },
   { name: "Pungent", category: "Spicy" },
+  { name: "Bread spice", category: "Spicy" },
 
   { name: "Herbal", category: "Herbal" },
   { name: "Mint", category: "Herbal" },
@@ -78,6 +82,7 @@ const flavours = [
   { name: "Green Pepper", category: "Herbal" },
   { name: "Bean", category: "Herbal" },
   { name: "Olive", category: "Herbal" },
+  { name: "Bison grass", category: "Herbal" },
 
   { name: "Earthy", category: "Earthy" },
   { name: "Mushroom", category: "Earthy" },

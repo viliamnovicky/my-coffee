@@ -14,6 +14,11 @@ export async function updateProfile(formData) {
   await updateUser(data, session.user.email)
 }
 
+export async function deleteCoffee(coffee) {
+  const session = await auth();
+  console.log(session)
+}
+
 export async function signInAction() {
   await signIn("google", { redirectTo: "/my-coffees" });
 }

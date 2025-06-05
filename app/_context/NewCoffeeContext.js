@@ -9,7 +9,7 @@ const initialState = {
   coffeeName: "",
   acidity: 0,
   beanType: "",
-  caffeine: 0,
+  caffeine: "",
   coffeeType: [],
   description: "",
   doseLevel: 0,
@@ -31,6 +31,8 @@ const initialState = {
   weightMedium: 0,
   weightLarge: 0,
   weightFilter: 0,
+  grindSettings: [],
+  weightSettings: []
 };
 
 function NewCoffeeProvider({ children }) {

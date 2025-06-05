@@ -17,14 +17,14 @@ export default async function page() {
     <div className="mt-[6rem] m-auto w-full">
       <Avatar src={user.image} />
       <H2 className="mt-[2rem] w-[1300px] m-auto text-start">Brewers</H2>
-      <div className="grid grid-cols-2 w-[1300px] gap-[1rem] m-auto">
+      <div className="flex flex-col w-[1300px] gap-[1rem] m-auto">
         {user?.coffeeMakers?.map((maker) => (
           <GearContainer key={maker.mark + maker.model + "container"} gear={maker} />
         ))}
       </div>
       <Button className=" m-auto mt-[1rem] block">Add Brewer</Button>
       <H2 className="mt-[2rem] w-[1300px] m-auto text-start">Grinders</H2>
-      <div className="grid grid-cols-2 w-[1300px] gap-[1rem] m-auto">
+      <div className="flex flex-col w-[1300px] gap-[1rem] m-auto">
         {user?.grinders?.map((grinder) => (
           <GearContainer key={grinder.mark + grinder.model + "container"} gear={grinder} />
         ))}

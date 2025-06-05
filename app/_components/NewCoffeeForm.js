@@ -124,7 +124,7 @@ function NewCoffeeForm({user}) {
               beans:
               <Select
                 value={coffee.beanType}
-                onChange={(e) => updateCoffeeData("beanType", e.target.value)}
+                onValueChange={(e) => updateCoffeeData("beanType", e.target.value)}
               >
                 
                 <option value="arabica">arabica</option>
@@ -136,7 +136,7 @@ function NewCoffeeForm({user}) {
               caffeine:
               <Select
                 value={coffee.caffeine}
-                onChange={(e) => updateCoffeeData("caffeine", e.target.value)}
+                onValueChange={(e) => updateCoffeeData("caffeine", e.target.value)}
               >
                 <option value="decaf">decaf</option>
                 <option value="mild">mild</option>
@@ -373,8 +373,8 @@ function NewCoffeeForm({user}) {
               <Input
                 type="number"
                 min="0"
-                max="7"
-                label="1 - 7"
+                max="8"
+                label="1 - 8"
                 value={coffee.grindMachine}
                 onChange={(e) => updateCoffeeData("grindMachine", e.target.value)}
               />
