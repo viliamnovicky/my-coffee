@@ -12,18 +12,24 @@ import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { ImageInput, Input, Select, TagCheckbox } from "../_components/Inputs";
 import { addCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { resizeImage } from "../_helpers/resizeImage";
 import TasteInput from "./TasteInput";
 import { useRouter } from "next/navigation";
 
-
-function NewCoffeeForm({user}) {
+function NewCoffeeForm({ user }) {
   const router = useRouter();
-  const { coffee, resetNewCoffeeData, updateCoffeeData } = useNewCoffee();
+  const { coffee, resetNewCoffeeData, updateCoffeeData, syncGrindSettingsWithGrinders } =
+    useNewCoffee();
   const [imagePreview, setImagePreview] = useState(
     "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
   );
+
+  useEffect(() => {
+    if (user.grinders?.length > 0 && Object.keys(coffee.grindSettings).length === 0) {
+      syncGrindSettingsWithGrinders(user.grinders);
+    }
+  }, [user.grinders, coffee.grindSettings, syncGrindSettingsWithGrinders]);
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -45,7 +51,7 @@ function NewCoffeeForm({user}) {
     console.log("click");
     try {
       console.log("[handleSubmit] Submitting coffee:", coffee);
-      await addCoffee(coffee, user, router); // make sure coffee.image is the File object
+      await addCoffee(coffee, user.email, router); // make sure coffee.image is the File object
       console.log("Coffee added successfully");
     } catch (error) {
       console.error("Failed to add coffee:", error);
@@ -126,7 +132,6 @@ function NewCoffeeForm({user}) {
                 value={coffee.beanType}
                 onValueChange={(e) => updateCoffeeData("beanType", e.target.value)}
               >
-                
                 <option value="arabica">arabica</option>
                 <option value="robusta">robusta</option>
                 <option value="blend">blend</option>
@@ -152,6 +157,7 @@ function NewCoffeeForm({user}) {
                 min="0"
                 max="9000"
                 value={coffee.elevation.top}
+                placeholder="in meters"
                 onChange={(e) => updateCoffeeData("elevation.top", e.target.value)}
               />
             </InfoParagraph>
@@ -163,6 +169,7 @@ function NewCoffeeForm({user}) {
                 min="0"
                 max="9000"
                 value={coffee.elevation.bottom}
+                placeholder="in meters"
                 onChange={(e) => updateCoffeeData("elevation.bottom", e.target.value)}
               />
             </InfoParagraph>
@@ -245,7 +252,6 @@ function NewCoffeeForm({user}) {
               </span>
             </InfoParagraph>
           </div>
-
           <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start">
             <InfoParagraph>
               roast (1 - 5):
@@ -280,6 +286,7 @@ function NewCoffeeForm({user}) {
                 onChange={(e) => updateCoffeeData("acidity", e.target.value)}
               />
             </InfoParagraph>
+
             <InfoParagraph color="dark">
               Machine dose level:
               <Input
@@ -291,94 +298,65 @@ function NewCoffeeForm({user}) {
                 onChange={(e) => updateCoffeeData("doseLevel", e.target.value)}
               />
             </InfoParagraph>
-            <InfoParagraph color="light">
-              weight:
-              <Input
-                label="8g"
-                type="number"
-                min="0"
-                max="50"
-                value={coffee.weightSmall}
-                onChange={(e) => updateCoffeeData("weightSmall", e.target.value)}
-                className="w-[50%]"
-              />
-            </InfoParagraph>
-            <InfoParagraph>
-              <span/>
-              <Input
-                label="13g"
-                type="number"
-                min="0"
-                max="50"
-                value={coffee.weightMedium}
-                onChange={(e) => updateCoffeeData("weightMedium", e.target.value)}
-                className="w-[50%]"
-              />
-            </InfoParagraph>
-            <InfoParagraph>
-              <span/>
-              <Input
-                label="18g"
-                type="number"
-                min="0"
-                max="50"
-                value={coffee.weightLarge}
-                onChange={(e) => updateCoffeeData("weightLarge", e.target.value)}
-                className="w-[50%]"
-              />
-            </InfoParagraph>
+            <p className="uppercase text-center p-2">Grind size</p>
+            {user.grinders.map((grinder) => {
+              const grinderKey = `${grinder.mark}-${grinder.model}`;
+              const settings = coffee.grindSettings[grinderKey] || [];
 
-            <InfoParagraph color="dark">
-              grind size - grinder:
-              
-                <Input
-                  type="number"
-                  min="0"
-                  max="50"
-                  label="espresso"
-                  value={coffee.grindEspresso}
-                  onChange={(e) => updateCoffeeData("grindEspresso", e.target.value)}
-                  className="w-[50%]"
-                />
-                  </InfoParagraph>
-                  <InfoParagraph color="dark">
-                    <span/>
-                <Input
-                  type="number"
-                  min="0"
-                  max="50"
-                  label="filter"
-                  value={coffee.grindFilter}
-                  onChange={(e) => updateCoffeeData("grindFilter", e.target.value)}
-                  className="w-[50%]"
-                  
-                  />
-                  </InfoParagraph>
-                  <InfoParagraph color="dark">
-                    <span/>
-                <Input
-                  type="number"
-                  min="0"
-                  max="50"
-                  label="mokka"
-                  value={coffee.grindMoka}
-                  onChange={(e) => updateCoffeeData("grindMoka", e.target.value)}
-                  className="w-[50%]"
-                  
-                  />
-                  </InfoParagraph>
-              
-            <InfoParagraph color="light">
-              grind size - machine:
-              <Input
-                type="number"
-                min="0"
-                max="8"
-                label="1 - 8"
-                value={coffee.grindMachine}
-                onChange={(e) => updateCoffeeData("grindMachine", e.target.value)}
-              />
-            </InfoParagraph>
+              return (
+                <div key={grinderKey}>
+                  {settings.map((grindSetting, settingIndex) => (
+                    <InfoParagraph color="dark" key={`${grinderKey}-${grindSetting.name}`}>
+                      {settingIndex === 0 ? (
+                        <p>{`${grinder.mark} ${grinder.model} (1 - ${grinder.steps})`}</p>
+                      ) : (
+                        <p></p>
+                      )}
+                      <Input
+                        type="number"
+                        min="0"
+                        max={grinder.steps}
+                        label={grindSetting.name}
+                        value={grindSetting.value}
+                        onChange={(e) =>
+                          updateCoffeeData("grindSettings", Number(e.target.value), {
+                            grinderKey,
+                            settingIndex,
+                          })
+                        }
+                      />
+                    </InfoParagraph>
+                  ))}
+                </div>
+              );
+            })}
+
+            <p className="uppercase text-center p-2">Weight</p>
+            {user.coffeeMakers &&
+              user.coffeeMakers.map((maker, makerIndex) => (
+                <div key={maker.mark + maker.model}>
+                  {coffee.weightSettings.map((weightSetting, weightIndex) => (
+                    <InfoParagraph
+                      color={makerIndex % 2 !== 0 && "dark"}
+                      key={maker.mark + maker.model + weightSetting.name}
+                    >
+                      {weightIndex === 0 ? <p>{`${maker.mark} ${maker.model}`}</p> : <p></p>}
+                      <Input
+                        type="number"
+                        min="0"
+                        max={maker.steps || 36}
+                        label={weightSetting.name}
+                        value={weightSetting.value}
+                        onChange={(e) =>
+                          updateCoffeeData("weightSettings", Number(e.target.value), {
+                            index: weightIndex,
+                          })
+                        }
+                      />
+                    </InfoParagraph>
+                  ))}
+                </div>
+              ))}
           </div>
 
           <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">

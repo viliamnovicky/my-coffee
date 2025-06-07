@@ -8,6 +8,7 @@ import { FaHeart, FaWeight } from "react-icons/fa";
 import Link from "next/link";
 
 export default async function MyCoffeesList({user}) {
+  const defaultImage = "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
   const coffees = await getCoffees({user});
   console.log(coffees)
 
@@ -23,11 +24,11 @@ export default async function MyCoffeesList({user}) {
           >
             <div className="w-[70px] h-[70px] relative rounded-full overflow-hidden md:m-0 m-auto">
               <Image
-                src={coffee.image}
+                src={coffee.image ? coffee.image : defaultImage}
                 key={coffee.id + "image"}
                 fill
                 alt={coffee.id + "image"}
-                className="object-cover"
+                className="object-cover bg-primary-100"
               />
             </div>
             <p className="uppercase p-4 md:m-0 m-auto">

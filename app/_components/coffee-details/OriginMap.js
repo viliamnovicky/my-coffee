@@ -3,7 +3,7 @@ import Image from "next/image";
 function OriginMap({ coffee }) {
   return (
       <Image
-        src={`/maps/${coffee.origin[0]}.svg`}
+        src={coffee.origin[0] ? `/maps/${coffee.origin[0]}.svg` : "/maps/world.svg"}
         alt="coffee-origin-country"
         width={0}
         height={0}

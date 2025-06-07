@@ -62,7 +62,7 @@ const flavours = [
   { name: "Chamomile", category: "Floral" },
   { name: "Tea", category: "Floral" },
   { name: "Black tea", category: "Floral" },
-  { name: "Freen tea", category: "Floral" },
+  { name: "Green tea", category: "Floral" },
 
   { name: "Spicy", category: "Spicy" },
   { name: "Cinnamon", category: "Spicy" },

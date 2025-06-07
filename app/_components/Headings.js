@@ -18,9 +18,9 @@ export function P({ children, className }) {
   );
 }
 
-export function CountryName({ children, className }) {
+export function CountryName({ children, className, coffee }) {
   return (
-    <p className={`${className} `}>
+    <p className={`${className} uppercase text-primary-950 w-full text-center xl:text-left font-extrabold text-[3rem] absolute xl:top-[50%] bottom-0 xl:bottom-auto xl:left-[1rem] left-[50%] translate-x-[-50%] xl:translate-x-0 opacity-[60%]`}>
       {children}
     </p>
   )
