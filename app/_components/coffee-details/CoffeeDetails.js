@@ -25,7 +25,7 @@ import DrinksCont from "./DrinksCont";
 function CoffeeDetails({ coffee }) {
   
   return (
-    <div className="relative w-screen flex flex-col xl:mt-[80px] mt-[120px]">
+    <div className="relative w-screen flex flex-col xl:mt-[80px] mt-[140px]">
       <AddCoffeeButton />
       <Link
         href="/my-coffees"
@@ -42,7 +42,7 @@ function CoffeeDetails({ coffee }) {
           <CoffeeImage coffee={coffee} />
           <CoffeeSettings coffee={coffee} />
         </DetailsPrimary>
-        <DetailsSecondary className="z-10 self-end h-auto mt-5">
+        <DetailsSecondary className="z-10 self-end h-auto xl:mt-5">
           <CoffeeStats coffee={coffee} />
         </DetailsSecondary>
       </Section>

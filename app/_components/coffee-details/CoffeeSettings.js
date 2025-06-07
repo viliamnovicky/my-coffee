@@ -29,7 +29,7 @@ function CoffeeSettings({coffee}) {
                     alt="grinder-icon"
                     className="pr-1"
                   />
-                  {coffee.grindMachine ? coffee.grindMachine : "?"} / 7{" "}
+                  {coffee.grindMachine ? coffee.grindMachine : "?"} / 8{" "}
                 </span>
                 <span className="flex justify-center">
                   <Image
