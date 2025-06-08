@@ -47,8 +47,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <ModalProvider>
-          <Header d />
-          <Modal />
+          <Header />
           {children}
         </ModalProvider>
       </body>

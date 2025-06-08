@@ -2,7 +2,8 @@
 
 import { signIn, signOut } from "./auth";
 import { auth } from "../_lib/auth";
-import { updateUser } from "./data-service";
+import { deleteCoffee, updateUser } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function updateProfile(formData) {
   const session = await auth();
@@ -14,9 +15,10 @@ export async function updateProfile(formData) {
   await updateUser(data, session.user.email)
 }
 
-export async function deleteCoffee(coffee) {
+export async function deleteCoffeeAction(coffee) {
   const session = await auth();
-  console.log(session)
+  await deleteCoffee(coffee.slug, session.user.email);
+  redirect("/coffees");
 }
 
 export async function signInAction() {

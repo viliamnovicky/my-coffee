@@ -3,9 +3,15 @@ export const metadata = {
 };
 
 import { AddCoffeeButton } from "../_components/Buttons";
-import CoffeesList from "../_components/CoffeesList";
+import MyCoffeesList from "../_components/MyCoffeesList";
 import Searchbar from "../_components/Searchbar";
-function Page() {
+import { auth } from "../_lib/auth";
+import { getUser } from "../_lib/data-service";
+
+export async function Page() {
+  const session = await auth()
+  const user = session.user.email
+  
   return (
     <div>
       <div className="w-full relative m-auto flex items-center justify-center p-4 bg-primary-200">
@@ -13,7 +19,7 @@ function Page() {
         <AddCoffeeButton />
       </div>
 
-      <CoffeesList />
+      <MyCoffeesList user={user}/>
     </div>
   );
 }

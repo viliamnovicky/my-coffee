@@ -7,7 +7,8 @@ import {
   getDoc,
   doc,
   setDoc,
-  updateDoc 
+  updateDoc, 
+  deleteDoc
 } from "firebase/firestore/lite";
 import { database, storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -147,5 +148,36 @@ export async function updateUser(data, email) {
 
   } catch (error) {
     throw new Error("Error updating user: " + error.message);
+  }
+}
+
+export async function deleteCoffee(slug, user) {
+  try {
+    const coffeeDocRef = doc(database, `users/${user}/coffees`, slug);
+    const coffeeDoc = await getDoc(coffeeDocRef);
+
+    if (!coffeeDoc.exists()) {
+      throw new Error("Coffee not found.");
+    }
+
+    const coffeeData = coffeeDoc.data();
+
+    // Delete image from storage if it's a Firebase-hosted image
+    if (coffeeData.image && coffeeData.image.includes("firebasestorage.googleapis.com")) {
+      const imageRef = ref(storage, `coffee/${slug}.jpg`);
+      try {
+        await deleteObject(imageRef);
+        console.log(`[deleteCoffee] Image deleted for slug: ${slug}`);
+      } catch (imageError) {
+        console.warn(`[deleteCoffee] Failed to delete image: ${imageError.message}`);
+      }
+    }
+
+    // ✅ Hard delete the Firestore document
+    await deleteDoc(coffeeDocRef);
+    console.log(`[deleteCoffee] Document deleted for slug: ${slug}`);
+  } catch (error) {
+    console.error(`[deleteCoffee] Error: ${error.message}`);
+    throw new Error("Failed to delete coffee: " + error.message);
   }
 }
