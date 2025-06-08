@@ -12,7 +12,7 @@ export default async function Navbar() {
         <NavbarLink path="/">Home</NavbarLink>
 
         {session && (
-          <NavbarLink path="/my-coffees" className="border-l">
+          <NavbarLink path="/coffees" className="border-l">
             My coffee
           </NavbarLink>
         )}

@@ -11,11 +11,10 @@ import { H2 } from "./Headings";
 export default async function MyCoffeesList({user}) {
   const defaultImage = "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
   const coffees = await getCoffees({user});
-  console.log(coffees)
 
   return (
     <div>
-      <H2 className="pt-[1rem]">Coffee I tried</H2>
+      <H2 className="uppercase pt-[1rem]">Coffee I tasted</H2>
       <ul>
         {coffees.map((coffee, i) => (
           <li

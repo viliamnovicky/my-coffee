@@ -9,17 +9,17 @@ import { auth } from "../_lib/auth";
 import { getUser } from "../_lib/data-service";
 
 export async function Page() {
-  const session = await auth()
-  const user = session.user.email
-  
+  const session = await auth();
+  const user = session.user.email;
+
   return (
     <div>
-      <div className="w-full relative m-auto flex items-center justify-center p-4 bg-primary-200">
-        <Searchbar />
+      <div className="w-full relative m-auto mt-[105px] xl:mt-[50px] flex items-center justify-center p-4 bg-primary-200">
+        {/* <Searchbar /> */}
         <AddCoffeeButton />
       </div>
 
-      <MyCoffeesList user={user}/>
+      <MyCoffeesList user={user} />
     </div>
   );
 }

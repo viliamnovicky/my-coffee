@@ -22,7 +22,7 @@ export async function deleteCoffeeAction(coffee) {
 }
 
 export async function signInAction() {
-  await signIn("google", { redirectTo: "/my-coffees" });
+  await signIn("google", { redirectTo: "/coffees" });
 }
 
 export async function signOutAction() {
