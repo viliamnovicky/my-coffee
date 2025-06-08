@@ -2,6 +2,8 @@ import { Roboto } from "next/font/google";
 import "./_styles/globals.css";
 import Header from "./_components/Header";
 import { Toaster } from "react-hot-toast";
+import Modal from "./_components/Modal";
+import { ModalProvider } from "./_context/ModalContext";
 
 const RobotoFont = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -44,8 +46,11 @@ export default function RootLayout({ children }) {
             },
           }}
         />
-        <Header />
-        {children}
+        <ModalProvider>
+          <Header d />
+          <Modal />
+          {children}
+        </ModalProvider>
       </body>
     </html>
   );

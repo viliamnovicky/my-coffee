@@ -19,6 +19,7 @@ import ElevationCont from "./ElevationCont";
 import NotesCont from "./NotesCont";
 import OriginCont from "./OriginCont";
 import DrinksCont from "./DrinksCont";
+import CoffeeOptions from "./CoffeeOptions";
 
 
 
@@ -29,7 +30,7 @@ function CoffeeDetails({ coffee }) {
       <AddCoffeeButton />
       <Link
         href="/my-coffees"
-        className="z-50 bg-primary-200 hover:bg-primary-300 xl:w-[50px] xl:h-[50px] w-[35px] h-[35px] flex rounded-full fixed left-3 xl:top-[90px] top-[95px] items-center justify-center"
+        className="z-40 bg-primary-200 hover:bg-primary-300 w-[35px] h-[35px] flex rounded-full fixed left-3 xl:top-[90px] top-[95px] items-center justify-center"
       >
         <IoMdArrowRoundBack className="text-[1.6rem]" />
       </Link>
@@ -54,6 +55,7 @@ function CoffeeDetails({ coffee }) {
         <NotesCont coffee={coffee}/>
         <ElevationCont coffee={coffee}/>
       </Section>
+      <CoffeeOptions coffee={coffee}/>
     </div>
   );
 }

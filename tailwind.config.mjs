@@ -41,6 +41,12 @@ module.exports = {
           berries: "#f77878",
           fermented: "#b78c51",
           cocoa: "#918067",
+        },
+        action: {
+          delete: "#f77878",
+          update: "#fde069",
+          add: "#86b339",
+          cancel: "#a9a7a7",
         }
       },
       backgroundImage: {
@@ -49,6 +55,8 @@ module.exports = {
         "gradient-3": "linear-gradient(to right, #C7BDBD, #AB9B9B)", // 200 → 300
         "gradient-4": "linear-gradient(to right, #AB9B9B, #8F7A7A)", // 300 → 400
         "gradient-5": "linear-gradient(to right, #E3DEDE, #f6f3f3)", // 300 → 400
+        "gradient-6": "linear-gradient(to right, transparent, #fff)", // 300 → 400
+        "gradient-7": "linear-gradient(to right, #fff, transparent)", // 300 → 400
       },
     },
   },
