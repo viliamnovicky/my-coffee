@@ -9,7 +9,7 @@ function OriginCont({ coffee }) {
   return (
     <DetailsPrimary className="xl:mt-5 self-end xl:rounded-l-[1rem] xl:rounded-r-full bg-gradient-1 relative overflow-visible min-h-[300px]">
       <H2 className="pl-2">Origin</H2>
-      <CountryName className="">{coffee.origin[0] ? coffee.origin[0] : "unknown origin"}</CountryName>
+      <CountryName coffee={coffee}/>
       <OriginMap coffee={coffee} />
       <P className="w-[60%] self-center pr-[2rem] text-[1.2rem]">{`„${description}”`}</P>
     </DetailsPrimary>

@@ -1,6 +1,3 @@
-import { IoMdArrowRoundBack } from "react-icons/io";
-import Link from "next/link";
-
 import { AddCoffeeButton } from "../Buttons";
 import CoffeeStats from "./CoffeeStats";
 import Section from "./Section";
@@ -10,16 +7,13 @@ import DetailsPrimary from "./DetailsPrimary";
 import DetailsSecondary from "./DetailsSecondary";
 import { H2 } from "../Headings";
 
-import { GiMokaPot } from "react-icons/gi";
-import { GiCoffeePot } from "react-icons/gi";
-
-import { SiCoffeescript } from "react-icons/si";
-import { LiaCoffeeSolid } from "react-icons/lia";
 import ElevationCont from "./ElevationCont";
 import NotesCont from "./NotesCont";
 import OriginCont from "./OriginCont";
 import DrinksCont from "./DrinksCont";
 import CoffeeOptions from "./CoffeeOptions";
+import BackButton from "./BackButton";
+import BeansInfo from "./BeansInfo";
 
 
 
@@ -28,12 +22,7 @@ function CoffeeDetails({ coffee }) {
   return (
     <div className="relative w-screen flex flex-col xl:mt-[80px] mt-[140px]">
       <AddCoffeeButton />
-      <Link
-        href="/coffees"
-        className="z-40 bg-primary-200 hover:bg-primary-300 w-[35px] h-[35px] flex rounded-full fixed left-3 xl:top-[90px] top-[95px] items-center justify-center"
-      >
-        <IoMdArrowRoundBack className="text-[1.6rem]" />
-      </Link>
+      <BackButton href="/coffees"/>
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
@@ -48,7 +37,7 @@ function CoffeeDetails({ coffee }) {
         </DetailsSecondary>
       </Section>
       <Section className="xl:mt-[-5rem]">
-        <DrinksCont coffee={coffee}/>
+        <BeansInfo coffee={coffee}/>
         <OriginCont coffee={coffee}/>
       </Section>
       <Section>

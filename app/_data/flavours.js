@@ -38,6 +38,8 @@ const flavours = [
   { name: "Dates", category: "Fruity" },
   { name: "Tropical", category: "Fruity" },
   { name: "Plums", category: "Fruity" },
+  { name: "Plums", category: "Fruity" },
+  { name: "Dried figs", category: "Fruity" },
 
   { name: "Nutty", category: "Nutty" },
   { name: "Almond", category: "Nutty" },
