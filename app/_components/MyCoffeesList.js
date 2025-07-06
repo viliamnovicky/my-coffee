@@ -35,10 +35,10 @@ export default async function MyCoffeesList({user}) {
             <p className="uppercase p-4 md:m-0 m-auto">
               {coffee.roasteryName} {coffee.coffeeName}
             </p>
-            <div className="flex items-center gap-2 px-10 md:px-0">
+            {/* <div className="flex items-center gap-2 px-10 md:px-0">
               <FaWeight className="text-primary-950" />
               <p>{coffee.doseLevel === 0 ? "?" : coffee.doseLevel}</p>
-            </div>
+            </div> */}
             <div className="flex items-center gap-2 px-10 md:px-0">
               <IoScale className="text-primary-950" />
               <p>

@@ -33,7 +33,7 @@ export function Input({ value, addClass, placeholder, type, forId, id, label, on
       <input
         placeholder={placeholder}
         value={value}
-      onChange={onChange}
+        onChange={onChange}
         type={type}
         {...rest}
         className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch] ${addClass}`}
@@ -42,9 +42,11 @@ export function Input({ value, addClass, placeholder, type, forId, id, label, on
   );
 }
 
-export function Select({ value, addClass, children }) {
+export function Select({ value, addClass, children, onChange }) {
   return (
     <select
+      onChange={onChange}
+      value={value}
       className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch] ${addClass}`}
     >
       {children}
@@ -52,19 +54,18 @@ export function Select({ value, addClass, children }) {
   );
 }
 
-export function ImageInput({onChange, addClass, fileName }) {
-
+export function ImageInput({ onChange, addClass, fileName }) {
   return (
-    <label className={`flex uppercase items-center gap-2 cursor-pointer px-4 py-2 bg-primary-300 text-primary-50 rounded-md hover:bg-primary-400 ${addClass}`}>
+    <label
+      className={`flex uppercase items-center gap-2 cursor-pointer px-4 py-2 bg-primary-300 text-primary-50 rounded-md hover:bg-primary-400 ${addClass}`}
+    >
       {fileName ? "change image" : "choose Image"}
       <input onChange={onChange} type="file" accept="image/*" className="hidden" />
-      
     </label>
   );
 }
 
 export function TagCheckbox({ label, onChange, value, checked }) {
-
   return (
     <label
       className={`hover:bg-primary-400 hover:text-primary-50 cursor-pointer px-2 py-1 rounded-full text-sm text-center ${
@@ -72,7 +73,13 @@ export function TagCheckbox({ label, onChange, value, checked }) {
       }`}
     >
       {label}
-      <input value={value} type="checkbox" onChange={onChange} checked={checked} className="hidden" />
+      <input
+        value={value}
+        type="checkbox"
+        onChange={onChange}
+        checked={checked}
+        className="hidden"
+      />
     </label>
   );
 }

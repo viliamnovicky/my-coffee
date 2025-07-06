@@ -13,7 +13,6 @@ const initialState = {
   coffeeType: [],
   description: "",
   notes: "",
-  doseLevel: 0,
   elevation: {
     top: 0,
     bottom: 0,
@@ -23,41 +22,28 @@ const initialState = {
   variety: "",
   process: "",
   origin: [],
-  grindFilter: 0,
-  grindMachine: 0,
-  grindMoka: 0,
-  grindEspresso: 0,
   image: "",
   rating: 0,
   roast: 0,
   intensity: 0,
   taste: [],
-  weightSmall: 0,
-  weightMedium: 0,
-  weightLarge: 0,
-  weightFilter: 0,
   grindSettings: {},
-  weightSettings: [{ name: " ", value: 0 }],
+  doseLevel: [],
+  weightSettings: [],
 };
 
 function createGrindSettingsForGrinders(grinders) {
   const defaultSettings = [
-
     { name: "espresso", value: 0 },
     { name: "filter", value: 0 },
     { name: "moka pot", value: 0 },
   ];
 
-  let testSettings = []
-
   grinders.map((grinder) => {
-    grinder.uses.map(type => testSettings.push({name: type.name, value: 0}))
-  })
+    grinder.uses.map((type) => testSettings.push({ name: type.name, value: 0 }));
+  });
 
-  console.log(testSettings)
-
-  return testSettings
-  //return grinders.map(() => defaultSettings.map((setting) => ({ ...setting })));
+  return grinders.map(() => defaultSettings.map((setting) => ({ ...setting })));
 }
 
 function NewCoffeeProvider({ children }) {
@@ -67,22 +53,53 @@ function NewCoffeeProvider({ children }) {
     setNewCoffeeData((prev) => {
       if (
         key === "grindSettings" &&
-        options.grinderKey &&
+        typeof options.grinderIndex === "number" &&
         typeof options.settingIndex === "number"
       ) {
-        const newGrindSettings = { ...prev.grindSettings };
-        newGrindSettings[options.grinderKey] = [...newGrindSettings[options.grinderKey]];
-        newGrindSettings[options.grinderKey][options.settingIndex].value = value;
-        return { ...prev, grindSettings: newGrindSettings };
+        const updated = [...prev.grindSettings];
+        updated[options.grinderIndex] = {
+          ...updated[options.grinderIndex],
+          settings: [...updated[options.grinderIndex].settings],
+        };
+        updated[options.grinderIndex].settings[options.settingIndex].value = value;
+        return { ...prev, grindSettings: updated };
       }
 
-      if (key === "weightSettings" && typeof options.index === "number") {
-        const updatedWeightSettings = [...prev.weightSettings];
-        updatedWeightSettings[options.index] = {
-          ...updatedWeightSettings[options.index],
+      if (
+        key === "weightSettings" &&
+        typeof options.makerIndex === "number" &&
+        typeof options.weightIndex === "number"
+      ) {
+        const updatedSettings = [...prev.weightSettings];
+        const makerSettings = { ...updatedSettings[options.makerIndex] };
+
+        const updatedValues = [...makerSettings.values];
+        updatedValues[options.weightIndex] = {
+          ...updatedValues[options.weightIndex],
           value: value,
         };
-        return { ...prev, weightSettings: updatedWeightSettings };
+
+        updatedSettings[options.makerIndex] = {
+          ...makerSettings,
+          values: updatedValues,
+        };
+
+        return { ...prev, weightSettings: updatedSettings };
+      }
+
+      if (key === "doseLevel" && options.grinderName) {
+        const updatedDoseLevels = [...(prev.doseLevel || [])];
+        const existingIndex = updatedDoseLevels.findIndex((d) => d.grinder === options.grinderName);
+        if (existingIndex >= 0) {
+          updatedDoseLevels[existingIndex] = {
+            ...updatedDoseLevels[existingIndex],
+            value,
+          };
+        } else {
+          updatedDoseLevels.push({ grinder: options.grinderName, value });
+        }
+
+        return { ...prev, doseLevel: updatedDoseLevels };
       }
 
       const keys = key.split(".");
@@ -102,19 +119,13 @@ function NewCoffeeProvider({ children }) {
   };
 
   function createGrindSettingsForGrinders(grinders) {
-    const defaultSettings = [
-      { name: "espresso", value: 0 },
-      { name: "filter", value: 0 },
-      { name: "moka pot", value: 0 },
-    ];
-
-    const settings = {};
-    grinders.forEach((grinder) => {
-      const grinderKey = `${grinder.mark}-${grinder.model}`; // unique ID
-      settings[grinderKey] = defaultSettings.map((s) => ({ ...s }));
-    });
-
-    return settings;
+    return grinders.map((grinder) => ({
+      grinder: `${grinder.mark} ${grinder.model}`,
+      settings: grinder.uses.map((use) => ({
+        name: use,
+        value: 0,
+      })),
+    }));
   }
 
   const syncGrindSettingsWithGrinders = useCallback((grinders) => {
@@ -122,6 +133,27 @@ function NewCoffeeProvider({ children }) {
     setNewCoffeeData((prev) => ({
       ...prev,
       grindSettings: newSettings,
+    }));
+  }, []);
+
+  const syncWeightSettingsWithMakers = useCallback((coffeeMakers) => {
+    const settings = coffeeMakers.map((maker) => {
+      const makerKey = `${maker.mark} ${maker.model}`;
+      const isEspresso = maker.type === "espresso machine";
+
+      const values = isEspresso
+        ? ["8g cup", "13g cup", "18g cup"].map((name) => ({ name, value: 0 }))
+        : [{ name: " ", value: 0 }];
+
+      return {
+        maker: makerKey,
+        values,
+      };
+    });
+
+    setNewCoffeeData((prev) => ({
+      ...prev,
+      weightSettings: settings,
     }));
   }, []);
 
@@ -135,6 +167,7 @@ function NewCoffeeProvider({ children }) {
         resetCoffeeData,
         updateCoffeeData,
         syncGrindSettingsWithGrinders,
+        syncWeightSettingsWithMakers,
       }}
     >
       {children}
