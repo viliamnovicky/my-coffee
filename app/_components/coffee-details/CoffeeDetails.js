@@ -17,7 +17,7 @@ import BeansInfo from "./BeansInfo";
 
 
 
-function CoffeeDetails({ coffee }) {
+function CoffeeDetails({ coffee, grinders }) {
   
   return (
     <div className="relative w-screen flex flex-col xl:mt-[80px] mt-[140px]">
@@ -30,7 +30,7 @@ function CoffeeDetails({ coffee }) {
       <Section>
         <DetailsPrimary className="bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
           <CoffeeImage coffee={coffee} />
-          <CoffeeSettings coffee={coffee} />
+          <CoffeeSettings coffee={coffee} grinders={grinders}/>
         </DetailsPrimary>
         <DetailsSecondary className="z-10 self-end h-auto xl:mt-5">
           <CoffeeStats coffee={coffee} />

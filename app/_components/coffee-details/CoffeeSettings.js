@@ -7,7 +7,7 @@ import mokka from "../../../public/icons/moka.svg";
 import drop from "../../../public/icons/drop.svg";
 import MachineIcon from "./MachineIcon";
 
-function CoffeeSettings({ coffee }) {
+function CoffeeSettings({ coffee, grinders }) {
   return (
     <div
       className={`${
@@ -32,24 +32,28 @@ function CoffeeSettings({ coffee }) {
 
       <InfoParagraph color="" className="flex flex-col">
         Grinding size:
-        {coffee.grindSettings?.map((machine) => (
-          <div
-            className="w-full flex flex-col justify-center xl:items-start items-center border-b-[1px] border-primary-100 pb-1 gap-1"
-            key={machine.grinder + "_grinder_settings"}
-          >
-            <span className=" w-auto bg-primary-100 px-2 font-medium">{machine.grinder}</span>
-            <span className="grid xl:gap-5 gap-1 grid-cols-2 xl:flex w-full justify-start m-auto">
-              {machine.settings.map((setting) =>
-                setting.value > 0 ? (
-                  <span key={"span_" + setting.name} className="flex justify-center">
-                    <MachineIcon icon={setting.name.split(" ")[0]} />
-                    {setting.value} / 8
-                  </span>
-                ) : null
-              )}
-            </span>
-          </div>
-        ))}
+        {coffee.grindSettings?.map((machine) => {
+          const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === machine.grinder);
+
+          return (
+            <div
+              className="w-full flex flex-col justify-center xl:items-start items-center border-b-[1px] border-primary-100 pb-1 gap-1"
+              key={machine.grinder + "_grinder_settings"}
+            >
+              <span className=" w-auto bg-primary-100 px-2 font-medium">{machine.grinder}</span>
+              <span className="grid xl:gap-5 gap-1 grid-cols-2 xl:flex w-full justify-start m-auto">
+                {machine.settings.map((setting) =>
+                  setting.value > 0 ? (
+                    <span key={"span_" + setting.name} className="flex justify-center">
+                      <MachineIcon icon={setting.name.split(" ")[0]} />
+                      {setting.value} / {matchedGrinder.steps}
+                    </span>
+                  ) : null
+                )}
+              </span>
+            </div>
+          );
+        })}
       </InfoParagraph>
       <InfoParagraph color="light" className="flex flex-col">
         weight:
