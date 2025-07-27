@@ -34,11 +34,11 @@ function CoffeeSettings({ coffee }) {
         Grinding size:
         {coffee.grindSettings?.map((machine) => (
           <div
-            className="w-full flex flex-col justify-center items-start border-b-[1px] border-primary-100 pb-1 gap-1"
+            className="w-full flex flex-col justify-center xl:items-start items-center border-b-[1px] border-primary-100 pb-1 gap-1"
             key={machine.grinder + "_grinder_settings"}
           >
-            <span className=" w-auto bg-primary-100 px-2 font-medium mt-2">{machine.grinder}</span>
-            <span className="grid gap-5 grid-cols-2 xl:flex w-full justify-start m-auto">
+            <span className=" w-auto bg-primary-100 px-2 font-medium">{machine.grinder}</span>
+            <span className="grid xl:gap-5 gap-1 grid-cols-2 xl:flex w-full justify-start m-auto">
               {machine.settings.map((setting) =>
                 setting.value > 0 ? (
                   <span key={"span_" + setting.name} className="flex justify-center">
