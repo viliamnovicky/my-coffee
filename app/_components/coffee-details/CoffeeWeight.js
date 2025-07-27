@@ -1,50 +1,37 @@
 import { InfoParagraph } from "../Paragraphs";
-import Image from "next/image";
+import MachineIcon from "./MachineIcon";
 import ManualCoffeeGrinder from "../../../public/icons/manual-grinder.svg";
 import espresso from "../../../public/icons/coffee-machine.svg";
 import filter from "../../../public/icons/coffee-filter.png";
+import g8g from "../../../public/icons/coffee-filter.png";
 import mokka from "../../../public/icons/moka.svg";
 import drop from "../../../public/icons/drop.svg";
-import MachineIcon from "./MachineIcon";
+import Image from "next/image";
 
-function CoffeeSettings({ coffee, grinders }) {
+function CoffeeWeight({ coffee, grinders }) {
   return (
     <div
       className={`${
         coffee?.origin[1] && "pb-[65px]"
       } relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
     >
-      
-
-      {/* {coffee.grindSettings.map((setting, index) => (
-        <InfoParagraph key={index} className="flex justify-center text-red-400">
-          {setting.grinder}
-          {setting.settings.map(
-            (s) =>
-              s.value > 0 && (
-                <span key={s.name + s.value + "setting"}>{s.name + ": " + s.value}</span>
-              )
-          )}
-        </InfoParagraph>
-      ))} */}
-
       <InfoParagraph color="" className="flex flex-col">
-        Grinding size
-        {coffee.grindSettings?.map((machine) => {
-          const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === machine.grinder);
+        Weight
+        {coffee.weightSettings?.map((weight) => {
+          const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === weight.grinder);
 
           return (
             <div
               className="w-full flex flex-col justify-center xl:items-start items-center border-b-[1px] border-primary-100 pb-1 gap-1"
-              key={machine.grinder + "_grinder_settings"}
+              key={weight.maker + "_weight_settings"}
             >
-              <span className=" w-auto bg-primary-100 px-2 font-medium">{machine.grinder}</span>
+              <span className=" w-auto bg-primary-100 px-2 font-medium">{weight.maker}</span>
               <span className="grid xl:gap-5 gap-1 grid-cols-2 xl:flex w-full justify-start m-auto">
-                {machine.settings.map((setting) =>
+                {weight.values?.map((setting) =>
                   setting.value > 0 ? (
                     <span key={"span_" + setting.name} className="flex justify-center">
-                      <MachineIcon icon={setting.name.split(" ")[0]} />
-                      {setting.value} / {matchedGrinder.steps}
+                      <MachineIcon icon={`${setting.name.split(" ")[0]}`} />
+                      {setting.value}g
                     </span>
                   ) : null
                 )}
@@ -57,4 +44,4 @@ function CoffeeSettings({ coffee, grinders }) {
   );
 }
 
-export default CoffeeSettings;
+export default CoffeeWeight;

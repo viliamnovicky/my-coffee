@@ -14,6 +14,7 @@ import DrinksCont from "./DrinksCont";
 import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
 import BeansInfo from "./BeansInfo";
+import CoffeeWeight from "./CoffeeWeight";
 
 
 
@@ -27,14 +28,21 @@ function CoffeeDetails({ coffee, grinders }) {
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <H2>{`„${coffee.description}”`}</H2>
-      <Section>
+      <Section className="relative">
+        <h2 className="w-full text-center text-primary-950 text-[1.5rem] xl:text-[1.6rem] p-[1rem] italic absolute top-1 font-medium">
+        Settings
+      </h2>
         <DetailsPrimary className="bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
           <CoffeeImage coffee={coffee} />
           <CoffeeSettings coffee={coffee} grinders={grinders}/>
         </DetailsPrimary>
-        <DetailsSecondary className="z-10 self-end h-auto xl:mt-5">
+        <DetailsPrimary className="">
+        
+          <CoffeeWeight coffee={coffee} grinders={grinders}/>
+        </DetailsPrimary>
+        {/* <DetailsSecondary className="z-10 self-end h-auto xl:mt-5">
           <CoffeeStats coffee={coffee} />
-        </DetailsSecondary>
+        </DetailsSecondary> */}
       </Section>
       <Section className="xl:mt-[-5rem]">
         <BeansInfo coffee={coffee}/>
