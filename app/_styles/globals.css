@@ -30,7 +30,7 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 10px;
 }
 
 /* Track */

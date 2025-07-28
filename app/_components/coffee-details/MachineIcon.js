@@ -29,8 +29,8 @@ function MachineIcon({ icon }) {
     ? (src = drop)
     : (src = ManualCoffeeGrinder);
   return (
-    <div className="relative w-[25px] h-[25px] rounded-full bg-white">
-      <Image src={src} alt="grinder-icon" fill className="absolute p-[3px]" />
+    <div className="relative w-[25px] h-[25px] rounded-full bg-white z-0">
+      <Image src={src} alt="grinder-icon" fill className="absolute p-[3px] z-0" />
     </div>
   );
 }
