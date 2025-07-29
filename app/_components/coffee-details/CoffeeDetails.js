@@ -39,7 +39,7 @@ function CoffeeDetails({ coffee, grinders }) {
           </H2>
             <CoffeeSettings coffee={coffee} grinders={grinders} />
           </DetailsPrimary>
-          <DetailsPrimary className="">
+          <DetailsPrimary>
             <CoffeeWeight coffee={coffee} grinders={grinders} />
           </DetailsPrimary>
         </Section>
