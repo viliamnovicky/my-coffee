@@ -21,7 +21,7 @@ export function StatParagraph({ name, color, value, IconFill, IconLight }) {
         color === "dark" ? "bg-primary-100/50" : "bg-primary-50/50"
       }`}
     >
-      <span>{name.toUpperCase()}:</span>
+      <span>{name.toUpperCase()}</span>
       <span className="flex gap-[2px]">
         {/* Render light (empty) icons first */}
         {Array.from({ length: max - filled }, (_, index) => (

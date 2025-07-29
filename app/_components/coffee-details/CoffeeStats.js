@@ -6,7 +6,7 @@ import Tag from "../Tag";
 
 function CoffeeStats({ coffee }) {
   return (
-    <div className="w-[100%] ">
+    <div className="min-w-[33vw]">
       <H2 className="p-[1rem]">
         Stats
       </H2>

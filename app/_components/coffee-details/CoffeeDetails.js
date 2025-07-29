@@ -27,23 +27,26 @@ function CoffeeDetails({ coffee, grinders }) {
       <H2>{`„${coffee.description}”`}</H2>
       <div className="w-full min-h-[500px]">
         <Section className="relative">
-          <h2 className="w-full text-center text-primary-950 text-[1.5rem] xl:text-[1.6rem] p-[1rem] italic absolute top-1 font-medium">
+          <H2 className="invisible xl:visible w-[50vw] p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
             Settings
-          </h2>
-          <DetailsPrimary className="bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
+          </H2>
+          <DetailsPrimary className="xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
             <CoffeeImage coffee={coffee} />
+          </DetailsPrimary>
+          <DetailsPrimary>
+            <H2 className="xl:hidden pb-0 mb-[-2rem]">
+            Settings
+          </H2>
             <CoffeeSettings coffee={coffee} grinders={grinders} />
           </DetailsPrimary>
           <DetailsPrimary className="">
             <CoffeeWeight coffee={coffee} grinders={grinders} />
           </DetailsPrimary>
-          {/* <DetailsSecondary className="z-10 self-end h-auto xl:mt-5">
-          <CoffeeStats coffee={coffee} />
-          </DetailsSecondary> */}
         </Section>
       </div>
+
       <Section className="xl:mt-[-5rem]">
-        <BeansInfo coffee={coffee} />
+        <CoffeeStats coffee={coffee} />
         <OriginCont coffee={coffee} />
       </Section>
       <Section>

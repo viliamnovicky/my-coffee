@@ -16,15 +16,15 @@ function CoffeeSettings({ coffee, grinders }) {
     >
       <InfoParagraph
         color=""
-        className="flex flex-col relative py-0 px-0 overflow-y-scroll xl:h-[330px] rounded-[1rem] bg-primary-50"
+        className="flex flex-col relative py-0 px-0 overflow-y-auto xl:h-[330px] rounded-[1rem] bg-primary-50"
       >
         <p className="sticky top-0 bg-primary-50 w-full text-center z-10">Grinding size</p>
-        {coffee.grindSettings?.map((machine) => {
+        {coffee?.grindSettings?.map((machine) => {
           const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === machine.grinder);
 
           return (
             <div
-              className="w-full flex flex-col justify-center xl:items-start items-center border-b-[1px] border-primary-100 pb-1 gap-4"
+              className="w-[100%] flex flex-col justify-center xl:items-start items-center pb-1 gap-4"
               key={machine.grinder + "_grinder_settings"}
             >
               <span className=" w-auto bg-primary-100 px-2 font-medium">{machine.grinder}</span>
