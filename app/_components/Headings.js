@@ -22,7 +22,7 @@ export function CountryName({ className, coffee }) {
   return (
     <div className="xl:absolute relative xl:top-[50%] bottom-2 xl:bottom-auto xl:left-[1rem] left-[50%] translate-x-[-50%] xl:translate-x-0">
     <p className={`${className} uppercase text-primary-950 w-full text-center xl:text-left font-extrabold text-[3rem] opacity-[60%]`}>
-      {coffee.origin[0] ? coffee.origin : "unknown origin"}
+      {coffee.origin[0] ? coffee.origin[0] : "unknown origin"}
     </p>
     {coffee.region && <p className="px-[1rem] text-primary-800 italic mt-[-0rem]">Region: <span className="font-bold">{coffee.region}</span></p>}
     {coffee.farm && <p className="px-[1rem] text-primary-800 italic ">Farm: <span className="font-bold">{coffee.farm}</span></p>}

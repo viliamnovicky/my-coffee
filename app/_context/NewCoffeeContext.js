@@ -27,7 +27,7 @@ const initialState = {
   roast: 0,
   intensity: 0,
   taste: [],
-  grindSettings: {},
+  grindSettings: [],
   doseLevel: [],
   weightSettings: [],
 };
