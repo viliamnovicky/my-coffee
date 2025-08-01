@@ -25,8 +25,8 @@ function CoffeeDetails({ coffee, grinders }) {
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <H2>{`„${coffee.description}”`}</H2>
-      <div className="w-full min-h-[500px]">
-        <Section className="relative">
+     
+        <Section className="relative xl:h-[470px]">
           <H2 className="invisible xl:visible w-[50vw] p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
             Settings
           </H2>
@@ -43,7 +43,7 @@ function CoffeeDetails({ coffee, grinders }) {
             <CoffeeWeight coffee={coffee} grinders={grinders} />
           </DetailsPrimary>
         </Section>
-      </div>
+     
 
       <Section className="xl:mt-[-5rem]">
         <CoffeeStats coffee={coffee} />

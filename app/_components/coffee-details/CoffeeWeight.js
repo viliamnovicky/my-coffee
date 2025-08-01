@@ -11,12 +11,11 @@ import Image from "next/image";
 function CoffeeWeight({ coffee, grinders }) {
   return (
     <div
-      className={`${
-        coffee?.origin[1] && "pb-[65px]"
+      className={`
       } relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
     >
-      <InfoParagraph color="" className="flex flex-col">
-        Weight
+      <InfoParagraph color="" className="flex flex-col relative !p-0 overflow-y-auto xl:h-[310px] rounded-[1rem] bg-primary-50">
+        <p className="sticky top-0 bg-primary-50 w-full text-center z-10">weight</p>
         {coffee.weightSettings?.map((weight) => {
           const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === weight.grinder);
 

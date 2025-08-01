@@ -10,13 +10,11 @@ import MachineIcon from "./MachineIcon";
 function CoffeeSettings({ coffee, grinders }) {
   return (
     <div
-      className={`${
-        coffee?.origin[1] && "pb-[65px]"
-      } relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
+      className={`relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
     >
       <InfoParagraph
         color=""
-        className="flex flex-col relative py-0 px-0 overflow-y-auto xl:h-[330px] rounded-[1rem] bg-primary-50"
+        className="flex flex-col relative !p-0 overflow-y-auto xl:h-[310px] rounded-[1rem] bg-primary-50"
       >
         <p className="sticky top-0 bg-primary-50 w-full text-center z-10">Grinding size</p>
         {coffee?.grindSettings?.map((machine) => {
