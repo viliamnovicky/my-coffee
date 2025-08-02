@@ -30,6 +30,8 @@ const initialState = {
   grindSettings: [],
   doseLevel: [],
   weightSettings: [],
+  isBio: false,
+  notes: [],
 };
 
 function createGrindSettingsForGrinders(grinders) {

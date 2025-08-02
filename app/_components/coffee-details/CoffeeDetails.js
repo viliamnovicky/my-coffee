@@ -24,7 +24,7 @@ function CoffeeDetails({ coffee, grinders }) {
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
-      <H2>{`„${coffee.description}”`}</H2>
+      <H2 className="xl:max-w-[1200px] p-2 m-auto">{`„${coffee.description}”`}</H2>
      
         <Section className="relative xl:h-[470px]">
           <H2 className="invisible xl:visible w-[50vw] p-[1rem]  xl:absolute top-1 right-[30vw] text-right">

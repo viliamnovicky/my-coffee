@@ -19,6 +19,8 @@ import { useRouter } from "next/navigation";
 import GrindSettings from "./new-coffee-form/GrindSettings";
 import DoseLevel from "./new-coffee-form/DoseLevel";
 import Weight from "./new-coffee-form/Weight";
+import ToggleButton from "./ToggleButton";
+import Notes from "./new-coffee-form/Notes";
 
 function NewCoffeeForm({ user }) {
   const router = useRouter();
@@ -165,6 +167,10 @@ function NewCoffeeForm({ user }) {
             </InfoParagraph>
             <p className="uppercase text-center p-2 bg-primary-300">beans info</p>
 
+            <InfoParagraph color="dark">
+              Bio quality:
+              <ToggleButton checked={coffee.isBio} onChange={() => updateCoffeeData("isBio", !coffee.isBio)} />
+            </InfoParagraph>
             <InfoParagraph>
               taste:
               <TasteInput />
@@ -332,6 +338,8 @@ function NewCoffeeForm({ user }) {
             <GrindSettings user={user} coffee={coffee} />
             <DoseLevel coffee={coffee} user={user} />
             <Weight coffee={coffee} user={user} />
+            <p className="uppercase text-center p-2">Notes</p>
+            <Notes coffee={coffee} user={user} />
           </div>
 
           <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">
