@@ -112,7 +112,7 @@ function NewCoffeeForm({ user }) {
             />
             <ImageInput onChange={(e) => handleImageChange(e)} addClass="m-[-20px]" />
           </div>
-          <div className="px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
+          <div className="xl:px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
             <InfoParagraph>
               rating (1 - 10):{" "}
               <Input
@@ -272,6 +272,19 @@ function NewCoffeeForm({ user }) {
                   }}
                 />
                 <TagCheckbox
+                  label="cold brew"
+                  checked={coffee.coffeeType?.includes("cold-brew")}
+                  onChange={(e) => {
+                    const selected = coffee.coffeeType || [];
+                    const value = "cold-brew";
+                    console.log(value);
+                    const updated = e.target.checked
+                      ? [...selected, value]
+                      : selected.filter((v) => v !== value);
+                    updateCoffeeData("coffeeType", updated);
+                  }}
+                />
+                <TagCheckbox
                   label="espresso"
                   checked={coffee.coffeeType?.includes("espresso")}
                   onChange={(e) => {
@@ -296,7 +309,7 @@ function NewCoffeeForm({ user }) {
                   }}
                 />
                 <TagCheckbox
-                  label="moka"
+                  label="moka pot"
                   checked={coffee.coffeeType?.includes("moka")}
                   onChange={(e) => {
                     const selected = coffee.coffeeType || [];
@@ -334,7 +347,7 @@ function NewCoffeeForm({ user }) {
               </span>
             </InfoParagraph>
           </div>
-          <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col px-1 py-2 justify-start">
+          <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col xl:px-1 py-2 justify-start">
             <GrindSettings user={user} coffee={coffee} />
             <DoseLevel coffee={coffee} user={user} />
             <Weight coffee={coffee} user={user} />

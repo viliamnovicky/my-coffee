@@ -3,6 +3,7 @@ export const metadata = {
 };
 
 import { AddCoffeeButton } from "../_components/Buttons";
+import { H2 } from "../_components/Headings";
 import MyCoffeesList from "../_components/MyCoffeesList";
 import Searchbar from "../_components/Searchbar";
 import { auth } from "../_lib/auth";
@@ -13,8 +14,9 @@ export async function Page() {
   const user = session.user.email;
 
   return (
-    <div>
-      <div className="w-full relative m-auto mt-[105px] xl:mt-[50px] flex items-center justify-center p-4 bg-primary-200">
+    <div className="relative">
+      <H2 className=" !fixed xl:top-[75px] rounded-none top-[135px] z-10 bg-primary-50 left-[50%] translate-x-[-50%] uppercase p-[1rem] w-full">Coffee I tasted</H2>
+      <div className="w-full relative m-auto mt-[165px] xl:mt-[100px] flex items-center justify-center p-4">
         {/* <Searchbar /> */}
         <AddCoffeeButton />
       </div>
