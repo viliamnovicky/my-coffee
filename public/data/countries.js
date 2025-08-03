@@ -40,7 +40,7 @@ const countries = [
       "Cuban coffee is typically strong and full-bodied with a rich, earthy flavor and a hint of sweetness, often enjoyed as espresso.",
   },
   {
-    name: "Democratic Republic of the Congo",
+    name: "Congo",
     description:
       "Coffee from the Congo offers a mildly acidic profile with flavor notes such as tropical fruits, chocolate, toasted nuts, tobacco, and honey.",
   },

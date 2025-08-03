@@ -11,6 +11,7 @@ const initialState = {
   beanType: "",
   caffeine: "",
   coffeeType: [],
+  coffeeDrink: [],
   description: "",
   notes: "",
   elevation: {

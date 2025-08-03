@@ -1,17 +1,9 @@
-// app/_components/MyCoffeesList.jsx
 import { getCoffees } from "../_lib/data-service";
 import Image from "next/image";
-import { IoScale } from "react-icons/io5";
-import { GiManualMeatGrinder } from "react-icons/gi";
-import { AiFillFilter } from "react-icons/ai";
-import { FaHeart, FaWeight } from "react-icons/fa";
-import Link from "next/link";
-import { H2 } from "./Headings";
 
-import { GiMokaPot } from "react-icons/gi";
-import porta from "../../public/icons/porta.png";
-import BioIcon from "./BioIcon";
-import Icon from "./Icon";
+import { FaHeart } from "react-icons/fa";
+import Link from "next/link";
+import Icon from "./coffee-details/Icon";
 
 export default async function MyCoffeesList({ user }) {
   const defaultImage =
@@ -40,13 +32,10 @@ export default async function MyCoffeesList({ user }) {
             <p className="uppercase p-4 md:m-0 m-auto">
               {coffee.roasteryName} <span className="font-bold">{coffee.coffeeName}</span>
             </p>
-            {/* <div className="flex items-center gap-2 px-10 md:px-0">
-              <FaWeight className="text-primary-950" />
-              <p>{coffee.doseLevel === 0 ? "?" : coffee.doseLevel}</p>
-            </div> */}
+
             <div className="flex items-center gap-2 px-10 md:px-0">
               {coffee.coffeeType.map((type) => (
-                <p key={type + "-use"}>{type === "moka" ? <GiMokaPot className="text-[2rem] rounded-full p-1 bg-white"/> : type === "espresso" ? <Icon src={porta} className="w-[32px] h-[32px] rounded-full border-4 border-white bg-white"/> : ""}</p>
+                <Icon key={type + "-icon"} src={type} />
               ))}
             </div>
 
