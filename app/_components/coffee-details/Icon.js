@@ -25,6 +25,7 @@ import americano from "../../../public/icons/americano.png";
 import long_coffee from "../../../public/icons/long_coffee.png";
 import black_coffee from "../../../public/icons/black_coffee.png";
 import turkish_drink from "../../../public/icons/turkish_drink.png";
+import flat_white from "../../../public/icons/flat_white.png";
 
 const icons = {
     espresso: porta,
@@ -52,6 +53,7 @@ const icons = {
     long_coffee: long_coffee,
     black_coffee: black_coffee,
     turkish_drink: turkish_drink,
+    flat_white: flat_white,
 }
 
 function Icon({className, src}) {

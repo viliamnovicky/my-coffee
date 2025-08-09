@@ -10,9 +10,9 @@ export async function updateProfile(formData) {
   if (!session) throw new Error("You must be logged in");
 
   const fullName = formData.get("fullName");
-  const data = {fullName}
+  const data = { fullName };
 
-  await updateUser(data, session.user.email)
+  await updateUser(data, session.user.email);
 }
 
 export async function deleteCoffeeAction(coffee) {
@@ -22,7 +22,7 @@ export async function deleteCoffeeAction(coffee) {
 }
 
 export async function signInAction() {
-  await signIn("google", { redirectTo: "/coffees" });
+  await signIn("google", { redirectTo: "/" });
 }
 
 export async function signOutAction() {

@@ -10,9 +10,9 @@ export const metadata = {
 export default async function Home() {
   const session = await auth();
   return (
-    <div className="w-full flex flex-col justify-start">
-      <HomeIcon/>
-      {session ? <HomeLogedIn user={session.user.name}/> : <HomeLogedOut/>}
+    <div className="w-full flex flex-col justify-start mt-[8rem]">
+      <HomeIcon></HomeIcon>
+      {session ? <HomeLogedIn user={session.user.name} /> : <HomeLogedOut />}
     </div>
   );
 }

@@ -1,13 +1,11 @@
 export const metadata = {
-  title: "Coffee | My Coffee",
+  title: "Coffee",
 };
 
 import { AddCoffeeButton } from "../_components/Buttons";
 import { H2 } from "../_components/Headings";
 import MyCoffeesList from "../_components/MyCoffeesList";
-import Searchbar from "../_components/Searchbar";
 import { auth } from "../_lib/auth";
-import { getUser } from "../_lib/data-service";
 
 export async function Page() {
   const session = await auth();

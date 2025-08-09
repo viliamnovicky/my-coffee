@@ -475,6 +475,18 @@ function NewCoffeeForm({ user }) {
                   }}
                 />
                 <TagCheckbox
+                  label="flat white"
+                  checked={coffee.coffeeDrink?.includes("flat_white")}
+                  onChange={(e) => {
+                    const selected = coffee.coffeeDrink || [];
+                    const value = "flat_white";
+                    const updated = e.target.checked
+                      ? [...selected, value]
+                      : selected.filter((v) => v !== value);
+                    updateCoffeeData("coffeeDrink", updated);
+                  }}
+                />
+                <TagCheckbox
                   label="latte"
                   checked={coffee.coffeeDrink?.includes("latte")}
                   onChange={(e) => {
