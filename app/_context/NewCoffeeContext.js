@@ -33,6 +33,7 @@ const initialState = {
   weightSettings: [],
   isBio: false,
   notes: [],
+  beansScore: 0,
 };
 
 function createGrindSettingsForGrinders(grinders) {

@@ -166,7 +166,17 @@ function NewCoffeeForm({ user }) {
               />
             </InfoParagraph>
             <p className="uppercase text-center p-2 bg-primary-300">beans info</p>
-
+            <InfoParagraph>
+              Beans score:
+              <Input
+                type="number"
+                min="0"
+                max="100"
+                label="1 - 100"
+                value={coffee.beansScore}
+                onChange={(e) => updateCoffeeData("beansScore", e.target.value)}
+              />
+            </InfoParagraph>
             <InfoParagraph color="dark">
               Bio quality:
               <ToggleButton checked={coffee.isBio} onChange={() => updateCoffeeData("isBio", !coffee.isBio)} />

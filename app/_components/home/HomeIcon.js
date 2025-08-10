@@ -4,10 +4,15 @@ import Home from "../../../public/icons/home.png";
 
 function HomeIcon({ children }) {
   return (
-    <div className="xl:w-[600px] w-[100vw] h-[400px] relative m-auto flex flex-col items-center justify-center border-b-2 border-b-primary-200">
-      <Image src={Home} fill alt="my-coffee-home-logo" objectFit={'contain'} className="absolute"/>
-      {children}
-    </div>
+    <div className="xl:w-[1000px] w-[98vw] aspect-[16/9] relative m-auto flex flex-col items-center justify-center border-b-2 border-b-primary-200">
+  <Image
+    src={Home}
+    alt="my-coffee-home-logo"
+    fill
+    className="absolute object-contain"
+  />
+  {children}
+</div>
   );
 }
 
