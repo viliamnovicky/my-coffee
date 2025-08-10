@@ -13,13 +13,13 @@ export default async function Home() {
   const session = await auth();
   console.log(session);
   return (
-    <div className="w-full flex flex-col justify-start mt-[9rem] xl:mt-[7rem]">
-      <H2 className="uppercase">
+    <div className="w-full flex flex-col justify-start mt-[8.5rem] xl:mt-[5rem]">
+      <H2 className="uppercase bg-primary-400 !text-primary-50 p-2 rounded-none">
         {session ? `Welcome back ${session.user.name}` : `Sign in to enter the world of coffee`}
       </H2>
-      <div className="flex w-full gap-2 p-2 items-end justify-center mt-[2rem] flex-col xl:flex-row">
+      <div className="flex w-full gap-2 p-2 items-end justify-center xl:mt-[2rem] flex-col xl:flex-row">
         <HomeIconPoor />
-        <P className="relative bottom-[-2rem] font-extrabold text-[1.1rem] max-w-[600px] bg-primary-100 p-2 rounded-[1rem]">
+        <P className="m-auto xl:m-0 relative xl:bottom-[-2rem] font-extrabold text-[1.1rem] xl:max-w-[600px] w-[98vw] bg-primary-100 p-2 rounded-[1rem]">
           But don&apos;t worry, your rescue mission starts here! With this page, you can track your
           perfect settings, save your tasting notes, and dial in the ideal cup every single time.
           Because life&apos;s too short for bad coffee.
