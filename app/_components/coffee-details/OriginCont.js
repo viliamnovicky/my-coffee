@@ -6,6 +6,7 @@ import OriginMap from "./OriginMap";
 import countries from "@/public/data/countries";
 import MachineIcon from "./MachineIcon";
 import BioIcon from "../BioIcon";
+import Tag from "../Tag";
 
 function OriginCont({ coffee }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee?.origin[0]?.toLowerCase());
@@ -16,9 +17,18 @@ function OriginCont({ coffee }) {
       <CountryName coffee={coffee} />
       <OriginMap coffee={coffee} />
       <div className="flex flex-col xl:justify-center xl:items-center xl:w-[60%] w-[95%] !m-auto xl:!m-0 !mt-4 xl:!mt-0 xl:pr-10">
-          {coffee.isBio && <div className="flex items-center justify-between w-full px-1">
-            <BioIcon />
-          </div>}
+        <div className="flex items-center justify-between w-full px-1">
+          {coffee.isBio ? <BioIcon className={`${coffee.beansScore > 0 ? "!mb-[-32px] !xl:mb-[-35px]" : ""}`} /> : <div></div>}
+          {coffee.beansScore && (
+            <div className="flex flex-col justify-center items-center pb-1">
+              <p className="p-2 bg-white rounded-full w-[35px] h-[35px] flex justify-center items-center text-primary-950 mb-[-7px] z-10">
+                {coffee.beansScore}
+              </p>
+              <Tag color="Speciality">speciality</Tag>
+            </div>
+          )}
+        </div>
+
         <InfoParagraph className="flex-col !gap-0 w-[100%] !p-0 xl:mb-2">
           <div className="flex items-center justify-between w-full p-2 bg-primary-50">
             <span className="flex justify-center gap-2">

@@ -26,6 +26,7 @@ module.exports = {
           mild: "#1e40af",
           medium: "#713f12",
           strong: "#7f1d1d",
+          speciality: "#8bac54"
         },
         flavor: {
           fruit: "#ffb9b9",

@@ -7,7 +7,7 @@ import beansBg from "../../../public/icons/beans-bg.png"
 function BeansInfo({coffee}) {
     return (
         <DetailsSecondary className="relative self-start flex-col gap-5 min-h-[300px] justify-between pb-[2rem]">
-          <Image className="opacity-[20%]" src={beansBg} alt="coffee beans background" fill></Image>
+          <Image className="opacity-[20%]" src={beansBg} alt="coffee beans background" fill/>
           <H2 className="p-[1rem]">About beans</H2>
           <div className="flex flex-col px-[2rem] text-primary-950 justify-between">
                 <P className="text-left">Variety: <span className="font-bold">{coffee.variety ? coffee.variety : "unknown"}</span></P>
