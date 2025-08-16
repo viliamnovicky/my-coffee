@@ -54,6 +54,7 @@ const icons = {
     black_coffee: black_coffee,
     turkish_drink: turkish_drink,
     flat_white: flat_white,
+    filter_drink: filter,
 }
 
 function Icon({className, src}) {

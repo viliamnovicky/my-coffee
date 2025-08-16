@@ -33,13 +33,13 @@ export default async function MyCoffeesList({ user }) {
               {coffee.roasteryName} <span className="font-bold">{coffee.coffeeName}</span>
             </p>
 
-            <div className="flex items-center gap-2 px-10 md:px-0">
+            <div className="flex items-center gap-2 px-10 md:px-0 flex-wrap justify-center xl:justify-start">
               {coffee.coffeeType.map((type) => (
                 <Icon key={type + "-icon"} src={type} />
               ))}
             </div>
 
-            <div className="flex items-center gap-2 px-10 md:px-0">
+            <div className="flex items-center gap-2 px-10 md:px-0 justify-center xl:justify-start">
               <FaHeart className="text-primary-950" />
               <p>{coffee.rating === 0 ? "?" : coffee.rating}/10</p>
             </div>

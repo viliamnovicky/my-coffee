@@ -17,10 +17,10 @@ function OriginCont({ coffee }) {
       <CountryName coffee={coffee} />
       <OriginMap coffee={coffee} />
       <div className="flex flex-col xl:justify-center xl:items-center xl:w-[60%] w-[95%] !m-auto xl:!m-0 !mt-4 xl:!mt-0 xl:pr-10">
-        <div className="flex items-center justify-between w-full px-1">
-          {coffee.isBio ? <BioIcon className={`${coffee.beansScore > 0 ? "!mb-[-32px] !xl:mb-[-35px]" : ""}`} /> : <div></div>}
+        <div className="flex items-end justify-between w-full px-1 pb-1">
+          {coffee.isBio ? <BioIcon/> : <div></div>}
           {coffee.beansScore && (
-            <div className="flex flex-col justify-center items-center pb-1">
+            <div className="flex flex-col justify-center items-center">
               <p className="p-2 bg-white rounded-full w-[35px] h-[35px] flex justify-center items-center text-primary-950 mb-[-7px] z-10">
                 {coffee.beansScore}
               </p>
