@@ -1,10 +1,9 @@
 import Image from "next/image";
-import Bio from "../../public/icons/bio.png";
 
-function BioIcon({ className }) {
+function BioIcon({ className, src }) {
   return (
-    <div className="relative w-[40px] h-[20px] rounded-full">
-      <Image src={Bio} alt="bio-icon" className={`${className} absolute`} fill />
+    <div className={`${className} relative w-[40px]  rounded-full`}>
+      <Image src={src} alt="bio-icon" className={` absolute`} fill />
     </div>
   );
 }

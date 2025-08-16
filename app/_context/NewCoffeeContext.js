@@ -32,6 +32,7 @@ const initialState = {
   doseLevel: [],
   weightSettings: [],
   isBio: false,
+  isClimaNeutral: false,
   notes: [],
   beansScore: 0,
 };

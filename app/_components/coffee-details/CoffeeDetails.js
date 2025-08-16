@@ -15,6 +15,8 @@ import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
 import BeansInfo from "./BeansInfo";
 import CoffeeWeight from "./CoffeeWeight";
+import BioIcon from "../BioIcon";
+import Co2 from "@/public/icons/co2.png";
 
 function CoffeeDetails({ coffee, grinders }) {
   return (
@@ -30,7 +32,7 @@ function CoffeeDetails({ coffee, grinders }) {
           <H2 className="invisible xl:visible w-[50vw] p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
             Settings
           </H2>
-          <DetailsPrimary className="xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
+          <DetailsPrimary className="relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
             <CoffeeImage coffee={coffee} />
           </DetailsPrimary>
           <DetailsPrimary>

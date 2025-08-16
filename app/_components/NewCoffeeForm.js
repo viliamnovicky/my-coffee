@@ -177,9 +177,23 @@ function NewCoffeeForm({ user }) {
                 onChange={(e) => updateCoffeeData("beansScore", e.target.value)}
               />
             </InfoParagraph>
-            <InfoParagraph color="dark">
-              Bio quality:
-              <ToggleButton checked={coffee.isBio} onChange={() => updateCoffeeData("isBio", !coffee.isBio)} />
+            <InfoParagraph color="dark" className="xl:flex-row flex-col">
+              <span className="flex items-center xl:justify-center justify-between gap-[2rem] w-full">
+                Bio quality:
+                <ToggleButton
+                  id="isBio"
+                  checked={coffee.isBio}
+                  onChange={() => updateCoffeeData("isBio", !coffee.isBio)}
+                />
+              </span>
+              <span className="flex items-center xl:justify-center justify-between gap-[2rem] w-full">
+                Clima Neutral:
+                <ToggleButton
+                  id="isClimaNeutral"
+                  checked={coffee.isClimaNeutral}
+                  onChange={() => updateCoffeeData("isClimaNeutral", !coffee.isClimaNeutral)}
+                />
+              </span>
             </InfoParagraph>
             <InfoParagraph>
               taste:
@@ -397,7 +411,7 @@ function NewCoffeeForm({ user }) {
                       : selected.filter((v) => v !== value);
                     updateCoffeeData("coffeeDrink", updated);
                   }}
-                />   
+                />
                 <TagCheckbox
                   label="doppio"
                   checked={coffee.coffeeDrink?.includes("doppio")}
@@ -410,7 +424,7 @@ function NewCoffeeForm({ user }) {
                       : selected.filter((v) => v !== value);
                     updateCoffeeData("coffeeDrink", updated);
                   }}
-                />   
+                />
                 <TagCheckbox
                   label="lungo"
                   checked={coffee.coffeeDrink?.includes("lungo")}
@@ -435,7 +449,7 @@ function NewCoffeeForm({ user }) {
                       : selected.filter((v) => v !== value);
                     updateCoffeeData("coffeeDrink", updated);
                   }}
-                /> 
+                />
                 <TagCheckbox
                   label="americano"
                   checked={coffee.coffeeDrink?.includes("americano")}
@@ -520,7 +534,7 @@ function NewCoffeeForm({ user }) {
                       : selected.filter((v) => v !== value);
                     updateCoffeeData("coffeeDrink", updated);
                   }}
-                /> 
+                />
                 <TagCheckbox
                   label="mocha"
                   checked={coffee.coffeeDrink?.includes("mocha")}
@@ -532,7 +546,7 @@ function NewCoffeeForm({ user }) {
                       : selected.filter((v) => v !== value);
                     updateCoffeeData("coffeeDrink", updated);
                   }}
-                /> 
+                />
                 <TagCheckbox
                   label="iced coffee"
                   checked={coffee.coffeeDrink?.includes("iced_coffee")}

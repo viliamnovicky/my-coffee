@@ -7,6 +7,8 @@ import countries from "@/public/data/countries";
 import MachineIcon from "./MachineIcon";
 import BioIcon from "../BioIcon";
 import Tag from "../Tag";
+import Bio from "@/public/icons/bio.png";
+
 
 function OriginCont({ coffee }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee?.origin[0]?.toLowerCase());
@@ -18,10 +20,11 @@ function OriginCont({ coffee }) {
       <OriginMap coffee={coffee} />
       <div className="flex flex-col xl:justify-center xl:items-center xl:w-[60%] w-[95%] !m-auto xl:!m-0 !mt-4 xl:!mt-0 xl:pr-10">
         <div className="flex items-end justify-between w-full px-1 pb-1">
-          {coffee.isBio ? <BioIcon/> : <div></div>}
+          {coffee.isBio ? <BioIcon src={Bio} className="!aspect-video" /> : <div></div>}
+          
           {coffee.beansScore && (
             <div className="flex flex-col justify-center items-center">
-              <p className="p-2 bg-white rounded-full w-[35px] h-[35px] flex justify-center items-center text-primary-950 mb-[-7px] z-10">
+              <p className="bg-white rounded-full w-[35px] h-[35px] flex justify-center items-center text-primary-950 mb-[-7px] z-10">
                 {coffee.beansScore}
               </p>
               <Tag color="Speciality">speciality</Tag>
