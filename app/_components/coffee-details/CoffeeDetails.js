@@ -29,7 +29,7 @@ function CoffeeDetails({ coffee, grinders }) {
       <H2 className="xl:max-w-[1200px] p-2 m-auto">{`„${coffee.description}”`}</H2>
      
         <Section className="relative xl:h-[470px]">
-          <H2 className="invisible xl:visible w-[50vw] p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
+          <H2 className="!invisible xl:!visible !h-[0px] w-[50vw] xl:p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
             Settings
           </H2>
           <DetailsPrimary className="relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
