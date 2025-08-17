@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { Input, Select } from "../_components/Inputs";
-import { addCoffee } from "../_lib/data-service";
+import { addCoffee, updateCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
 import { useEffect } from "react";
 import TasteInput from "./TasteInput";
@@ -25,7 +25,7 @@ import Stats from "./new-coffee-form/Stats";
 import Name from "./new-coffee-form/Name";
 import Picture from "./new-coffee-form/Picture";
 
-function NewCoffeeForm({ user }) {
+function NewCoffeeForm({ user, update }) {
   const router = useRouter();
   const { coffee, resetNewCoffeeData, updateCoffeeData, syncGrindSettingsWithGrinders } =
     useNewCoffee();
@@ -39,14 +39,22 @@ function NewCoffeeForm({ user }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("click");
+    
+
     try {
-      console.log("[handleSubmit] Submitting coffee:", coffee);
-      await addCoffee(coffee, user.email, router); // make sure coffee.image is the File object
-      console.log("Coffee added successfully");
-    } catch (error) {
-      console.error("Failed to add coffee:", error);
+    if (update) {
+      // ✅ update existing coffee
+      await updateCoffee(coffee.slug, coffee, user.email, router);
+    } else {
+      // ✅ create new coffee
+      await addCoffee(coffee, user.email, router);
     }
+  } catch (error) {
+    console.error("Failed to save coffee:", error);
+  }
   };
+
+  
 
   return (
     <form className="mt-[110px] xl:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px]">
@@ -146,7 +154,7 @@ function NewCoffeeForm({ user }) {
             </InfoParagraph>
             <InfoParagraph>
               taste:
-              <TasteInput />
+              <TasteInput coffee={coffee} updateCoffeeData={updateCoffeeData}/>
             </InfoParagraph>
             <InfoParagraph color="dark">
               beans:
@@ -177,10 +185,10 @@ function NewCoffeeForm({ user }) {
             <Drinks coffee={coffee} updateCoffeeData={updateCoffeeData} />
           </div>
           <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col xl:px-1 py-2 justify-start">
-            <GrindSettings user={user} coffee={coffee} />
-            <DoseLevel coffee={coffee} user={user} />
-            <Weight coffee={coffee} user={user} />
-            <Notes coffee={coffee} user={user} />
+            <GrindSettings user={user} coffee={coffee} updateCoffeeData={updateCoffeeData}/>
+            <DoseLevel coffee={coffee} user={user} updateCoffeeData={updateCoffeeData}/>
+            <Weight coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
+            <Notes coffee={coffee} user={user} updateCoffeeData={updateCoffeeData}/>
           </div>
 
           <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">

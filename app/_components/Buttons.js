@@ -6,7 +6,7 @@ export function AddCoffeeButton() {
 }
 
 export function Button({children, className, onClick}) {
-  return <button onClick={onClick} className={`${className} text-primary-50 rounded-[1rem] px-[.8rem] py-[.3rem]`}>
+  return <button onClick={onClick} className={`${className} text-primary-50 rounded-[1rem] px-4 py-1`}>
     {children}
   </button>
 }

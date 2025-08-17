@@ -6,13 +6,19 @@ import Modal from "../Modal";
 import { H2, P } from "../Headings";
 import { deleteCoffeeAction } from "@/app/_lib/actions";
 import Image from "next/image";
+import Link from "next/link";
 
 function CoffeeOptions({ coffee }) {
   const { isOpen, openModal, closeModal } = useModal();
   return (
     <>
       <div className=" w-full h-auto justify-center flex gap-[2rem] m-auto p-[2rem]">
-        <Button className="bg-blue-400 hover:bg-blue-500">Update</Button>
+        <Link
+          href={`/update-coffee/${coffee.slug}`}
+          className="bg-blue-400 hover:bg-blue-500 rounded-full flex items-center justify-center py-1 px-4"
+        >
+          Update
+        </Link>
         <Button onClick={openModal} className="bg-red-400 hover:bg-red-500">
           Delete
         </Button>
@@ -25,8 +31,11 @@ function CoffeeOptions({ coffee }) {
         <P className="uppercase font-bold pb">{`${coffee.roasteryName} ${coffee.coffeeName}`}</P>
         <div className="m-auto flex gap-4 py-[1rem]">
           <Button
-            onClick={() => deleteCoffeeAction(coffee)}
-            className="bg-red-400 hover:bg-red-500"
+            onClick={async () => {
+              closeModal(); // close modal first
+              await deleteCoffeeAction(coffee);
+            }}
+            className="bg-red-400 hover:bg-red-500 px-4"
           >
             Delete
           </Button>

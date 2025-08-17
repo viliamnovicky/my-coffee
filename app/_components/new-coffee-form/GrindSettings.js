@@ -2,9 +2,8 @@ import { Input } from "../Inputs";
 import { InfoParagraph } from "../Paragraphs";
 import { useNewCoffee } from "../../_context/NewCoffeeContext";
 
-function GrindSettings({ user, coffee }) {
-  const { updateCoffeeData } = useNewCoffee();
-
+function GrindSettings({ user, coffee, updateCoffeeData }) {
+  
   return (
     <>
       <p className="uppercase text-center p-2">Grind size</p>

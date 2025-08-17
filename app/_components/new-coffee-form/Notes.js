@@ -1,7 +1,7 @@
 import { useNewCoffee } from "../../_context/NewCoffeeContext";
 
-function Notes({ label = "Notes", placeholder = "Write a note...", className = "" }) {
-  const { coffee, updateCoffeeData } = useNewCoffee();
+function Notes({ label = "Notes", placeholder = "Write a note...", className = "", coffee, updateCoffeeData }) {
+  
 
   const handleNoteChange = (index, newValue) => {
     

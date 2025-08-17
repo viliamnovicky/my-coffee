@@ -51,9 +51,8 @@ function createGrindSettingsForGrinders(grinders) {
   return grinders.map(() => defaultSettings.map((setting) => ({ ...setting })));
 }
 
-function NewCoffeeProvider({ children }) {
-  const [coffee, setNewCoffeeData] = useState(initialState);
-
+function NewCoffeeProvider({ children, initialCoffee = null }) {
+const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
   const updateCoffeeData = (key, value, options = {}) => {
     setNewCoffeeData((prev) => {
       if (

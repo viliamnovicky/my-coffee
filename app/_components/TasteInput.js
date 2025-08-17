@@ -5,10 +5,9 @@ import { useNewCoffee } from "../_context/NewCoffeeContext";
 import Tag from "./Tag";
 import flavours from "../_data/flavours"; // adjust path if needed
 
-export default function TasteInput() {
+export default function TasteInput({coffee, updateCoffeeData}) {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const { coffee, updateCoffeeData } = useNewCoffee();
 
   const handleInputChange = (e) => {
     const val = e.target.value;

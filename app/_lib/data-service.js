@@ -7,8 +7,8 @@ import {
   getDoc,
   doc,
   setDoc,
-  updateDoc, 
-  deleteDoc
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore/lite";
 import { database, storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -16,7 +16,7 @@ import { resizeImage } from "../_helpers/resizeImage";
 import { revalidatePath } from "next/cache";
 //import toast from "react-hot-toast";
 
-export async function getCoffees({user}) {
+export async function getCoffees({ user }) {
   try {
     const coffeesCollection = collection(database, `users/${user}/coffees`); // Corrected usage
     const coffeesData = await getDocs(coffeesCollection);
@@ -111,6 +111,68 @@ export async function addCoffee(coffeeData, user, router) {
   }
 }
 
+export async function updateCoffee(slug, coffeeData, user, router) {
+  try {
+    const coffeesCollection = collection(database, `users/${user}/coffees`);
+    const q = query(coffeesCollection, where("slug", "==", slug));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      throw new Error("Coffee not found.");
+    }
+
+    const coffeeDocRef = querySnapshot.docs[0].ref;
+    const existingData = querySnapshot.docs[0].data();
+
+    let newImageUrl = coffeeData.image;
+    let newImageRef = null;
+
+    // 🖼 Handle image update
+    if (coffeeData.image instanceof Blob) {
+      if (existingData.image) {
+        try {
+          const oldImageRef = ref(storage, existingData.image);
+          await deleteObject(oldImageRef);
+          console.log("[updateCoffee] Old image deleted:", existingData.image);
+        } catch (err) {
+          console.warn("[updateCoffee] Failed to delete old image:", err);
+        }
+      }
+
+      newImageRef = ref(storage, `coffee/${slug}.jpg`);
+      const metadata = { contentType: "image/jpeg" };
+      await uploadBytes(newImageRef, coffeeData.image, metadata);
+      newImageUrl = await getDownloadURL(newImageRef);
+    }
+
+    const updatedCoffee = {
+      ...existingData,
+      ...coffeeData,
+      image: newImageUrl || existingData.image || null,
+    };
+
+    await updateDoc(coffeeDocRef, updatedCoffee);
+
+    if (router) router.push(`/coffees/${slug}`);
+
+    return {
+      id: coffeeDocRef.id, // Firestore ID
+      ...updatedCoffee,
+    };
+  } catch (error) {
+    console.error("[updateCoffee] Error:", error);
+    if (newImageRef) {
+      try {
+        await deleteObject(newImageRef);
+        console.log("[updateCoffee] Rolled back uploaded new image.");
+      } catch (deleteError) {
+        console.error("[updateCoffee] Error deleting uploaded new image:", deleteError);
+      }
+    }
+    throw new Error("Something went wrong while updating the coffee: " + error.message);
+  }
+}
+
 export async function getUser(email) {
   const usersCollection = collection(database, "users");
   const q = query(usersCollection, where("email", "==", email));
@@ -132,7 +194,7 @@ export async function addUser(data) {
     const userRef = doc(database, "users", data.email);
     await setDoc(userRef, data);
 
-    return data.email; 
+    return data.email;
   } catch (error) {
     throw new Error("Error adding user: " + error.message);
   }
@@ -140,12 +202,10 @@ export async function addUser(data) {
 
 export async function updateUser(data, email) {
   try {
-    
     const userRef = doc(database, "users", email);
     await updateDoc(userRef, data);
-    revalidatePath("/account")
+    revalidatePath("/account");
     return data.email;
-
   } catch (error) {
     throw new Error("Error updating user: " + error.message);
   }

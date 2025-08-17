@@ -2,9 +2,8 @@ import { Input } from "../Inputs";
 import { InfoParagraph } from "../Paragraphs";
 import { useNewCoffee } from "../../_context/NewCoffeeContext"; // adjust path as needed
 
-function DoseLevel({ coffee, user }) {
-  const { updateCoffeeData } = useNewCoffee();
-
+function DoseLevel({ coffee, user, updateCoffeeData }) {
+  
   return (
     <>
       <p className="uppercase text-center p-2">Dose level / correction</p>

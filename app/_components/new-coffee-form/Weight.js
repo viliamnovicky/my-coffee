@@ -3,8 +3,8 @@ import { Input } from "../Inputs";
 import { InfoParagraph } from "../Paragraphs";
 import { useNewCoffee } from "../../_context/NewCoffeeContext";
 
-function Weight({ coffee, user }) {
-  const { updateCoffeeData, syncWeightSettingsWithMakers } = useNewCoffee();
+function Weight({ coffee, user, updateCoffeeData }) {
+  const { syncWeightSettingsWithMakers } = useNewCoffee();
 
   useEffect(() => {
     if (
