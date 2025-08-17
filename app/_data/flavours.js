@@ -10,6 +10,7 @@ const flavours = [
   { name: "Butter", category: "Sweet" },
   { name: "Sweet", category: "Sweet" },
   { name: "Mapple syrup", category: "Sweet" },
+  { name: "Brittle", category: "Sweet" },
 
   { name: "Citrus", category: "Citrus" },
   { name: "Lemon", category: "Citrus" },

@@ -22,8 +22,9 @@ function Notes({ label = "Notes", placeholder = "Write a note...", className = "
   };
 
   return (
+    <>
+    <p className="uppercase text-center p-2">Notes</p>
     <div className="flex flex-col items-center bg-primary-100 w-full p-4 gap-3 rounded-md">
-
       {coffee.notes.map((note, index) => (
         <div key={index} className="flex items-center gap-2 w-full justify-center">
           <input
@@ -32,11 +33,11 @@ function Notes({ label = "Notes", placeholder = "Write a note...", className = "
             value={note}
             onChange={(e) => handleNoteChange(index, e.target.value)}
             className={`text-primary-950 rounded-md text-center border-none outline-none bg-white px-3 py-2 w-[80%] ${className}`}
-          />
+            />
           <button
             onClick={(e) => handleRemoveNote(e, index)}
             className="text-red-500 text-sm hover:underline"
-          >
+            >
             Remove
           </button>
         </div>
@@ -45,10 +46,11 @@ function Notes({ label = "Notes", placeholder = "Write a note...", className = "
       <button
         onClick={handleAddNote}
         className="mt-2 px-4 py-2 bg-primary-300 text-white rounded-md hover:bg-primary-400 transition"
-      >
+        >
         Add Note
       </button>
     </div>
+        </>
   );
 }
 

@@ -17,7 +17,7 @@ function CoffeeSettings({ coffee, grinders }) {
         className="flex flex-col relative !p-0 overflow-y-auto xl:h-[310px] rounded-[1rem] bg-primary-50"
       >
         <p className="sticky top-0 bg-primary-50 w-full text-center z-10">Grinding size</p>
-        {coffee?.grindSettings?.map((machine) => {
+        {Array.isArray(coffee.grindSettings) && coffee.grindSettings.map((machine) => {
           const matchedGrinder = grinders.find((g) => `${g.mark} ${g.model}` === machine.grinder);
 
           return (
