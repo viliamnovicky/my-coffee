@@ -4,6 +4,7 @@ import Header from "./_components/Header";
 import { Toaster } from "react-hot-toast";
 import Modal from "./_components/Modal";
 import { ModalProvider } from "./_context/ModalContext";
+import Footer from "./_components/Footer";
 
 const RobotoFont = Roboto({
   weight: ["300", "400", "500", "700"],
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
         <ModalProvider>
           <Header />
           {children}
+          <Footer/>
         </ModalProvider>
       </body>
     </html>

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Tag from "../Tag";
 import { resizeImage } from "../../_helpers/resizeImage";
 
-function Picture({coffee, updateCoffeeData}) {
+function Picture({coffee, updateCoffeeData, update}) {
   const [imagePreview, setImagePreview] = useState(
     "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
   );
@@ -34,7 +34,7 @@ function Picture({coffee, updateCoffeeData}) {
         />
       )}
       <Image
-        src={imagePreview}
+        src={update ? coffee.image : imagePreview}
         alt={coffee.coffeeName ? coffee.coffeeName : "name"}
         width="400"
         height="400"

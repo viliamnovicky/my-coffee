@@ -32,7 +32,7 @@ function CoffeeOptions({ coffee }) {
         <div className="m-auto flex gap-4 py-[1rem]">
           <Button
             onClick={async () => {
-              closeModal(); // close modal first
+              closeModal(); 
               await deleteCoffeeAction(coffee);
             }}
             className="bg-red-400 hover:bg-red-500 px-4"

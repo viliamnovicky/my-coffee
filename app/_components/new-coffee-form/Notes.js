@@ -25,7 +25,7 @@ function Notes({ label = "Notes", placeholder = "Write a note...", className = "
     <>
     <p className="uppercase text-center p-2">Notes</p>
     <div className="flex flex-col items-center bg-primary-100 w-full p-4 gap-3 rounded-md">
-      {coffee.notes.map((note, index) => (
+      {(coffee.notes && coffee.notes.length > 0) && coffee.notes.map((note, index) => (
         <div key={index} className="flex items-center gap-2 w-full justify-center">
           <input
             type="text"

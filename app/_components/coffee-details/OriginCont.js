@@ -22,7 +22,7 @@ function OriginCont({ coffee }) {
         <div className="flex items-end justify-between w-full px-1 pb-1">
           {coffee.isBio ? <BioIcon src={Bio} className="!aspect-video" /> : <div></div>}
           
-          {coffee.beansScore && (
+          {coffee.beansScore > 0 && (
             <div className="flex flex-col justify-center items-center">
               <p className="bg-white rounded-full w-[35px] h-[35px] flex justify-center items-center text-primary-950 mb-[-7px] z-10">
                 {coffee.beansScore}
