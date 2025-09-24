@@ -16,7 +16,7 @@ export default async function Home() {
   console.log(session);
   console.log(process.env.AUTH_GOOGLE_ID)
   return (
-    <div className="w-full flex flex-col justify-start mt-[8.5rem] xl:mt-[5rem]">
+    <div className="w-full flex flex-col justify-start mt-[8.5rem] xl:mt-[5rem] h-[78vh] overflow-y-auto">
       <H2 className="uppercase bg-primary-400 !text-primary-50 p-2 rounded-none">
         {session ? `Welcome back ${session.user.name}` : `Sign in to enter the world of coffee`}
       </H2>
