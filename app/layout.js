@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
         <ModalProvider>
           <Header />
           {children}
-          <Footer/>
+          {/* <Footer/> */}
         </ModalProvider>
       </body>
     </html>

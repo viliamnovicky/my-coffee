@@ -6,7 +6,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export default function Pagination({ page, totalPages, onPageChange }) {
   return (
-    <div className="m-auto w-screen flex items-center justify-center gap-2 mt-[1vh] h-[6vh]">
+    <div className="m-auto w-screen flex items-center justify-center gap-2 mt-[1vh] h-[10vh]">
       {/* First */}
       <Button
         className="bg-primary-300 hover:bg-primary-950"
