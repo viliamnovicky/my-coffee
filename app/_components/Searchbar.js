@@ -9,11 +9,11 @@ import { MdFavorite } from "react-icons/md";
 import { FaBuilding } from "react-icons/fa";
 import { PiCoffeeBeanFill } from "react-icons/pi";
 
-
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-function Searchbar({ placeholder }) {
+function Searchbar({ placeholder, user }) {
+
   const searchParams = useSearchParams();
   const router = useRouter();
   const [value, setValue] = useState(searchParams.get("filter") ?? ""); // ✅ keep input synced with URL
@@ -54,7 +54,6 @@ function Searchbar({ placeholder }) {
           isActive={activeSort === "roasteryName-asc"}
           onClick={() => handleSetParams("sort", "roasteryName-asc")}
         >
-          
           <FaBuilding />
 
           <AiOutlineSortAscending />
@@ -63,7 +62,6 @@ function Searchbar({ placeholder }) {
           isActive={activeSort === "roasteryName-desc"}
           onClick={() => handleSetParams("sort", "roasteryName-desc")}
         >
-          
           <FaBuilding />
 
           <AiOutlineSortDescending />
@@ -72,7 +70,6 @@ function Searchbar({ placeholder }) {
           isActive={activeSort === "coffeeName-asc"}
           onClick={() => handleSetParams("sort", "coffeeName-asc")}
         >
-          
           <PiCoffeeBeanFill />
 
           <AiOutlineSortAscending />
@@ -81,27 +78,30 @@ function Searchbar({ placeholder }) {
           isActive={activeSort === "coffeeName-desc"}
           onClick={() => handleSetParams("sort", "coffeeName-desc")}
         >
-          
           <PiCoffeeBeanFill />
 
           <AiOutlineSortDescending />
         </FilterButton>
-        <FilterButton
-          isActive={activeSort === "rating-asc"}
-          onClick={() => handleSetParams("sort", "rating-asc")}
-        >
-          <MdFavorite />
+        {user && (
+          <>
+            <FilterButton
+              isActive={activeSort === "rating-asc"}
+              onClick={() => handleSetParams("sort", "rating-asc")}
+            >
+              <MdFavorite />
 
-          <GrAscend />
-        </FilterButton>
-        <FilterButton
-          isActive={activeSort === "rating-desc"}
-          onClick={() => handleSetParams("sort", "rating-desc")}
-        >
-          <MdFavorite />
+              <GrAscend />
+            </FilterButton>
+            <FilterButton
+              isActive={activeSort === "rating-desc"}
+              onClick={() => handleSetParams("sort", "rating-desc")}
+            >
+              <MdFavorite />
 
-          <GrDescend />
-        </FilterButton>
+              <GrDescend />
+            </FilterButton>
+          </>
+        )}
       </div>
     </div>
   );

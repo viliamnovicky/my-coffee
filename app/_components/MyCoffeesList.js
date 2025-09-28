@@ -13,7 +13,7 @@ export default async function MyCoffeesList({ user }) {
 
   return (
     <div className="min-h-screen overflow-hidden">
-      <MySortedCoffeesList list={coffees} />
+      <MySortedCoffeesList list={coffees} user={user} />
       
     </div>
   );

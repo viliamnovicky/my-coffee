@@ -29,6 +29,19 @@ export async function getCoffees({ user }) {
   }
 }
 
+export async function getAllCoffees() {
+  try {
+    const coffeesCollection = collection(database, `coffees`); // Corrected usage
+    const coffeesData = await getDocs(coffeesCollection);
+    const coffeesList = coffeesData.docs.map((doc) => doc.data());
+
+    return coffeesList;
+  } catch (error) {
+    //toast.error("Something went wrong while receiving the coffees data.");
+    throw new Error("Something went wrong while receiving the coffees data: " + error.message);
+  }
+}
+
 export async function getCoffee(slug, user) {
   try {
     const coffeesCollection = collection(database, `users/${user}/coffees`);

@@ -10,9 +10,10 @@ export default async function Navbar() {
     <nav className="bg-primary-50">
       <ul className="text-primary-50 flex uppercase gap-[1px] justify-center items-center bg-primary-900">
         <NavbarLink path="/">Home</NavbarLink>
+        <NavbarLink path="/coffees">coffee</NavbarLink>
 
         {session && (
-          <NavbarLink path="/coffees" className="border-l">
+          <NavbarLink path="/my-coffee" className="border-l">
             My coffee
           </NavbarLink>
         )}

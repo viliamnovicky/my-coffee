@@ -3,24 +3,18 @@ export const metadata = {
 };
 
 import { AddCoffeeButton } from "../_components/Buttons";
-import { H2 } from "../_components/Headings";
-import MyCoffeesList from "../_components/MyCoffeesList";
+import MyAllCoffeesList from "../_components/MyAllCoffeesList";
 import Searchbar from "../_components/Searchbar";
-import { auth } from "../_lib/auth";
 
 export async function Page() {
-  const session = await auth();
-  const user = session.user.email;
 
   return (
     <div className="relative">
-      
-      <Searchbar/>
-      
-        <AddCoffeeButton />
-      
+      <Searchbar user={false}/>
 
-      <MyCoffeesList user={user}/>
+      <AddCoffeeButton />
+
+      <MyAllCoffeesList />
     </div>
   );
 }
