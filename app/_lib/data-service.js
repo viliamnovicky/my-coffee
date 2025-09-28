@@ -124,6 +124,73 @@ export async function addCoffee(coffeeData, user, router) {
   }
 }
 
+export async function addNewCoffee(coffeeDataUser, coffeeData, user, router) {
+  const slug = generateSlug(coffeeData.roasteryName, coffeeData.coffeeName);
+  console.log("[addCoffee] Generated slug:", slug);
+  const coffeesCollectionUser = collection(database, `users/${user}/coffees`);
+  const coffeesCollection = collection(database, `coffees`);
+
+  const coffeeDocRefUser = doc(coffeesCollectionUser, slug);
+  const coffeeDocRef = doc(coffeesCollection, slug);
+
+  let imageUrl = null;
+  let imageRef = null;
+
+  try {
+    const existingDoc = await getDoc(coffeeDocRef);
+    console.log("[addCoffee] Checked existing doc");
+
+    if (existingDoc.exists()) {
+      throw new Error("A coffee with this slug already exists.");
+    }
+
+    if (coffeeData.image instanceof Blob) {
+      imageRef = ref(storage, `coffee/${slug}.jpg`);
+      const metadata = { contentType: "image/jpeg" };
+
+      await uploadBytes(imageRef, coffeeData.image, metadata);
+      imageUrl = await getDownloadURL(imageRef);
+    }
+
+    const coffeeWithSlug = {
+      ...coffeeData,
+      slug,
+      image: imageUrl || coffeeData.image || null,
+    };
+
+    const coffeeWithSlugUser = {
+      ...coffeeDataUser,
+      slug,
+      image: imageUrl || coffeeData.image || null,
+    };
+
+    await setDoc(coffeeDocRef, coffeeWithSlug);
+    await setDoc(coffeeDocRefUser, coffeeWithSlugUser);
+    //toast.success("Coffee added successfully!");
+
+    // ✅ Redirect to the coffee detail page
+    router.push(`/coffees/${slug}`);
+    return {
+      id: slug,
+      ...coffeeWithSlug,
+    };
+  } catch (error) {
+    console.error("[addCoffee] Error:", error);
+    //toast.error("Something went wrong while adding the coffee.");
+
+    if (imageRef) {
+      try {
+        await deleteObject(imageRef);
+        console.log("[addCoffee] Uploaded image deleted due to error.");
+      } catch (deleteError) {
+        console.error("[addCoffee] Error deleting image:", deleteError);
+      }
+    }
+
+    throw new Error("Something went wrong while adding the coffee: " + error.message);
+  }
+}
+
 export async function updateCoffee(slug, coffeeData, user, router) {
   try {
     const coffeesCollection = collection(database, `users/${user}/coffees`);

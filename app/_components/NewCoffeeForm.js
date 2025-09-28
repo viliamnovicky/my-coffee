@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { Input, Select } from "../_components/Inputs";
-import { addCoffee, updateCoffee } from "../_lib/data-service";
+import { addNewCoffee, updateCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
 import { useEffect } from "react";
 import TasteInput from "./TasteInput";
@@ -30,6 +30,28 @@ function NewCoffeeForm({ user, update }) {
   const { coffee, resetNewCoffeeData, updateCoffeeData, syncGrindSettingsWithGrinders } =
     useNewCoffee();
 
+  const coffeeBasic = {
+    roasteryName: coffee.roasteryName,
+  coffeeName: coffee.coffeeName,
+  acidity: coffee.acidity,
+  beanType: coffee.beanType,
+  caffeine: coffee.caffeine,
+  description: coffee.description,
+  elevation: coffee.elevation,
+  region: coffee.region,
+  farm: coffee.farm,
+  variety: coffee.variety,
+  process: coffee.process,
+  origin: coffee.origin,
+  image: coffee.image,
+  roast: coffee.roast,
+  intensity: coffee.intensity,
+  taste: coffee.taste,
+  isBio: coffee.isBio,
+  isClimaNeutral: coffee.isClimaNeutral,
+  beansScore: coffee.beansScore,
+  }
+
   useEffect(() => {
     if (user.grinders?.length > 0 && Object.keys(coffee.grindSettings).length === 0) {
       syncGrindSettingsWithGrinders(user.grinders);
@@ -47,7 +69,7 @@ function NewCoffeeForm({ user, update }) {
       await updateCoffee(coffee.slug, coffee, user.email, router);
     } else {
       // ✅ create new coffee
-      await addCoffee(coffee, user.email, router);
+      await addNewCoffee(coffee, coffeeBasic, user.email, router);
     }
   } catch (error) {
     console.error("Failed to save coffee:", error);
@@ -57,7 +79,7 @@ function NewCoffeeForm({ user, update }) {
   
 
   return (
-    <form className="mt-[110px] xl:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px]">
+    <form className="mt-[110px] xl:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px] overflow-y-auto h-[80vh]">
       <div className="relative w-full flex flex-col m-auto">
         <Link
           href="/coffees"
