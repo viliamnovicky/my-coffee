@@ -14,7 +14,7 @@ export default async function page() {
   const user = await getUser(session.user.email);
 
   return (
-    <div className="mt-[5.2rem] m-auto w-full overflow-y-auto h-screen py-2">
+    <div className="mt-[5.2rem] m-auto w-full py-2">
       <Avatar src={user.image} />
       <H2 className="text-[1.3rem] xl:text-[2rem] pl-[1rem] mt-[2rem] w-full xl:w-[1300px] m-auto text-start">Brewers</H2>
       <div className="flex flex-col w-full xl:w-[1300px] gap-[1rem] m-auto">

@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         {/* other head tags */}
       </head>
       <body
-        className={`${RobotoFont.className} relative overflow-hidden antialiased h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
+        className={`${RobotoFont.className} relative overflow-auto antialiased h-screen bg-primary-50 flex flex-col w-screen p-0 overflow-x-hidden`}
       >
         <Toaster
           toastOptions={{

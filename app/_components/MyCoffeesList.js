@@ -7,14 +7,8 @@ import { MdOutlineLastPage } from "react-icons/md";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 
-
 export default async function MyCoffeesList({ user }) {
   const coffees = await getCoffees({ user });
 
-  return (
-    <div className="min-h-screen overflow-hidden">
-      <MySortedCoffeesList list={coffees} user={user} />
-      
-    </div>
-  );
+  return <MySortedCoffeesList list={coffees} user={user} />;
 }

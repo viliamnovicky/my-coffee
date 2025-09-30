@@ -2,20 +2,17 @@ import { AddCoffeeButton } from "../Buttons";
 import CoffeeStats from "./CoffeeStats";
 import Section from "./Section";
 import CoffeeImage from "./CoffeeImage";
-import CoffeeSettings from "./CoffeeSettings";
 import DetailsPrimary from "./DetailsPrimary";
 import { H2 } from "../Headings";
 
 import ElevationCont from "./ElevationCont";
-import NotesCont from "./NotesCont";
 import OriginCont from "./OriginCont";
-import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
-import CoffeeWeight from "./CoffeeWeight";
+
 
 function CoffeeDetails({ coffee }) {
   return (
-    <div className="relative w-full flex flex-col xl:mt-[8vh] mt-[12vh] overflow-x-hidden xl:h-[92vh] h-[88vh]">
+    <div className="relative w-full flex flex-col mt-[8vh]">
       <AddCoffeeButton />
       <BackButton href="/coffees" />
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">

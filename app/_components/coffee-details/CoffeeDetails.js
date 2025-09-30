@@ -16,7 +16,7 @@ import CoffeeWeight from "./CoffeeWeight";
 
 function CoffeeDetails({ coffee, grinders }) {
   return (
-    <div className="relative w-full flex flex-col xl:mt-[8vh] mt-[12vh] overflow-x-hidden xl:h-[92vh] h-[88vh]">
+    <div className="relative w-full flex flex-col mt-[8vh] overflow-x-hidden">
       <AddCoffeeButton />
       <BackButton href="/coffees" />
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
@@ -24,7 +24,7 @@ function CoffeeDetails({ coffee, grinders }) {
       </h1>
       <H2 className="xl:max-w-[1200px] p-2 m-auto">{`„${coffee.description}”`}</H2>
      
-        <Section className="relative xl:h-[470px]">
+        <Section className="relative xl:h-[470px] h-auto">
           <H2 className="!invisible xl:!visible !h-[0px] w-[50vw] xl:p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
             Settings
           </H2>

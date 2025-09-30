@@ -79,7 +79,7 @@ function NewCoffeeForm({ user, update }) {
   
 
   return (
-    <form className="mt-[110px] xl:mt-[80px] flex w-full flex-col m-auto p-2 max-w-[1000px] overflow-y-auto h-[80vh]">
+    <form className="mt-[8vh] flex w-full flex-col m-auto p-2 max-w-[1000px]">
       <div className="relative w-full flex flex-col m-auto">
         <Link
           href="/coffees"

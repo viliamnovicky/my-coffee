@@ -62,7 +62,7 @@ function MySortedCoffeesList({ list }) {
 
   return (
     <>
-      <div className="xl:h-[70vh] h-[65vh] overflow-y-auto m-auto">
+      <div className="m-auto">
         <ul>
           {currentCoffees.map((coffee, i) => (
             <li
