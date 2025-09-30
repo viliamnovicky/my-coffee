@@ -2,21 +2,16 @@ export const metadata = {
   title: "Coffee details | My Coffee",
 };
 
-import CoffeeDetails from "@/app/_components/coffee-details/CoffeeDetails";
-import { getCoffee, getUser } from "@/app/_lib/data-service";
-import { auth } from "@/app/_lib/auth";
+import CoffeeDetailsLogedOut from "@/app/_components/coffee-details/CoffeeDetailsLogedOut";
+import { getCoffeeLoggedOut } from "@/app/_lib/data-service";
 
 export const revalidate = 60;
 
 async function Page({ params }) {
-  const session = await auth()
-  const user = session?.user?.userId
+  const coffee = await getCoffeeLoggedOut(params.coffeeId);
+  const grinders = [];
   
-  const coffee = await getCoffee(params.coffeeId, user);
-  const userData = await getUser(user);
-  const grinders = userData?.grinders;
-  console.log("grinders:" + grinders)
-  return <CoffeeDetails coffee={coffee} grinders={grinders}/>;
+  return <CoffeeDetailsLogedOut coffee={coffee} grinders={grinders}/>;
 }
 
 export default Page;

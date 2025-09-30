@@ -10,11 +10,11 @@ import Tag from "../Tag";
 import Bio from "@/public/icons/bio.png";
 
 
-function OriginCont({ coffee }) {
+function OriginCont({ coffee, className }) {
   const match = countries.find((c) => c.name.toLowerCase() === coffee?.origin[0]?.toLowerCase());
   const description = match ? match.description : "No description available.";
   return (
-    <DetailsPrimary className="xl:mt-0 self-end xl:rounded-l-[1rem] xl:rounded-r-full bg-gradient-1 relative overflow-visible xl:min-h-[300px]">
+    <DetailsPrimary className={`xl:mt-0 self-end xl:rounded-l-[1rem] xl:rounded-r-full relative overflow-visible xl:min-h-[300px] ${className}`}>
       <H2 className="pl-2">Origin</H2>
       <CountryName coffee={coffee} />
       <OriginMap coffee={coffee} />

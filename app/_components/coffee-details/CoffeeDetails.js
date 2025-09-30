@@ -16,7 +16,7 @@ import CoffeeWeight from "./CoffeeWeight";
 
 function CoffeeDetails({ coffee, grinders }) {
   return (
-    <div className="relative w-screen flex flex-col xl:mt-[8vh] mt-[12vh]">
+    <div className="relative w-full flex flex-col xl:mt-[8vh] mt-[12vh] overflow-x-hidden xl:h-[92vh] h-[88vh]">
       <AddCoffeeButton />
       <BackButton href="/coffees" />
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
@@ -45,7 +45,7 @@ function CoffeeDetails({ coffee, grinders }) {
 
       <Section className="xl:mt-[-5rem]">
         <CoffeeStats coffee={coffee} />
-        <OriginCont coffee={coffee} />
+        <OriginCont coffee={coffee} className="bg-gradient-1"/>
       </Section>
       <Section>
         <NotesCont coffee={coffee} />

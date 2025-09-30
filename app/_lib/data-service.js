@@ -59,6 +59,23 @@ export async function getCoffee(slug, user) {
   }
 }
 
+export async function getCoffeeLoggedOut(slug) {
+  try {
+    const coffeesCollection = collection(database, `coffees`);
+    const q = query(coffeesCollection, where("slug", "==", slug)); // Filter by slug
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      //toast.error("No coffee found")
+      throw new Error(`No coffee found with slug: ${slug}`);
+    }
+
+    return querySnapshot.docs[0].data(); // Return first matching document
+  } catch (error) {
+    throw new Error("Something went wrong while retrieving the coffee: " + error.message);
+  }
+}
+
 // Generate slug from roasteryName and coffeeName
 function generateSlug(roasteryName, coffeeName) {
   return `${roasteryName}-${coffeeName}`

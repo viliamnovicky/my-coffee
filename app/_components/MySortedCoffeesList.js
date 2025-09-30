@@ -105,7 +105,7 @@ function MySortedCoffeesList({ list }) {
               {/* Details Button */}
               <div className="flex justify-center md:justify-end">
                 <Link
-                  href={`/coffees/${coffee.slug}`}
+                  href={`/my-coffee/${coffee.slug}`}
                   className="bg-primary-700 px-4 py-2 rounded-lg text-primary-50 uppercase hover:bg-primary-800"
                 >
                   details

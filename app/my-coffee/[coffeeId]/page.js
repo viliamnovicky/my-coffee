@@ -1,28 +1,22 @@
 export const metadata = {
-  title: "Coffee",
+  title: "Coffee details | My Coffee",
 };
 
-import { AddCoffeeButton } from "../_components/Buttons";
-import { H2 } from "../_components/Headings";
-import MyCoffeesList from "../_components/MyCoffeesList";
-import Searchbar from "../_components/Searchbar";
-import { auth } from "../_lib/auth";
+import CoffeeDetails from "@/app/_components/coffee-details/CoffeeDetails";
+import { getCoffee, getUser } from "@/app/_lib/data-service";
+import { auth } from "@/app/_lib/auth";
 
-export async function Page() {
-  const session = await auth();
-  const user = session.user.email;
+export const revalidate = 60;
 
-  return (
-    <div className="relative">
-      
-      <Searchbar/>
-      
-        <AddCoffeeButton />
-      
-
-      <MyCoffeesList user={user}/>
-    </div>
-  );
+async function Page({ params }) {
+  const session = await auth()
+  const user = session?.user?.userId
+  
+  const coffee = await getCoffee(params.coffeeId, user);
+  const userData = await getUser(user);
+  const grinders = userData?.grinders;
+  
+  return <CoffeeDetails coffee={coffee} grinders={grinders}/>;
 }
 
 export default Page;

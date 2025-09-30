@@ -3,9 +3,9 @@ import { H2 } from "../Headings";
 import DetailsSecondary from "./DetailsSecondary";
 import Image from "next/image";
 
-function ElevationCont({ coffee }) {
+function ElevationCont({ coffee, className }) {
   return (
-    <DetailsSecondary className="overflow-hidden p-[2rem] relative justify-between xl:mt-[5rem]">
+    <DetailsSecondary className={`overflow-hidden p-[2rem] relative justify-between xl:mt-[5rem] ${className}`}>
       <Image alt="contours" fill className=" absolute opacity-[20%] invert-[6%] sepia-[92%] saturate-[105%] hue-rotate-[314deg] brightness-[100%] contrast-[98%];" src="/icons/contours.png" />
       <LiaMountainSolid className="z-2 relative bg-white text-primary-400 xl:w-[250px] xl:h-[250px] w-[150px] h-[150px] p-[1rem] rounded-full" />
       <H2 className="absolute z-2">Elevation</H2>
