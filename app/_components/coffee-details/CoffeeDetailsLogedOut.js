@@ -13,7 +13,7 @@ import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
 import CoffeeWeight from "./CoffeeWeight";
 
-function CoffeeDetails({ coffee, grinders }) {
+function CoffeeDetails({ coffee }) {
   return (
     <div className="relative w-full flex flex-col xl:mt-[8vh] mt-[12vh] overflow-x-hidden xl:h-[92vh] h-[88vh]">
       <AddCoffeeButton />
@@ -27,12 +27,12 @@ function CoffeeDetails({ coffee, grinders }) {
       <Section className="relative xl:h-[470px]">
         <DetailsPrimary className="xl:h-full xl:w-full relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
           <CoffeeImage coffee={coffee} />
-          <OriginCont coffee={coffee} className="xl:w-[150%]" />
+          <OriginCont coffee={coffee} className="xl:!w-[150%]" />
           <CoffeeStats coffee={coffee} />
         </DetailsPrimary>
       </Section>
       <Section>
-        <ElevationCont coffee={coffee} className="!xl:mt-0" />
+        <ElevationCont coffee={coffee} className="xl:!mt-0" />
       </Section>
     </div>
   );
