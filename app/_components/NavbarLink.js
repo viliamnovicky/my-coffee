@@ -8,8 +8,8 @@ function NavbarLink({children, path, className}) {
     return (
         <li
           className={`${className} ${
-            pathname === path ? "bg-primary-500 " : "bg-primary-900"
-          }  hover:bg-primary-400 px-2 text-md md:text-xl transition-colors `}
+            pathname === path ? "bg-primary-600 xl:bg-primary-600" : "bg-primary-400 xl:bg-primary-900"
+          }  hover:bg-primary-400 px-2 xl:py-0 py-4 text-md md:text-xl transition-colors text-center uppercase`}
         >
           <Link href={path}>{children}</Link>
         </li>
