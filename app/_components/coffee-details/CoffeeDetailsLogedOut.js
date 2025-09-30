@@ -24,14 +24,14 @@ function CoffeeDetails({ coffee }) {
       </h1>
       <H2 className="xl:max-w-[1200px] p-2 m-auto">{`„${coffee.description}”`}</H2>
 
-      <Section className="relative xl:h-[470px]">
+      <Section className="relative xl:h-[470px] ">
         <DetailsPrimary className="xl:h-full xl:w-full relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
           <CoffeeImage coffee={coffee} />
-          <OriginCont coffee={coffee} className="xl:!w-[150%]" />
           <CoffeeStats coffee={coffee} />
         </DetailsPrimary>
       </Section>
-      <Section>
+      <Section >
+          <OriginCont coffee={coffee} className="bg-gradient-1" />
         <ElevationCont coffee={coffee} className="xl:!mt-0" />
       </Section>
     </div>
