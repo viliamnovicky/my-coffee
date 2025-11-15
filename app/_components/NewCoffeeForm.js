@@ -14,7 +14,6 @@ import { Suspense, useEffect } from "react";
 import TasteInput from "./TasteInput";
 import { useRouter } from "next/navigation";
 import GrindSettings from "./new-coffee-form/GrindSettings";
-import DoseLevel from "./new-coffee-form/DoseLevel";
 import Weight from "./new-coffee-form/Weight";
 import ToggleButton from "./ToggleButton";
 import Notes from "./new-coffee-form/Notes";
@@ -25,10 +24,11 @@ import Stats from "./new-coffee-form/Stats";
 import Name from "./new-coffee-form/Name";
 import Picture from "./new-coffee-form/Picture";
 import LoadingCoffees from "./_spinners/LoadingCoffees";
+import CustomSettings from "./new-coffee-form/CustomSettings";
 
 function NewCoffeeForm({ user, update }) {
   const router = useRouter();
-  const { coffee, resetNewCoffeeData, updateCoffeeData, syncGrindSettingsWithGrinders } =
+  const { coffee, resetNewCoffeeData, updateCoffeeData, syncGrindSettingsWithGrinders, syncCustomSettingsWithMakers } =
     useNewCoffee();
 
   const coffeeBasic = {
@@ -54,7 +54,17 @@ function NewCoffeeForm({ user, update }) {
   };
 
   useEffect(() => {
-    if (user.grinders?.length > 0 && Object.keys(coffee.grindSettings).length === 0) {
+    if (user?.grinders?.length > 0) {
+      syncCustomSettingsWithMakers(user.coffeeMakers);
+    }
+  }, [user?.makers]);
+
+  useEffect(() => {
+    if (
+      user.grinders?.length > 0 &&
+      Array.isArray(coffee.grindSettings) &&
+      coffee.grindSettings.length === 0
+    ) {
       syncGrindSettingsWithGrinders(user.grinders);
     }
   }, [user.grinders, coffee.grindSettings, syncGrindSettingsWithGrinders]);
@@ -207,7 +217,7 @@ function NewCoffeeForm({ user, update }) {
             </div>
             <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col xl:px-1 py-2 justify-start">
               <GrindSettings user={user} coffee={coffee} updateCoffeeData={updateCoffeeData} />
-              <DoseLevel coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
+              <CustomSettings coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
               <Weight coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
               <Notes coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
             </div>

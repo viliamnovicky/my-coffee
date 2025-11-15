@@ -35,6 +35,7 @@ const initialState = {
   isClimaNeutral: false,
   notes: [],
   beansScore: 0,
+  customSettings: [],
 };
 
 function createGrindSettingsForGrinders(grinders) {
@@ -51,10 +52,55 @@ function createGrindSettingsForGrinders(grinders) {
   return grinders.map(() => defaultSettings.map((setting) => ({ ...setting })));
 }
 
+function createCustomSettingsForMakers(makers) {
+  return makers.map((maker) => ({
+    maker: {
+      name: `${maker.mark} ${maker.model}`,
+      value: maker.customSettings?.find((s) => s.name === "default")?.value ?? 0,
+    },
+    settings:
+      maker.customSettings?.map((s) => ({
+        name: s.name,
+        value: 0,
+      })) ?? [],
+  }));
+}
+
 function NewCoffeeProvider({ children, initialCoffee = null }) {
-const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
+  const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
   const updateCoffeeData = (key, value, options = {}) => {
     setNewCoffeeData((prev) => {
+      if (key === "customSettings") {
+        const { makerName, settingName } = options;
+
+        const updated = [...prev.customSettings];
+        const makerIndex = updated.findIndex((g) => g.maker.name === makerName);
+
+        if (makerIndex === -1) return prev;
+
+        // If updating a setting inside settings[]
+        if (settingName) {
+          const settingIndex = updated[makerIndex].settings.findIndex(
+            (s) => s.name === settingName
+          );
+
+          if (settingIndex >= 0) {
+            updated[makerIndex].settings[settingIndex] = {
+              ...updated[makerIndex].settings[settingIndex],
+              value,
+            };
+          }
+        } else {
+          // Update maker-level value
+          updated[makerIndex].maker = {
+            ...updated[makerIndex].grinder,
+            value,
+          };
+        }
+
+        return { ...prev, customSettings: updated };
+      }
+
       if (
         key === "grindSettings" &&
         typeof options.grinderIndex === "number" &&
@@ -91,20 +137,7 @@ const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
         return { ...prev, weightSettings: updatedSettings };
       }
 
-      if (key === "doseLevel" && options.grinderName) {
-        const updatedDoseLevels = [...(prev.doseLevel || [])];
-        const existingIndex = updatedDoseLevels.findIndex((d) => d.grinder === options.grinderName);
-        if (existingIndex >= 0) {
-          updatedDoseLevels[existingIndex] = {
-            ...updatedDoseLevels[existingIndex],
-            value,
-          };
-        } else {
-          updatedDoseLevels.push({ grinder: options.grinderName, value });
-        }
-
-        return { ...prev, doseLevel: updatedDoseLevels };
-      }
+    
 
       const keys = key.split(".");
       if (keys.length === 1) {
@@ -161,6 +194,14 @@ const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
     }));
   }, []);
 
+  const syncCustomSettingsWithMakers = useCallback((makers) => {
+    const newSettings = createCustomSettingsForMakers(makers);
+    setNewCoffeeData((prev) => ({
+      ...prev,
+      customSettings: newSettings,
+    }));
+  }, []);
+
   const resetCoffeeData = () => setNewCoffeeData(initialState);
 
   return (
@@ -172,6 +213,7 @@ const [coffee, setNewCoffeeData] = useState(initialCoffee || initialState);
         updateCoffeeData,
         syncGrindSettingsWithGrinders,
         syncWeightSettingsWithMakers,
+        syncCustomSettingsWithMakers,
       }}
     >
       {children}

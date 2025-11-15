@@ -1,12 +1,14 @@
+"use client"
+import { useEffect } from "react";
 import { Input } from "../Inputs";
 import { InfoParagraph } from "../Paragraphs";
-import { useNewCoffee } from "../../_context/NewCoffeeContext";
 
 function GrindSettings({ user, coffee, updateCoffeeData }) {
-  
+
   return (
     <>
       <p className="uppercase text-center p-2">Grind size</p>
+
       {coffee.grindSettings.map((grinderSetting, grinderIndex) => {
         const matchingGrinder = user.grinders.find(
           (g) => `${g.mark} ${g.model}` === grinderSetting.grinder
@@ -27,8 +29,9 @@ function GrindSettings({ user, coffee, updateCoffeeData }) {
                     {`${grinderSetting.grinder} (1 - ${matchingGrinder.steps})`}
                   </p>
                 ) : (
-                  <p>&nbsp;</p> // for spacing
+                  <p>&nbsp;</p>
                 )}
+
                 <Input
                   type="number"
                   min="0"

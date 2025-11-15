@@ -12,6 +12,7 @@ import OriginCont from "./OriginCont";
 import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
 import CoffeeWeight from "./CoffeeWeight";
+import CustomSettingsCont from "./CustomSettingsCont";
 
 
 function CoffeeDetails({ coffee, grinders }) {
@@ -45,6 +46,10 @@ function CoffeeDetails({ coffee, grinders }) {
 
       <Section className="xl:mt-[-5rem]">
         <CoffeeStats coffee={coffee} />
+        <CustomSettingsCont coffee = {coffee} grinders={grinders}/>
+        {/* <OriginCont coffee={coffee} className="bg-gradient-1"/> */}
+      </Section>
+      <Section>
         <OriginCont coffee={coffee} className="bg-gradient-1"/>
       </Section>
       <Section>

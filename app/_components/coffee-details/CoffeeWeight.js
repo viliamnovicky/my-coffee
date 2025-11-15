@@ -1,18 +1,10 @@
 import { InfoParagraph } from "../Paragraphs";
 import MachineIcon from "./MachineIcon";
-import ManualCoffeeGrinder from "../../../public/icons/manual-grinder.svg";
-import espresso from "../../../public/icons/coffee-machine.svg";
-import filter from "../../../public/icons/coffee-filter.png";
-import g8g from "../../../public/icons/coffee-filter.png";
-import mokka from "../../../public/icons/moka.svg";
-import drop from "../../../public/icons/drop.svg";
-import Image from "next/image";
 
 function CoffeeWeight({ coffee, grinders }) {
   return (
     <div
-      className={`
-      } relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
+      className={`relative h-auto w-[100%] flex flex-col justify-start rounded-[1rem] overflow-hidden mt-[3rem]`}
     >
       <InfoParagraph color="" className="flex flex-col relative !p-0 overflow-y-auto xl:h-[310px] rounded-[1rem] bg-primary-50">
         <p className="sticky top-0 bg-primary-50 w-full text-center z-10">weight</p>

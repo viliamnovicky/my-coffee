@@ -1,5 +1,5 @@
 import BioIcon from "./BioIcon";
-import Co2 from "@/public/icons/co2.png";
+
 
 export function H2({ children, className }) {
   return (
@@ -18,12 +18,7 @@ export function P({ children, className }) {
 export function CountryName({ className, coffee }) {
   return (
     <div className="xl:absolute relative xl:top-[50%] bottom-2 xl:bottom-auto xl:left-[1rem] left-[50%] translate-x-[-50%] xl:translate-x-0">
-      {coffee.isClimaNeutral && (
-        <BioIcon
-          src={Co2}
-          className="!aspect-video xl:!w-[80px] !w-[60px] opacity-75 xl:!relative !absolute top-0 xl:left-0 left-[1rem]"
-        />
-      )}
+      
 
       <p
         className={`${className} uppercase text-primary-950 w-full text-center xl:text-left font-extrabold text-[3rem] opacity-[60%]`}
