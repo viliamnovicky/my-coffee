@@ -21,21 +21,7 @@ function NotesCont({ coffee }) {
           )}
         {(!coffee.notes || coffee.notes.length === 0) && <P className="p-2">A place for your notes...</P>}
       </div>
-      <div className=" xl:justify-start justify-between flex-col">
-        <P className=" bg-primary-50 !w-[167px] font-medium uppercase text-center">Favourite drinks</P>
-        <div className="flex gap-4 mt-4 flex-wrap xl:justify-start justify-between">
-          {coffee.coffeeDrink &&
-            coffee.coffeeDrink.map((drink) => (
-              <div key={"drink" + drink} className="flex flex-col items-center">
-                <Icon src={drink} />
-                <P className="bg-primary-200 rounded-full px-2 mt-[-5px]">
-                  {drink.split("_")[0]}{" "}
-                  {drink.split("_")[1] && drink.split("_")[1] != "drink" ? drink.split("_")[1] : ""}
-                </P>
-              </div>
-            ))}
-        </div>
-      </div>
+      
     </DetailsPrimary>
   );
 }

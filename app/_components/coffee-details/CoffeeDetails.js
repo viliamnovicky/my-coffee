@@ -13,7 +13,7 @@ import CoffeeOptions from "./CoffeeOptions";
 import BackButton from "./BackButton";
 import CoffeeWeight from "./CoffeeWeight";
 import CustomSettingsCont from "./CustomSettingsCont";
-
+import CoffeeDrinksCont from "./CoffeeDrinksCont";
 
 function CoffeeDetails({ coffee, grinders }) {
   return (
@@ -24,33 +24,31 @@ function CoffeeDetails({ coffee, grinders }) {
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>
       </h1>
       <H2 className="xl:max-w-[1200px] p-2 m-auto">{`„${coffee.description}”`}</H2>
-     
-        <Section className="relative xl:h-[470px] h-auto">
-          <H2 className="!invisible xl:!visible !h-[0px] w-[50vw] xl:p-[1rem]  xl:absolute top-1 right-[30vw] text-right">
-            Settings
-          </H2>
-          <DetailsPrimary className="relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
-            <CoffeeImage coffee={coffee} />
-          </DetailsPrimary>
-          <DetailsPrimary>
-            <H2 className="xl:hidden pb-0 mb-[-2rem]">
-            Settings
-          </H2>
-            <CoffeeSettings coffee={coffee} grinders={grinders} />
-          </DetailsPrimary>
-          <DetailsPrimary>
-            <CoffeeWeight coffee={coffee} grinders={grinders} />
-          </DetailsPrimary>
-        </Section>
-     
 
-      <Section className="xl:mt-[-5rem]">
-        <CoffeeStats coffee={coffee} />
-        <CustomSettingsCont coffee = {coffee} grinders={grinders}/>
-        {/* <OriginCont coffee={coffee} className="bg-gradient-1"/> */}
+      <Section className="relative xl:h-[470px] h-auto xl:pb-0">
+        <DetailsPrimary className="relative xl:bg-gradient-5 xl:rounded-full xl:rounded-tr-[1rem] xl:rounded-br-[1rem]">
+          <CoffeeImage coffee={coffee} />
+        </DetailsPrimary>
+        <DetailsPrimary className="xl:mt-4">
+          <OriginCont coffee={coffee} className="bg-gradient-1" />
+        </DetailsPrimary>
       </Section>
+
       <Section>
-        <OriginCont coffee={coffee} className="bg-gradient-1"/>
+        <CoffeeStats coffee={coffee} />
+        <CoffeeDrinksCont coffee={coffee}/>
+      </Section>
+      <H2>Settings</H2>
+      <Section>
+        <DetailsPrimary>
+          <CoffeeSettings coffee={coffee} grinders={grinders} />
+        </DetailsPrimary>
+        <DetailsPrimary>
+          <CoffeeWeight coffee={coffee} grinders={grinders} />
+        </DetailsPrimary>
+        <DetailsPrimary>
+          <CustomSettingsCont coffee={coffee} grinders={grinders} />
+        </DetailsPrimary>
       </Section>
       <Section>
         <NotesCont coffee={coffee} />
