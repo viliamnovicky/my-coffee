@@ -6,6 +6,7 @@ import { H2 } from "../_components/Headings";
 import { auth } from "../_lib/auth";
 import { getUser } from "../_lib/data-service";
 import LoadingCoffees from "../_components/_spinners/LoadingCoffees";
+import NewBrewerForm from "../_components/account/NewBrewerForm";
 
 export const metadata = {
   title: "Profile",
@@ -27,7 +28,7 @@ export default async function page() {
             <GearContainer key={maker.mark + maker.model + "container"} gear={maker} />
           ))}
         </div>
-        <Button className=" m-auto mt-[1rem] block">Add Brewer</Button>
+        <NewBrewerForm />
         <H2 className="text-[1.3rem] xl:text-[2rem] pl-[1rem] mt-[2rem] w-full xl:w-[1300px] m-auto text-start">
           Grinders
         </H2>

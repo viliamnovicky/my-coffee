@@ -4,7 +4,7 @@ import { InfoParagraph } from "../Paragraphs";
 function CustomSettings({ coffee, user, updateCoffeeData }) {
   return (
     <>
-      <p className="uppercase text-center p-2">Custom Settings</p>
+      <p className="uppercase text-center p-2">Coffee makers Settings</p>
       <div>
         {user.coffeeMakers.map((maker) => {
           const makerName = `${maker.mark} ${maker.model}`;
