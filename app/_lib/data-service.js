@@ -9,6 +9,7 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
+  arrayUnion,
 } from "firebase/firestore/lite";
 import { database, storage } from "./firebase";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
@@ -300,13 +301,40 @@ export async function addUser(data) {
 export async function updateUser(data, email) {
   try {
     const userRef = doc(database, "users", email);
-    await updateDoc(userRef, data);
+
+    // Upload image if exists and is a Blob
+    if (data.newBrewer.image instanceof Blob) {
+      const fileName = `${data.newBrewer.mark}-${data.newBrewer.model}.jpg`
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+      const imageRef = ref(storage, `brewers/${email}/${fileName}`);
+      const metadata = { contentType: "image/jpeg" };
+
+      // Upload to Storage
+      await uploadBytes(imageRef, data.newBrewer.image, metadata);
+
+      // Get public URL
+      const imageUrl = await getDownloadURL(imageRef);
+
+      // Put URL into new brewer
+      data.newBrewer.image = imageUrl;
+    }
+
+    // Append new brewer to user document
+    await updateDoc(userRef, {
+      coffeeMakers: arrayUnion(data.newBrewer),
+    });
+
     revalidatePath("/account");
-    return data.email;
+    return true;
+
   } catch (error) {
     throw new Error("Error updating user: " + error.message);
   }
 }
+
+
 
 export async function deleteCoffee(slug, user) {
   try {

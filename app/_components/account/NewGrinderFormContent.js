@@ -5,14 +5,14 @@ import { Button } from "../Buttons";
 import { Input, Select } from "../Inputs";
 import Modal from "../Modal";
 import { InfoParagraph } from "../Paragraphs";
-import { useNewBrewer } from "@/app/_context/NewBrewerContext";
+import { useNewGrinder } from "@/app/_context/NewGrinderContext";
 import { H2 } from "../Headings";
 import Picture from "../new-coffee-form/Picture";
-import { addBrewerAction } from "@/app/_lib/actions";
+import { addGrinderAction } from "@/app/_lib/actions";
 
-function NewBrewerFormContent() {
+function NewGrinderFormContent() {
   const { openModal, closeModal } = useModal();
-  const { brewer, updateBrewerData, resetBrewerData } = useNewBrewer();
+  const { grinder, updateGrinderData, resetGrinderData } = useNewGrinder();
 
   const defaultImage =
     "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Funknown-brewer.png?alt=media&token=79db463e-d954-4aa5-9eea-242be8b7df7d";
@@ -22,33 +22,33 @@ function NewBrewerFormContent() {
 
     const formData = new FormData(e.target);
 
-    if (brewer.image instanceof Blob) {
-      formData.set("image", brewer.image);
+    if (grinder.image instanceof Blob) {
+      formData.set("image", grinder.image);
     }
 
-    await addBrewerAction(formData);
-    resetBrewerData();
+    await addGrinderAction(formData);
+    resetGrinderData();
     closeModal();
   }
 
   return (
     <>
       <Button onClick={openModal} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
-        Add Brewer
+        Add Grinder
       </Button>
 
       <Modal>
-        <H2 className="pb-2">New Brewer</H2>
+        <H2 className="pb-2">New Grinder</H2>
         <form onSubmit={handleSubmit}>
-          <Picture image={brewer.image} coffee={brewer} updateData={updateBrewerData} />
+          <Picture image={grinder.image} coffee={grinder} updateData={updateGrinderData} />
 
           <InfoParagraph className="w-full">
             Mark:
             <Input
               type="text"
               label=" "
-              value={brewer.mark}
-              onChange={(e) => updateBrewerData("mark", e.target.value)}
+              value={grinder.mark}
+              onChange={(e) => updateGrinderData("mark", e.target.value)}
               name="mark"
             />
           </InfoParagraph>
@@ -58,8 +58,8 @@ function NewBrewerFormContent() {
             <Input
               type="text"
               label=" "
-              value={brewer.model}
-              onChange={(e) => updateBrewerData("model", e.target.value)}
+              value={grinder.model}
+              onChange={(e) => updateGrinderData("model", e.target.value)}
               name="model"
             />
           </InfoParagraph>
@@ -67,15 +67,12 @@ function NewBrewerFormContent() {
           <InfoParagraph className="w-full">
             Type:
             <Select
-              value={brewer.type}
-              onChange={(e) => updateBrewerData("type", e.target.value)}
+              value={grinder.type}
+              onChange={(e) => updateGrinderData("type", e.target.value)}
               name="type"
             >
-              <option value="espresso machine">espresso machine</option>
-              <option value="pour over">pour over</option>
-              <option value="frenchpress">frenchpress</option>
-              <option value="siphoon">siphoon</option> <option value="chemex">chemex</option>
-              <option value="mokka pot">mokka pot</option>
+              <option value="automatic">automatic</option>
+              <option value="manual">manual</option>
             </Select>
           </InfoParagraph>
 
@@ -84,8 +81,8 @@ function NewBrewerFormContent() {
             <textarea
               className="rounded-md p-2 text-center text-primary-950"
               placeholder="Add short description"
-              value={brewer.description}
-              onChange={(e) => updateBrewerData("description", e.target.value)}
+              value={grinder.description}
+              onChange={(e) => updateGrinderData("description", e.target.value)}
               name="description"
             />
           </InfoParagraph>
@@ -104,4 +101,4 @@ function NewBrewerFormContent() {
   );
 }
 
-export default NewBrewerFormContent;
+export default NewGrinderFormContent;

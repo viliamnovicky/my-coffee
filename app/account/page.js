@@ -7,6 +7,7 @@ import { auth } from "../_lib/auth";
 import { getUser } from "../_lib/data-service";
 import LoadingCoffees from "../_components/_spinners/LoadingCoffees";
 import NewBrewerForm from "../_components/account/NewBrewerForm";
+import NewGrinderForm from "../_components/account/NewGrinderForm";
 
 export const metadata = {
   title: "Profile",
@@ -37,7 +38,7 @@ export default async function page() {
             <GearContainer key={grinder.mark + grinder.model + "container"} gear={grinder} />
           ))}
         </div>
-        <Button className=" m-auto mt-[1rem] block">Add Grinder</Button>
+        <NewGrinderForm/>
         <div className="grid grid-cols-2 w-full xl:w-[1300px] m-auto">
           <H2 className="text-[1.3rem] xl:text-[2rem] mt-[2rem] m-auto ">Favourite cup</H2>
           <H2 className="text-[1.3rem] xl:text-[2rem] mt-[2rem] m-auto ">Favourite drink</H2>

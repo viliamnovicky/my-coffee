@@ -4,25 +4,28 @@ import Image from "next/image";
 import Tag from "../Tag";
 import { resizeImage } from "../../_helpers/resizeImage";
 
-function Picture({coffee, updateCoffeeData, update}) {
+function Picture({ coffee, updateData, update, image }) {
   const [imagePreview, setImagePreview] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
+    image
+      ? image
+      : "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
   );
 
   const handleImageChange = async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-  
-      try {
-        const resizedBlob = await resizeImage(file, 800, 1, 0.9); // square ratio
-        updateCoffeeData("image", resizedBlob);
-  
-        const previewUrl = URL.createObjectURL(resizedBlob);
-        setImagePreview(previewUrl);
-      } catch (error) {
-        console.error("Image resizing failed:", error);
-      }
-    };
+    const file = e.target.files[0];
+    if (!file) return;
+
+    try {
+      const resizedBlob = await resizeImage(file, 800, 1, 0.9); // square ratio
+
+      updateData("image", resizedBlob);
+
+      const previewUrl = URL.createObjectURL(resizedBlob);
+      setImagePreview(previewUrl);
+    } catch (error) {
+      console.error("Image resizing failed:", error);
+    }
+  };
 
   return (
     <div className="h-[550px] xl:h-auto w-[100%] bg-gradient-1 relative p-10 overflow-hidden flex flex-col justify-center items-center">

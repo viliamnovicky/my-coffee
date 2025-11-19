@@ -15,6 +15,40 @@ export async function updateProfile(formData) {
   await updateUser(data, session.user.email);
 }
 
+
+export async function addBrewerAction(formData) {
+  const session = await auth();
+  if (!session) throw new Error("Not logged in");
+
+  const newBrewer = {
+    mark: formData.get("mark"),
+    model: formData.get("model"),
+    type: formData.get("type"),
+    description: formData.get("description"),
+    image: formData.get("image"),
+    customSettings: [],
+  };
+
+  await updateUser({ newBrewer }, session.user.email);
+}
+
+export async function addGrinderAction(formData) {
+  const session = await auth();
+  if (!session) throw new Error("Not logged in");
+
+  const newBrewer = {
+    mark: formData.get("mark"),
+    model: formData.get("model"),
+    type: formData.get("type"),
+    description: formData.get("description"),
+    image: formData.get("image"),
+    customSettings: [],
+  };
+
+  await updateUser({ newBrewer }, session.user.email);
+}
+
+
 export async function deleteCoffeeAction(coffee) {
   const session = await auth();
   await deleteCoffee(coffee.slug, session.user.email);
