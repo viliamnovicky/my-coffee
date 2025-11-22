@@ -26,10 +26,10 @@ export function AutoWidthInput() {
   );
 }
 
-export function Input({ value, addClass, placeholder, type, forId, id, label, onChange, ...rest }) {
+export function Input({ value, addClass, className, placeholder, type, forId, id, label, onChange, ...rest }) {
   return (
-    <div className="flex gap-2 justify-between items-center w-[50%]">
-      {label && <label>{label}</label>}
+    <div className={`${className} flex gap-2 justify-between items-center w-[50%]`}>
+      {label && <label className="w-full">{label}</label>}
       <input
         placeholder={placeholder}
         value={value}

@@ -1,31 +1,33 @@
 "use client";
 
-const { createContext, useContext, useState } = require("react");
+import { createContext, useContext, useState } from "react";
 
 const ModalContext = createContext();
 
 const ModalProvider = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [openModalId, setOpenModalId] = useState(null);
 
-  function openModal() {
-    setIsOpen(true);
+  function openModal(id) {
+    setOpenModalId(id);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setOpenModalId(null);
   }
 
   return (
-    <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
+    <ModalContext.Provider value={{ openModalId, openModal, closeModal }}>
       {children}
     </ModalContext.Provider>
   );
 };
 
-function useModal() {
+export { ModalProvider };
+
+export function useModal() {
   const context = useContext(ModalContext);
-  if (context === undefined) throw new Error("Modal context was used outside provider");
+  if (!context)
+    throw new Error("useModal must be used inside ModalProvider");
   return context;
 }
 
-export { ModalProvider, useModal };

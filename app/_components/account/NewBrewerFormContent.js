@@ -33,11 +33,11 @@ function NewBrewerFormContent() {
 
   return (
     <>
-      <Button onClick={openModal} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
+      <Button onClick={() => openModal("newBrewer")} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
         Add Brewer
       </Button>
 
-      <Modal>
+      <Modal id="newBrewer">
         <H2 className="pb-2">New Brewer</H2>
         <form onSubmit={handleSubmit}>
           <Picture image={brewer.image} coffee={brewer} updateData={updateBrewerData} />

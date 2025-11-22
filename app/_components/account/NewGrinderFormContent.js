@@ -9,6 +9,7 @@ import { useNewGrinder } from "@/app/_context/NewGrinderContext";
 import { H2 } from "../Headings";
 import Picture from "../new-coffee-form/Picture";
 import { addGrinderAction } from "@/app/_lib/actions";
+import CustomSettings from "./CustomSettingsUser"
 
 function NewGrinderFormContent() {
   const { openModal, closeModal } = useModal();
@@ -33,11 +34,11 @@ function NewGrinderFormContent() {
 
   return (
     <>
-      <Button onClick={openModal} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
+      <Button onClick={() => openModal("newGrinder")} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
         Add Grinder
       </Button>
 
-      <Modal>
+      <Modal id="newGrinder">
         <H2 className="pb-2">New Grinder</H2>
         <form onSubmit={handleSubmit}>
           <Picture image={grinder.image} coffee={grinder} updateData={updateGrinderData} />
@@ -86,6 +87,8 @@ function NewGrinderFormContent() {
               name="description"
             />
           </InfoParagraph>
+            <H2 className="bg-primary-50 rounded-none uppercase">custom settings</H2>
+          <CustomSettings data={grinder} updateData={updateGrinderData}/>
           <input type="hidden" name="image" value={defaultImage} />
           <div className="flex gap-2 pt-4 items-center justify-center">
             <Button type="submit" className="bg-blue-400 hover:bg-blue-500">
