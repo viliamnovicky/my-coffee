@@ -9,6 +9,7 @@ import { useNewBrewer } from "@/app/_context/NewBrewerContext";
 import { H2 } from "../Headings";
 import Picture from "../new-coffee-form/Picture";
 import { addBrewerAction } from "@/app/_lib/actions";
+import CustomSettings from "./CustomSettingsUser";
 
 function NewBrewerFormContent() {
   const { openModal, closeModal } = useModal();
@@ -26,6 +27,9 @@ function NewBrewerFormContent() {
       formData.set("image", brewer.image);
     }
 
+    // IMPORTANT: add customSettings manually
+    formData.set("customSettings", JSON.stringify(brewer.customSettings));
+
     await addBrewerAction(formData);
     resetBrewerData();
     closeModal();
@@ -33,14 +37,17 @@ function NewBrewerFormContent() {
 
   return (
     <>
-      <Button onClick={() => openModal("newBrewer")} className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500">
+      <Button
+        onClick={() => openModal("newBrewer")}
+        className="m-auto mt-4 block bg-primary-400 hover:bg-primary-500"
+      >
         Add Brewer
       </Button>
 
       <Modal id="newBrewer">
         <H2 className="pb-2">New Brewer</H2>
         <form onSubmit={handleSubmit}>
-          <Picture image={brewer.image} coffee={brewer} updateData={updateBrewerData} />
+          <Picture image={brewer.image} data={brewer} updateData={updateBrewerData} />
 
           <InfoParagraph className="w-full">
             Mark:
@@ -89,6 +96,8 @@ function NewBrewerFormContent() {
               name="description"
             />
           </InfoParagraph>
+          <CustomSettings data={brewer} updateData={updateBrewerData} />
+
           <input type="hidden" name="image" value={defaultImage} />
           <div className="flex gap-2 pt-4 items-center justify-center">
             <Button type="submit" className="bg-blue-400 hover:bg-blue-500">

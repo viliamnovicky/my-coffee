@@ -8,14 +8,15 @@ export default function CustomSettings({ data, updateData }) {
   const [adding, setAdding] = useState(false);
   const [tempKey, setTempKey] = useState("");
   const [tempValue, setTempValue] = useState("");
+  const [tempUnit, setTempUnit] = useState("");
 
   function addSetting() {
     if (!tempKey || !tempValue) return;
 
-    const newSetting = { name: tempKey, value: tempValue };
+    const newSetting = { name: tempKey, value: tempValue, unit: tempUnit };
 
     updateData("customSettings", [...(data.customSettings || []), newSetting]);
-
+    console.log(data.customSettings)
     // clear & close
     setTempKey("");
     setTempValue("");
@@ -62,6 +63,14 @@ export default function CustomSettings({ data, updateData }) {
             label="Setting value"
             value={tempValue}
             onChange={(e) => setTempValue(e.target.value)}
+          />
+          <Input
+          addClass="flex justify-self-end w-full"
+          className="w-full"
+            type="text"
+            label="unit"
+            value={tempUnit}
+            onChange={(e) => setTempUnit(e.target.value)}
           />
 
           <Button

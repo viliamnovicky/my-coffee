@@ -26,7 +26,18 @@ export function AutoWidthInput() {
   );
 }
 
-export function Input({ value, addClass, className, placeholder, type, forId, id, label, onChange, ...rest }) {
+export function Input({
+  value,
+  addClass,
+  className,
+  placeholder,
+  type,
+  forId,
+  id,
+  label,
+  onChange,
+  ...rest
+}) {
   return (
     <div className={`${className} flex gap-2 justify-between items-center w-[50%]`}>
       {label && <label className="w-full">{label}</label>}
@@ -42,11 +53,10 @@ export function Input({ value, addClass, className, placeholder, type, forId, id
   );
 }
 
-export function Select({ value, addClass, children, onChange }) {
+export function Select({ addClass, children, ...props }) {
   return (
     <select
-      onChange={onChange}
-      value={value}
+      {...props}
       className={`rounded-md text-center border-none outline-none focus:border-none w-[20ch] ${addClass}`}
     >
       {children}

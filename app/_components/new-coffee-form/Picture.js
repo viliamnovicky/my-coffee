@@ -4,7 +4,7 @@ import Image from "next/image";
 import Tag from "../Tag";
 import { resizeImage } from "../../_helpers/resizeImage";
 
-function Picture({ coffee, updateData, update, image }) {
+function Picture({ data, updateData, update, image }) {
   const [imagePreview, setImagePreview] = useState(
     image
       ? image
@@ -29,16 +29,16 @@ function Picture({ coffee, updateData, update, image }) {
 
   return (
     <div className="h-[550px] xl:h-auto w-[100%] bg-gradient-1 relative p-10 overflow-hidden flex flex-col justify-center items-center">
-      {coffee.caffeine && (
+      {data.caffeine && (
         <Tag
-          color={coffee.caffeine}
-          text={coffee.caffeine}
+          color={data.caffeine}
+          text={data.caffeine}
           addClass="absolute xl:right-[300px] xl:bottom-[100px] right-[55px] bottom-[120px]"
         />
       )}
       <Image
-        src={update ? coffee.image : imagePreview}
-        alt={coffee.coffeeName ? coffee.coffeeName : "name"}
+        src={update ? data.image : imagePreview}
+        alt={data.coffeeName ? data.coffeeName : "name"}
         width="400"
         height="400"
         className="object-cover rounded-full p-2 bg-primary-50"

@@ -104,7 +104,7 @@ function NewCoffeeForm({ user, update }) {
           <Name coffee={coffee} updateCoffeeData={updateCoffeeData} />
 
           <div className=" w-full h-auto grid grid-cols-1 m-auto mt-2 rounded-[1rem] overflow-hidden">
-            <Picture update={update} coffee={coffee} updateData={updateCoffeeData} />
+            <Picture update={update} data={coffee} updateData={updateCoffeeData} />
             <div className="xl:px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
               <InfoParagraph>
                 rating (1 - 10):{" "}

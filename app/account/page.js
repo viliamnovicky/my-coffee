@@ -24,7 +24,7 @@ export default async function page() {
         <H2 className="text-[1.3rem] xl:text-[2rem] pl-[1rem] mt-[2rem] w-full xl:w-[1300px] m-auto text-start">
           Brewers
         </H2>
-        <div className="flex flex-col w-full xl:w-[1300px] gap-[1rem] m-auto">
+        <div className="flex flex-col w-full xl:w-[1300px] m-auto">
           {user?.coffeeMakers?.map((maker) => (
             <GearContainer key={maker.mark + maker.model + "container"} gear={maker} />
           ))}
@@ -33,7 +33,7 @@ export default async function page() {
         <H2 className="text-[1.3rem] xl:text-[2rem] pl-[1rem] mt-[2rem] w-full xl:w-[1300px] m-auto text-start">
           Grinders
         </H2>
-        <div className="flex flex-col w-full xl:w-[1300px] gap-[1rem] m-auto">
+        <div className="flex flex-col w-full xl:w-[1300px] m-auto">
           {user?.grinders?.map((grinder) => (
             <GearContainer key={grinder.mark + grinder.model + "container"} gear={grinder} />
           ))}

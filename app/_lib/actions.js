@@ -26,8 +26,10 @@ export async function addBrewerAction(formData) {
     type: formData.get("type"),
     description: formData.get("description"),
     image: formData.get("image"),
-    customSettings: [],
+    customSettings: formData.get("customSettings"),
   };
+
+  console.log(newBrewer)
 
   await updateUser({ newBrewer }, session.user.email);
 }
@@ -36,16 +38,19 @@ export async function addGrinderAction(formData) {
   const session = await auth();
   if (!session) throw new Error("Not logged in");
 
-  const newBrewer = {
+  const newGrinder = {
     mark: formData.get("mark"),
     model: formData.get("model"),
     type: formData.get("type"),
+    steps: formData.get("steps"),
     description: formData.get("description"),
     image: formData.get("image"),
-    customSettings: [],
+    customSettings: formData.get("customSettings"),
   };
 
-  await updateUser({ newBrewer }, session.user.email);
+  console.log(newGrinder)
+
+  await updateUser({ newGrinder }, session.user.email);
 }
 
 

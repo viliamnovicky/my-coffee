@@ -9,7 +9,7 @@ const initialState = {
   model: "",
   image: "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Funknown-brewer.png?alt=media&token=79db463e-d954-4aa5-9eea-242be8b7df7d",
   description: "",
-  type: "",
+  type: "espresso machine",
   customSettings: [],
 };
 
