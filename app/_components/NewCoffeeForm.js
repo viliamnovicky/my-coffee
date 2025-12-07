@@ -10,7 +10,7 @@ import { useNewCoffee } from "../_context/NewCoffeeContext";
 import { Input, Select } from "../_components/Inputs";
 import { addNewCoffee, updateCoffee } from "../_lib/data-service";
 import CountrySelector from "./CountrySelector";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import TasteInput from "./TasteInput";
 import { useRouter } from "next/navigation";
 import GrindSettings from "./new-coffee-form/GrindSettings";
@@ -25,9 +25,11 @@ import Name from "./new-coffee-form/Name";
 import Picture from "./new-coffee-form/Picture";
 import LoadingCoffees from "./_spinners/LoadingCoffees";
 import CustomSettings from "./new-coffee-form/CustomSettings";
+import { H2 } from "./Headings";
 
 function NewCoffeeForm({ user, update }) {
   const router = useRouter();
+  const [saveForUser, setSaveForUser] = useState(true)
   const {
     coffee,
     resetNewCoffeeData,
@@ -84,7 +86,7 @@ function NewCoffeeForm({ user, update }) {
         await updateCoffee(coffee.slug, coffee, user.email, router);
       } else {
         // ✅ create new coffee
-        await addNewCoffee(coffee, coffeeBasic, user.email, router);
+        await addNewCoffee(coffee, coffeeBasic, user.email, router, saveForUser);
       }
     } catch (error) {
       console.error("Failed to save coffee:", error);
@@ -106,7 +108,16 @@ function NewCoffeeForm({ user, update }) {
           <div className=" w-full h-auto grid grid-cols-1 m-auto mt-2 rounded-[1rem] overflow-hidden">
             <Picture update={update} data={coffee} updateData={updateCoffeeData} />
             <div className="xl:px-1 py-2 justify-start bg-gradient-2 h-auto w-[100%] flex flex-col">
-              <InfoParagraph>
+              <div className="flex m-auto gap-4 justify-center items-center pb-2">
+                <H2>Basic details only</H2>
+                <ToggleButton
+                    id="saveForUser"
+                    checked={saveForUser}
+                    onChange={() => setSaveForUser(!saveForUser)}
+                  />
+                <H2>Basic details + settings</H2>
+              </div>
+              {saveForUser && <InfoParagraph>
                 rating (1 - 10):{" "}
                 <Input
                   type="number"
@@ -116,7 +127,7 @@ function NewCoffeeForm({ user, update }) {
                   value={coffee.rating}
                   onChange={(e) => updateCoffeeData("rating", e.target.value)}
                 />
-              </InfoParagraph>
+              </InfoParagraph>}
               <p className="uppercase text-center p-2 bg-primary-300">origin info</p>
 
               <InfoParagraph color="dark">
@@ -220,12 +231,12 @@ function NewCoffeeForm({ user, update }) {
               <Preps coffee={coffee} updateCoffeeData={updateCoffeeData} />
               <Drinks coffee={coffee} updateCoffeeData={updateCoffeeData} />
             </div>
-            <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col xl:px-1 py-2 justify-start">
+            {saveForUser && <div className="relative bg-gradient-3 h-auto w-[100%] flex flex-col xl:px-1 py-2 justify-start">
               <GrindSettings user={user} coffee={coffee} updateCoffeeData={updateCoffeeData} />
               <CustomSettings coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
               <Weight coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
               <Notes coffee={coffee} user={user} updateCoffeeData={updateCoffeeData} />
-            </div>
+            </div>}
 
             <div className="relative h-[400px]  w-[100%] p-10 bg-gradient-4 rounded-b-full overflow-hidden">
               {coffee.origin[0] && (

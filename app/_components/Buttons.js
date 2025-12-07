@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { Children } from "react";
 
-export function AddCoffeeButton() {
+export function AddCoffeeButton({href}) {
   return (
     <Link
       className="text-primary-50 z-40 bg-primary-400 hover:bg-primary-600 flex items-center justify-center w-[35px] h-[35px] text-2xl fixed right-3 xl:top-[90px] top-[63px] rounded-full"
-      href="/new-coffee"
+      href={href}
     >
       +
     </Link>

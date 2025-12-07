@@ -13,7 +13,7 @@ import BackButton from "./BackButton";
 function CoffeeDetails({ coffee }) {
   return (
     <div className="relative w-full flex flex-col mt-[8vh]">
-      <AddCoffeeButton />
+      <AddCoffeeButton href={"/new-coffee"}/>
       <BackButton href="/coffees" />
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName}{" "}

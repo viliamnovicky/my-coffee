@@ -18,7 +18,7 @@ export async function Page() {
       
       <Searchbar user={user}/>
       
-        <AddCoffeeButton />
+        <AddCoffeeButton href="/new-coffee"/>
       <Suspense fallback={<LoadingCoffees/>}>
 
       <MyCoffeesList user={user}/>

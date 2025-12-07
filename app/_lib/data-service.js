@@ -142,9 +142,16 @@ export async function addCoffee(coffeeData, user, router) {
   }
 }
 
-export async function addNewCoffee(coffeeDataUser, coffeeData, user, router) {
+export async function addNewCoffee(
+  coffeeDataUser,
+  coffeeData,
+  user,
+  router,
+  saveForUser = true // ← new parameter
+) {
   const slug = generateSlug(coffeeData.roasteryName, coffeeData.coffeeName);
   console.log("[addCoffee] Generated slug:", slug);
+
   const coffeesCollectionUser = collection(database, `users/${user}/coffees`);
   const coffeesCollection = collection(database, `coffees`);
 
@@ -162,6 +169,7 @@ export async function addNewCoffee(coffeeDataUser, coffeeData, user, router) {
       throw new Error("A coffee with this slug already exists.");
     }
 
+    // Upload image if a file is provided
     if (coffeeData.image instanceof Blob) {
       imageRef = ref(storage, `coffee/${slug}.jpg`);
       const metadata = { contentType: "image/jpeg" };
@@ -182,19 +190,22 @@ export async function addNewCoffee(coffeeDataUser, coffeeData, user, router) {
       image: imageUrl || coffeeData.image || null,
     };
 
+    // Always save to global coffees collection
     await setDoc(coffeeDocRef, coffeeWithSlug);
-    await setDoc(coffeeDocRefUser, coffeeWithSlugUser);
-    //toast.success("Coffee added successfully!");
 
-    // ✅ Redirect to the coffee detail page
+    // Save to user collection only if saveForUser is true
+    if (saveForUser) {
+      await setDoc(coffeeDocRefUser, coffeeWithSlugUser);
+    }
+
     router.push(`/coffees/${slug}`);
+
     return {
       id: slug,
       ...coffeeWithSlug,
     };
   } catch (error) {
     console.error("[addCoffee] Error:", error);
-    //toast.error("Something went wrong while adding the coffee.");
 
     if (imageRef) {
       try {
@@ -347,12 +358,10 @@ export async function updateUser(data, email) {
 
     revalidatePath("/account");
     return true;
-
   } catch (error) {
     throw new Error("Error updating user: " + error.message);
   }
 }
-
 
 export async function deleteCoffee(slug, user) {
   try {
