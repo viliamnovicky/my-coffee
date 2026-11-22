@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/core": "^8.6.2",
     "firebase": "^11.2.0",
     "next": "15.1.6",
     "next-auth": "^5.0.0-beta.28",
@@ -21,6 +23,7 @@
     "react-router-dom": "^7.9.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
     "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",

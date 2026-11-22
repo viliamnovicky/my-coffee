@@ -8,7 +8,7 @@ function Picture({ data, updateData, update, image }) {
   const [imagePreview, setImagePreview] = useState(
     image
       ? image
-      : "https://firebasestorage.googleapis.com/v0/b/my-home-d1851.appspot.com/o/coffee%2Fcoffee_pouch_matt_black.png?alt=media&token=0d8fcb20-ccf0-4440-a018-2ee6522215fd"
+      : "https://firebasestorage.googleapis.com/v0/b/my-coffee-930912.firebasestorage.app/o/coffee_pouch_matt_black.png?alt=media&token=d0688a53-d6d8-45e7-aab5-03bab3cf5881"
   );
 
   const handleImageChange = async (e) => {

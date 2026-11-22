@@ -64,7 +64,7 @@ function NewCoffeeForm({ user, update }) {
     if (user?.grinders?.length > 0) {
       syncCustomSettingsWithMakers(user.coffeeMakers);
     }
-  }, [user?.makers]);
+  }, [user.coffeeMakers]);
 
   useEffect(() => {
     if (

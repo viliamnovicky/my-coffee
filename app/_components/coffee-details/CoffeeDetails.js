@@ -18,7 +18,7 @@ import CoffeeDrinksCont from "./CoffeeDrinksCont";
 function CoffeeDetails({ coffee, grinders }) {
   return (
     <div className="relative w-full flex flex-col mt-[8vh] overflow-x-hidden">
-      <AddCoffeeButton />
+      <AddCoffeeButton href={"/new-coffee"}/>
       <BackButton href="/my-coffee" />
       <h1 className="text-center text-primary-950 uppercase xl:text-[4rem] text-[2.5rem] font-thin inline relative m-auto">
         {coffee.roasteryName} <span className="font-normal">{coffee.coffeeName}</span>

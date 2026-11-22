@@ -13,15 +13,23 @@ const authConfig = {
     authorized({ auth, request }) {
       return !!auth?.user;
     },
-    async signIn({ user, account, profile }) {
+    async signIn({ user }) {
       try {
         const existingUser = await getUser(user.email);
 
-        if (!existingUser)
-          await addUser({ email: user.email, fullName: user.name, avatar: user.image });
+        if (!existingUser) {
+          await addUser({
+            email: user.email,
+            fullName: user.name,
+            avatar: user.image,
+          });
+        }
 
         return true;
-      } catch {
+      } catch (error) {
+        console.error("SIGN IN ERROR:");
+        console.error(error);
+        console.error(error.message);
         return false;
       }
     },

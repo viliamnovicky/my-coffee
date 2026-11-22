@@ -56,7 +56,7 @@ function createCustomSettingsForMakers(makers) {
   return makers.map((maker) => ({
     maker: {
       name: `${maker.mark} ${maker.model}`,
-      value: maker.customSettings?.find((s) => s.name === "default")?.value ?? 0,
+      value: maker.customSettings.find((s) => s.name === "default")?.value ?? 0,
     },
     settings:
       maker.customSettings?.map((s) => ({

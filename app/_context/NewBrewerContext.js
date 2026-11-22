@@ -11,6 +11,7 @@ const initialState = {
   description: "",
   type: "espresso machine",
   customSettings: [],
+  uses: [],
 };
 
 function NewBrewerProvider({ children }) {

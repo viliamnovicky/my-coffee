@@ -13,6 +13,7 @@ const initialState = {
   type: "manual",
   steps: 0,
   customSettings: [],
+  uses: [],
 };
 
 function NewGrinderProvider({ children }) {
