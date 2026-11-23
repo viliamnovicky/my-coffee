@@ -3,12 +3,50 @@ import Google from "next-auth/providers/google";
 import { addUser, getUser } from "./data-service";
 
 const authConfig = {
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
   ],
+  cookies: {
+    pkceCodeVerifier: {
+      name: "__Secure-authjs.pkce.code_verifier",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+    state: {
+      name: "__Secure-authjs.state",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+    callbackUrl: {
+      name: "__Secure-authjs.callback-url",
+      options: {
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+    sessionToken: {
+      name: "__Secure-authjs.session-token",
+      options: {
+        httpOnly: true,
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
+  },
   callbacks: {
     authorized({ auth, request }) {
       return !!auth?.user;
@@ -50,3 +88,4 @@ export const {
   signOut,
   handlers: { GET, POST },
 } = NextAuth(authConfig);
+
