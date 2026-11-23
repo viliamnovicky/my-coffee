@@ -1,13 +1,17 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.mycoffee.app', // Keep whatever you entered during npx cap init
+  appId: 'com.mycoffee.app',
   appName: 'My Coffee',
-  webDir: 'public', // Uses Next.js's existing public folder so you don't need a static build
+  webDir: 'public',
   server: {
-    url: 'http://192.168.178.27:3000', // <-- Replace with YOUR computer's IP
-    cleartext: true // Allows HTTP on Android
-  }
+    url: 'https://my-coffee-nine.vercel.app',
+  },
+  android: {
+    // Prevents Google OAuth from blocking the WebView
+    overrideUserAgent:
+      'Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+  },
 };
 
 export default config;
